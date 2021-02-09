@@ -1,3 +1,6 @@
+import { TypeComponent } from './../../Master/type/type.component';
+import { StreamsComponent } from './../../Master/streams/streams.component';
+import { TypeDetailsComponent } from './../../Master/type-details/type-details.component';
 import { LocationComponent } from './../../Master/location/location.component';
 import { Routes } from '@angular/router';
 
@@ -12,6 +15,9 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'location',       component: LocationComponent },
+    { path: 'streams',        component: StreamsComponent },
+    { path: 'type',           component: TypeComponent },
+    { path: 'type-details',   component: TypeDetailsComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },

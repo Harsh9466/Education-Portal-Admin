@@ -42,20 +42,20 @@
   </div>
     <ul class="nav">
         <!-- Master -->
-        <li id="dropdownBtn"  routerLinkActive="active">
-            <a class="nav-link " [routerLink]="['/master']"  id="navbarDropdownMenuLink" >
+        <li id="dropdownBtn" style="cursor: pointer;">
+            <a class="nav-link" >
                 <i class="material-icons">person</i>
                 <p>Master</p>
             </a>
         </li>
           <div id="dropdownContent" class="dropdown-menu-1" style="display: none;">
-            <a class="dropdown-item" routerLink="['/location']" routerLinkActive="active">Location</a>
-            <a class="dropdown-item" href="#">Streams</a>
-            <a class="dropdown-item" href="#">Type</a>
-            <a class="dropdown-item" href="#">Type Dertails</a>
+            <a class="dropdown-item" [routerLink]="['location']" routerLinkActive="active">Location</a>
+            <a class="dropdown-item" [routerLink]="['streams']" routerLinkActive="active">Streams</a>
+            <a class="dropdown-item" [routerLink]="['type']" routerLinkActive="active">Type</a>
+            <a class="dropdown-item" [routerLink]="['type-details']" routerLinkActive="active">Type Details</a>
           </div>
 
-          
+
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
             <a class="nav-link" [routerLink]="[menuItem.path]">
                 <i class="material-icons">{{menuItem.icon}}</i>

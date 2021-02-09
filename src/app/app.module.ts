@@ -10,9 +10,6 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { StreamsComponent } from './Master/streams/streams.component';
-import { TypeComponent } from './Master/type/type.component';
-import { TypeDetailsComponent } from './Master/type-details/type-details.component';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -28,10 +25,7 @@ import { TypeDetailsComponent } from './Master/type-details/type-details.compone
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
-    StreamsComponent,
-    TypeComponent,
-    TypeDetailsComponent
+    AdminLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

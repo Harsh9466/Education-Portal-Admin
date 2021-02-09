@@ -29,7 +29,10 @@
   <script>
     
   window.addEventListener("load",function(){
-  document.getElementById("dropdownBtn").addEventListener("click",function(){
+    var dropdown = document.getElementById("dropdownBtn");
+
+  dropdown.addEventListener("click",function(){
+    this.classList.toggle("active");
   var dropdownContent = document.getElementById("dropdownContent");
     if (dropdownContent.style.display === "block") 
     {

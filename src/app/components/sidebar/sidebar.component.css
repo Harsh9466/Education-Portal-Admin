@@ -1,6 +1,6 @@
 .dropdown-menu-1{
-background-color: coral;
 margin: 5px 15px;
 padding: 5px;
-border-radius: 10px;
+border: 1px solid;
+border-radius: 5px;
 }
