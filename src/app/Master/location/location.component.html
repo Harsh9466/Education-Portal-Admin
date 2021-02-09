@@ -1,4 +1,46 @@
 <div class="main-content">
-    <p>location works!</p>
-</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
 
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Locations</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <thead class=" text-primary">
+                                    <th>S.No</th>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Pin Code</th>
+                                    <th>Type</th>
+                                    <th>S.No</th>
+                                    <th>Parent Id</th>
+                                    <th>Status</th>
+                                </thead>
+                                <tbody >
+                                    <tr *ngFor="let item of Locations;let i=index">{{item}}</tr>
+                                    <tr>
+                                        <!-- <td>{{i+1}}</td>    -->
+                                        <td>{{Locations[0].mLocationId}}</td>   
+                                        <td>{{Locations[0].mLocationName}}</td>   
+                                        <td>{{Locations[0].mLocationCode}}</td>   
+                                        <td>{{Locations[0].mLocationPinCode}}</td>   
+                                        <td>{{Locations[0].mLocationType}}</td>   
+                                        <td>{{Locations[0].mLocationSerialNo}}</td>   
+                                        <td>{{Locations[0].mLocationParentId}}</td>   
+                                        <td>{{Locations[0].mLocationIsActive}}</td>   
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
