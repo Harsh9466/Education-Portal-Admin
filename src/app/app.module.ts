@@ -7,22 +7,12 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-
 import { AppComponent } from './app.component';
-
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
-import {
-  AgmCoreModule
-} from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { MasterComponent } from './master/master.component';
-
+import { StreamsComponent } from './Master/streams/streams.component';
+import { TypeComponent } from './Master/type/type.component';
+import { TypeDetailsComponent } from './Master/type-details/type-details.component';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -39,8 +29,9 @@ import { MasterComponent } from './master/master.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    MasterComponent,
-
+    StreamsComponent,
+    TypeComponent,
+    TypeDetailsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

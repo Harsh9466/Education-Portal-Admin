@@ -1,12 +1,6 @@
 .dropdown-menu-1{
-    display: none;
-    margin: 5px 15px;
-    border-radius: 15px;
-    border: 2px solid rgba(244, 244, 244, 0.6);
-    color: black;
-    overflow: hidden;
-    padding:5px !important;
-}
-.dropBtn:hover .dropdown-menu-1{
-    display: block;
+background-color: coral;
+margin: 5px 15px;
+padding: 5px;
+border-radius: 10px;
 }

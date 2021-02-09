@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MasterComponent } from './master.component';
+import { TypeDetailsComponent } from './type-details.component';
 
-describe('MasterComponent', () => {
-  let component: MasterComponent;
-  let fixture: ComponentFixture<MasterComponent>;
+describe('TypeDetailsComponent', () => {
+  let component: TypeDetailsComponent;
+  let fixture: ComponentFixture<TypeDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MasterComponent ]
+      declarations: [ TypeDetailsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MasterComponent);
+    fixture = TestBed.createComponent(TypeDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

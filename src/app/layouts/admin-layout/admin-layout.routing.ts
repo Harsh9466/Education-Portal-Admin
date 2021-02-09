@@ -1,4 +1,4 @@
-import { MasterComponent } from './../../master/master.component';
+import { LocationComponent } from './../../Master/location/location.component';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../dashboard/dashboard.component';
@@ -11,7 +11,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
-    { path: 'master',         component: MasterComponent },
+    { path: 'location',       component: LocationComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },
