@@ -9,14 +9,8 @@ declare interface RouteInfo
     icon: string;
     class: string;
 }
-<<<<<<< HEAD
-export const ROUTES: RouteInfo[] = 
-[
-  { path: '/master', title: 'Master',  icon:'person', class: '' },
-=======
 export const ROUTES: RouteInfo[] = [
   { path: '/master', title: 'Master',  icon:'person', class: ''},
->>>>>>> 5685dcaad74ce3df3808e8ca01c759ba2a1508cb
   { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
   { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
   { path: '/typography', title: 'HRh',  icon:'library_books', class: '' },
