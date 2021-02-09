@@ -27,13 +27,6 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $(document).ready(function(){
-      $(".masterLink").click(function(){
-        $(".dropdown-menu-1").toggleClass("dropdown-menu-2");
-      })
-    });
-    
-
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {
