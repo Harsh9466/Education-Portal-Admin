@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 declare const $: any;
 
 declare interface RouteInfo 
@@ -10,7 +9,6 @@ declare interface RouteInfo
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-  { path: '/master', title: 'Master',  icon:'person', class: ''},
   { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
   { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
   { path: '/typography', title: 'HRh',  icon:'library_books', class: '' },
@@ -29,6 +27,13 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $(document).ready(function(){
+      $(".masterLink").click(function(){
+        $(".dropdown-menu-1").toggleClass("dropdown-menu-2");
+      })
+    });
+    
+
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {
@@ -37,4 +42,5 @@ export class SidebarComponent implements OnInit {
       }
       return true;
   };
+
 }
