@@ -1,3 +1,4 @@
+import { MasterComponent } from './../../master/master.component';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../dashboard/dashboard.component';
@@ -9,6 +10,7 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 export const AdminLayoutRoutes: Routes = [
+<<<<<<< HEAD
     // {
     //   path: '',
     //   children: [ {
@@ -45,7 +47,10 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
+=======
+>>>>>>> 5685dcaad74ce3df3808e8ca01c759ba2a1508cb
     { path: 'dashboard',      component: DashboardComponent },
+    { path: 'master',         component: MasterComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },
