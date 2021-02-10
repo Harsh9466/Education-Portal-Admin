@@ -13,6 +13,7 @@ Type:Type;
   constructor(private typeService:TypeService) { }
 
   ngOnInit(): void {
+    this.getTypes();
   }
 
   getTypes(){

@@ -12,7 +12,7 @@
                         <div class="table-responsive">
                             <table class="table text-center">
                                 <thead class=" text-primary">
-                                    <th>Id</th>
+                                    <th>S.No</th>
                                     <th>SerialNo</th>
                                     <th>Name</th>
                                     <th>ProgramType</th>
@@ -21,8 +21,8 @@
                                     <th>IsActive</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let tp of Streams">
-                                        <td>{{tp.mTypeId}}</td>   
+                                    <tr *ngFor="let tp of Types">
+                                        <td>{{i+1}}</td>   
                                         <td>{{tp.mTypeSerialNo}}</td>   
                                         <td>{{tp.mTypeName}}</td>   
                                         <td>{{tp.mTypeProgramType}}</td>   

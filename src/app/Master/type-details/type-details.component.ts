@@ -39,7 +39,8 @@ TypeDetail:TypeDetails;
     })
   }
 
-  insertTypeDetails(data:TypeDetails){
+  insertTypeDetails(data:TypeDetails)
+  {
     this.typeDetailService.insertMasterTypeDetails(data).subscribe
     (
       (res) =>{ 
@@ -49,6 +50,28 @@ TypeDetail:TypeDetails;
         console.log("Error in Get Stream By Id !");
     }
     )
+  }
+
+  updateTypedetails(id:number,data:Type){
+    this.typeDetailService.updateMasterTypeDetails(id,data).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+      },
+      (error)=>{
+        console.log("Error in Update Type Details!");
+    })
+  }
+
+  deleteTypedetails(id:number){
+    this.typeDetailService.deleteMasterTypeDetails(id).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+      },
+      (error)=>{
+        console.log("Error in Delete Type Details!");
+    })
   }
 
 }

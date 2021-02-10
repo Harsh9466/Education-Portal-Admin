@@ -13,17 +13,17 @@
                         <div class="table-responsive">
                             <table class="table text-center">
                                 <thead class=" text-primary">
-                                    <th>Id</th>
+                                    <th>S.No</th>
                                     <th>Code</th>
                                     <th>Name</th>
                                     <th>Type</th>
-                                    <th>SerialNo</th>
+                                    <th>Serial No</th>
                                     <th>ParentId</th>
                                     <th>IsActive</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let st of Streams">
-                                        <td>{{st.mStreamsId}}</td>   
+                                    <tr *ngFor="let st of Streams; let i=index">
+                                        <td>{{i+1}}</td>   
                                         <td>{{st.mStreamsCode}}</td>   
                                         <td>{{st.mStreamsName}}</td>   
                                         <td>{{st.mStreamsType}}</td>   
