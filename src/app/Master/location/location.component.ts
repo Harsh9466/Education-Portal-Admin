@@ -51,15 +51,17 @@ Location:Location;
     });
   }
 
-  insertLocation(data:Location){
-    this.locationService.insertMasterLocation(data).subscribe
-    (
-      (res) =>{ 
-        console.log(res);
-      },
-      (error)=>{
-        console.log("Error in Post Location !");
-    }); 
+  insertLocation(data:NgForm){
+    // this.locationService.insertMasterLocation(data.value).subscribe
+    // (
+    //   (res) =>{ 
+    //     console.log(res);
+    //   },
+    //   (error)=>{
+    //     console.log("Error in Post Location !");
+    // }); 
+    
+    console.log(data.value)
   }
 
   updateLocation(id:number,data:Location){
