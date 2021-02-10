@@ -27,7 +27,6 @@ Stream:Streams;
     (
       (res) =>{ 
         this.Streams=res;
-        console.log(res);
       },
       (error)=>{
         console.log("Error in Get Streams !");
@@ -39,7 +38,6 @@ Stream:Streams;
     (
       (res) =>{ 
         this.Stream=res;
-        console.log(res);
       },
       (error)=>{
         console.log("Error in Get Stream By Id !");

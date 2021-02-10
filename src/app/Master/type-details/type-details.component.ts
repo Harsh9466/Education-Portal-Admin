@@ -48,7 +48,29 @@ TypeDetail:TypeDetails;
         console.log(res);
       },
       (error)=>{
-        console.log("Error in Get Stream By Id !");
+        console.log("Error in Post Type Details !");
+    }
+    )
+  }
+  updateTypeDetails(id:number,data:TypeDetails){
+    this.typeDetailService.updateMasterTypeDetails(id,data).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+      },
+      (error)=>{
+        console.log("Error in Update Type Details !");
+    })
+  }
+
+  deleteTypeDetails(id:number){
+    this.typeDetailService.deleteMasterTypeDetails(id).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+      },
+      (error)=>{
+        console.log("Error in Delet Tpye Details");
     }
     )
   }
