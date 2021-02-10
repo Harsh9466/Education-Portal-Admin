@@ -41,7 +41,7 @@
                                         <td>{{lc.mLocationIsActive}}</td>
                                         <td>
                                           <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" (click)="get_id_to_delete(lc.mLocationId)"></i>
-                                          <i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#UpdateLocationForm"></i>
+                                          <i class="fa fa-pencil-square-o" data-toggle="modal" data-target="#UpdateLocationForm" (click)="getLocation(lc.mLocationId)"></i>
                                         </td>
                                     </tr>  
                                 </tbody>
@@ -125,7 +125,7 @@
         </div>
         <div class="modal-body">
           <p style="text-transform: uppercase;">Are you sure want to Delete?</p>
-          <input  name="delete_id" [(ngModel)]="to_delete_ID" name="to_delete_ID">
+          <!-- <input  name="delete_id" [(ngModel)]="to_delete_ID" name="to_delete_ID"> -->
         </div>
         <div class="modal-footer d-flex">
           <div class="d-flex justify-content-around">
@@ -143,7 +143,7 @@
 
 <!-- update modal -->
 <div class="modal fade"  id="UpdateLocationForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form  #locationform="ngForm">
+  <form  #locationupdateform="ngForm">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
@@ -155,8 +155,12 @@
         </div>
             <div class="modal-body mx-3">
               <div class="md-form ">
+                <label>Id</label>
+                <input type="text" readonly="" [(ngModel)]="Location.mLocationId" class="form-control" name="mLocationId" ngModel >
+              </div>
+              <div class="md-form ">
                 <label>Name</label>
-                <input type="text" [(ngModel)]="Location.mLocationName" class="form-control" name="mLocationName">
+                <input type="text" [(ngModel)]="Location.mLocationName" class="form-control" name="mLocationName" ngModel >
               </div>
               <div class="md-form ">
                 <label>Code</label>
@@ -170,10 +174,10 @@
                 <label>Type</label>
                 <input type="text" [(ngModel)]="Location.mLocationType" name="mLocationType" class="form-control">
               </div>
-              <!-- <div class="md-form ">
-                <label>Parent Id</label>
-                <input type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">                
-              </div> -->
+              <div class="md-form ">
+                <label>Parent Id (Cannot Change)</label>
+                <input type="text" readonly="" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">                
+              </div>
               <div class="form-group ">
                 <label>Status</label>
                 <div class="d-flex justify-content-around">
@@ -190,7 +194,7 @@
           </div>
 
         <div class="modal-footer d-flex justify-content-center">
-          <button type="button" (click)="insertLocation(locationform)" class="btn btn-deep-orange">Update</button>
+          <button type="button" (click)="updateLocation(to_update_ID,locationupdateform)" class="btn btn-deep-orange" >Update</button>
         </div>
       </div>
     </div>
