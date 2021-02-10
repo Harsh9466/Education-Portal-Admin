@@ -14,6 +14,7 @@ Stream:Streams;
   constructor(private streamsService:StreamsService) { }
 
   ngOnInit(): void {
+    this.getStreams();
   }
 
   getStreams(){

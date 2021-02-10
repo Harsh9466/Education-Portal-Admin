@@ -13,18 +13,18 @@
                             <table class="table text-center">
                                 <thead class=" text-primary">
                                     <th>Id</th>
-                                    <th>SerialNo</th>
                                     <th>Name</th>
+                                    <th>SerialNo</th>
                                     <th>ParentId</th>
                                     <th>IsActive</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let tpd of Streams">
-                                        <td>{{tpd.mTypeId}}</td>   
-                                        <td>{{tpd.mTypeSerialNo}}</td>   
-                                        <td>{{tpd.mTypeName}}</td>   
-                                        <td>{{tpd.mTypeParentId}}</td>   
-                                        <td>{{tpd.mTypeIsActive}}</td>   
+                                    <tr *ngFor="let tpd of TypeDetails;let i=index">
+                                        <td>{{i+1}}</td>   
+                                        <td>{{tpd.mtdName}}</td>   
+                                        <td>{{tpd.mtdSerialNo}}</td>   
+                                        <td>{{tpd.mtdParentId}}</td>   
+                                        <td>{{tpd.mtdIsActive}}</td>   
                                     </tr>
                                 </tbody>
                             </table>

@@ -14,6 +14,7 @@ TypeDetail:TypeDetails;
   constructor(private typeDetailService:TypeDetailsService) { }
 
   ngOnInit(): void {
+    this.getTypeDetails();
   }
 
   getTypeDetails(){
