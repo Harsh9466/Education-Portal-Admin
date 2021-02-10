@@ -69,29 +69,46 @@
       </div>
           <div class="modal-body mx-3">
             <div class="md-form ">
-              <input type="text" [(ngModel)]="Location.mLocationName" nameclass="form-control validate" name="mLocationName">
               <label data-error="wrong" data-success="right" >Name</label>
+              <input type="text" [(ngModel)]="Location.mLocationName" class="form-control validate" name="mLocationName">
             </div>
             <div class="md-form ">
-              <input type="password" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control validate">
               <label data-error="wrong" data-success="right" >Code</label>
+              <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control validate">
             </div>
             <div class="md-form ">
-              <input type="password" [(ngModel)]="Location.mLocationNamePinCode" name="mLocationPinCode" class="form-control validate">
               <label data-error="wrong" data-success="right" >Pin Code</label>
+              <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control validate">
             </div>
             <div class="md-form ">
-              <input type="password" [(ngModel)]="Location.mLocationType" name="mLocationType" class="form-control validate">
               <label data-error="wrong" data-success="right" >Type</label>
+              <input type="text" [(ngModel)]="Location.mLocationType" name="mLocationType" class="form-control validate">
             </div>
             <div class="md-form ">
-              <input type="password" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">
               <label data-error="wrong" data-success="right" >Parent Id</label>
+              <input type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">
+              <div class="select" tabindex="1">
+              <input class="options-select" name="selectors" type="radio" id="opt1" checked>
+              <label for="opt1" class="option">Web Design</label>
+              <input class="options-select" name="selectors" type="radio" id="opt2">
+              <label for="opt2" class="option">Web Development</label>
+              <input class="options-select" name="selectors" type="radio" id="opt3">
+              <label for="opt3" class="option">SEO</label>
+              <input class="options-select" name="selectors" type="radio" id="opt4">
+              <label for="opt4" class="option">UI / UX Designer</label>
+              <input class="options-select" name="selectors" type="radio" id="opt5">
+              <label for="opt5" class="option">Graphic Designer</label>
+              <input class="options-select" name="selectors" type="radio" id="opt6">
+              <label for="opt6" class="option">Video Editor</label>
+             
+              </div>
+                
             </div>
             <div class="md-form ">
-              <input type="password" [(ngModel)]="Location.mLocationIsActive" name="mLocationIsActive" class="form-control validate">
               <label data-error="wrong" data-success="right">Status</label>
             </div>
+              <input type="radio" [(ngModel)]="Location.mLocationIsActive" name="mLocationIsActive" class="radiobtn">Not Active
+              <input type="radio" [(ngModel)]="Location.mLocationIsActive" name="mLocationIsActive" class="radiobtn">Active
           </div>
 
       <div class="modal-footer d-flex justify-content-center">
@@ -117,7 +134,7 @@
         <p>Want to Delete</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="deleteLocation(lc.mLocationId)">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="deleteLocation(mLocationId)">Yes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
       </div>
     </div>

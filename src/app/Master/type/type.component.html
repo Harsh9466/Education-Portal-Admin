@@ -15,18 +15,14 @@
                                     <th>S.No</th>
                                     <th>SerialNo</th>
                                     <th>Name</th>
-                                    <th>ProgramType</th>
-                                    <th>TypeOfCollege</th>
-                                    <th>CourseType</th>
+                                    <th>Program Type</th>
+                                    <th>Type Of College</th>
+                                    <th>Course Type</th>
                                     <th>IsActive</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let tp of Types">
-<<<<<<< HEAD
+                                    <tr *ngFor="let tp of Types; let i=index">
                                         <td>{{i+1}}</td>   
-=======
-                                        <td>{{tp.mTypeId}}</td>   
->>>>>>> 9eb378f72f7dfe187883ca16f0996b3a03768d23
                                         <td>{{tp.mTypeSerialNo}}</td>   
                                         <td>{{tp.mTypeName}}</td>   
                                         <td>{{tp.mTypeProgramType}}</td>   
