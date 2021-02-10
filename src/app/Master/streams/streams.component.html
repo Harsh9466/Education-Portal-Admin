@@ -1,10 +1,11 @@
 <div class="main-content">
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                <div class="button">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Add Stream</button>
+                </div>
                 <div class="card">
-
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Streams</h4>
                     </div>
@@ -48,4 +49,45 @@
     </div>
 </div>
 
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog modal-login">
+        <div class="card ">
+            <div class="card-header d-flex justify-content-end">
+                <button type="button" class="close" style="cursor: pointer;" data-dismiss="modal"><i class="material-icons">clear</i></button>
+            </div>
+            <form class="form">
+                <div class="card-body">
+                    <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">face</i>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="First Name...">
+                                </div>
+                    </div>
 
+                    <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">email</i>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Email...">
+                                </div>
+                    </div>
+
+                    <div class="form-group bmd-form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                    <input type="password" placeholder="Password..." class="form-control">
+                                </div>
+                    </div>
+                </div>
+            </form>
+            <div class=" d-flex justify-content-center p-3 ">
+                <button type="button" class="btn btn-danger" style="cursor: pointer;">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
