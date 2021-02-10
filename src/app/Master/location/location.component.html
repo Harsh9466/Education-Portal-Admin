@@ -55,10 +55,10 @@
     </div>
 </div>
 
-
+s
 <!-- insert modal -->
 <div class="modal fade"  id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<form  #locationform="ngForm" (ngSubmit)="insertLocation(locationform)">
+<form  #locationform="ngForm">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
@@ -70,42 +70,59 @@
       </div>
           <div class="modal-body mx-3">
             <div class="md-form ">
-              <label data-error="wrong" data-success="right" >Name</label>
-              <input type="text" [(ngModel)]="Location.mLocationName" class="form-control validate" name="mLocationName">
+              <label >Name</label>
+              <input type="text" [(ngModel)]="Location.mLocationName" class="form-control" name="mLocationName">
             </div>
             <div class="md-form ">
-              <label data-error="wrong" data-success="right" >Code</label>
-              <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control validate">
+              <label >Code</label>
+              <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control">
             </div>
             <div class="md-form ">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+              <label >Pin Code</label>
+              <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control">
+=======
+<<<<<<< HEAD
+              <input type="password" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control validate">
+=======
+>>>>>>> 67064f78c43e354ea500a93f6620ae6649ce4aae
+>>>>>>> 6efd886024f2bd3bca13352bd63c316770d2e966
               <label data-error="wrong" data-success="right" >Pin Code</label>
               <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control validate">
+>>>>>>> 060b23fbea3fd7ed86c8d72c40d1455abd0cb4fb
             </div>
             <div class="md-form ">
-              <label data-error="wrong" data-success="right" >Type</label>
-              <input type="text" [(ngModel)]="Location.mLocationType" name="mLocationType" class="form-control validate">
+              <label >Type</label>
+              <input type="text" [(ngModel)]="Location.mLocationType" name="mLocationType" class="form-control">
             </div>
             <div class="md-form ">
+<<<<<<< HEAD
               <label data-error="wrong" data-success="right" >Parent Id</label>
               <input  type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">                
+=======
+              <label >Parent Id</label>
+              <input type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">                
+>>>>>>> 6efd886024f2bd3bca13352bd63c316770d2e966
             </div>
             <div class="form-group ">
               <label>Status</label>
               <div class="d-flex justify-content-around">
                 <div>
                   <input type="radio" name="status">
-                  <label class="p-2" >Not Active</label>
+                  <label class="p-2" [value]="'0'">Not Active</label>
                 </div>
                 <div>
                   <input type="radio" name="status">
-                  <label class="p-2" >Active</label>
+                  <label class="p-2" [value]="'1'">Active</label>
                 </div>
               </div>
           </div>
         </div>
 
       <div class="modal-footer d-flex justify-content-center">
-        <button type="Submit" class="btn btn-deep-orange">Add</button>
+        <button type="button" (click)="insertLocation(locationform)" class="btn btn-deep-orange">Add</button>
       </div>
     </div>
   </div>

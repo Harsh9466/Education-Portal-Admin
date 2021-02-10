@@ -52,6 +52,7 @@ Location:Location;
   }
 
   insertLocation(data:NgForm){
+<<<<<<< HEAD
     // this.locationService.insertMasterLocation(data.value).subscribe
     // (
     //   (res) =>{ 
@@ -62,6 +63,26 @@ Location:Location;
     // }); 
     
     console.log(data.value)
+=======
+    var parseData={
+      mLocationCode:data.value.mLocationCode,
+      mLocationName:data.value.mLocationName,
+      mLocationPinCode:parseInt(data.value.mLocationPinCode),
+      mLocationType:data.value.mLocationType,
+      mLocationParentId:parseInt(data.value.mLocationParentId),
+      mLocationIsActive:true ,
+    }
+    this.locationService.insertMasterLocation(parseData).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+        this.getLocations();
+      },
+      (error)=>{
+        console.log("Error in Post Location !");
+    }); 
+    // console.log(data.value)
+>>>>>>> 6efd886024f2bd3bca13352bd63c316770d2e966
   }
 
   updateLocation(id:number,data:Location){
