@@ -21,6 +21,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'location',       component: LocationComponent },
     { path: 'streams',        component: StreamsComponent },
+    { path: 'streams/:id',        component: StreamsComponent },
     { path: 'type',           component: TypeComponent },
     { path: 'type-details',   component: TypeDetailsComponent },
     { path: 'user-profile',   component: UserProfileComponent },

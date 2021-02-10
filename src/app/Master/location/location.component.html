@@ -40,7 +40,8 @@
                                         <td>{{lc.mLocationParentId}}</td>   
                                         <td>{{lc.mLocationIsActive}}</td>
                                         <td>
-                                            <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal"></i>
+                                            <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" 
+                                            ></i>
                                             <i class="fa fa-pencil-square-o" (click)="updateLocation(lc.mLocationId)"  data-toggle="modal" data-target="#modalRegisterForm"></i>
                                         </td>
                                     </tr>  
@@ -135,12 +136,8 @@
         <p>Want to Delete</p>
       </div>
       <div class="modal-footer">
-<<<<<<< HEAD
         <button type="button" class="btn btn-primary" 
         (click)="deleteLocation()">Yes</button>
-=======
-        <button type="button" class="btn btn-primary" (click)="deleteLocation(mLocationId)">Yes</button>
->>>>>>> 387651627b3fcdd5d052415b3b9174ebf0693f02
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
       </div>
     </div>
