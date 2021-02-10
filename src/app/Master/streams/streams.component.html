@@ -22,8 +22,14 @@
                                     <th>IsActive</th>
                                 </thead>
                                 <tbody>
+<<<<<<< HEAD
                                     <tr *ngFor="let st of Streams; let i=index">
                                         <td>{{i+1}}</td>   
+=======
+                                    {{Streams}}
+                                    <tr *ngFor="let st of Streams">
+                                        <td>{{st.mStreamsId}}</td>   
+>>>>>>> 0cd0598254dc544dcea6b97a868295a3b2c748ca
                                         <td>{{st.mStreamsCode}}</td>   
                                         <td>{{st.mStreamsName}}</td>   
                                         <td>{{st.mStreamsType}}</td>   

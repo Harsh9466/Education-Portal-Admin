@@ -14,6 +14,7 @@ TypeDetail:TypeDetails;
   constructor(private typeDetailService:TypeDetailsService) { }
 
   ngOnInit(): void {
+    this.getTypeDetails();
   }
 
   getTypeDetails(){
@@ -52,7 +53,7 @@ TypeDetail:TypeDetails;
     )
   }
 
-  updateTypedetails(id:number,data:Type){
+  updateTypedetails(id:number,data:TypeDetails){
     this.typeDetailService.updateMasterTypeDetails(id,data).subscribe
     (
       (res) =>{ 

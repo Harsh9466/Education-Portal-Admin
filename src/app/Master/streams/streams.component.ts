@@ -13,8 +13,12 @@ Stream:Streams;
 
   constructor(private streamsService:StreamsService) { }
 
+
   ngOnInit(): void 
   s{
+
+  ngOnInit(): void {
+
     this.getStreams();
   }
 
