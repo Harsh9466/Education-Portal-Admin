@@ -49,45 +49,53 @@
     </div>
 </div>
 
-<div class="modal fade" id="loginModal">
-    <div class="modal-dialog modal-login">
-        <div class="card ">
-            <div class="card-header d-flex justify-content-end">
-                <button type="button" class="close" style="cursor: pointer;" data-dismiss="modal"><i class="material-icons">clear</i></button>
-            </div>
-            <form class="form">
-                <div class="card-body">
-                    <div class="form-group bmd-form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">face</i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="First Name...">
-                                </div>
-                    </div>
 
-                    <div class="form-group bmd-form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">email</i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Email...">
-                                </div>
-                    </div>
-
-                    <div class="form-group bmd-form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">lock_outline</i>
-                                    </span>
-                                    <input type="password" placeholder="Password..." class="form-control">
-                                </div>
+<!-- insert modal -->
+<div class="modal fade"  id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form  #locationform="ngForm" (ngSubmit)="insertStreams(locationform)">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+    
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+    
+          </div>
+              <div class="modal-body mx-3">
+                <div class="md-form ">
+                  <label>Name</label>
+                  <input type="text"class="form-control" name="mLocationName">
+                </div>
+                <div class="md-form ">
+                  <label>Code</label>
+                  <input type="text"  name="mLocationCode" class="form-control">
+                </div>
+                <div class="md-form ">
+                  <label>Pin Code</label>
+                  <input type="text"  name="mLocationPinCode" class="form-control">
+                </div>
+                <div class="md-form ">
+                  <label>Type</label>
+                  <input type="text" name="mLocationType" class="form-control">
+                </div>
+                <div class="md-form ">
+                  <label>Parent Id</label>
+                  <input type="text"name="mLocationParentId" class="form-control">
+                </div>
+                <div class="form-group">
+                    <div class="d-flex justify-content-start">
+                        <input type="radio" name="status">
+                        <label >Active</label>
+                        <input type="radio"  name="status">      
+                        <label>Not Active</label>
                     </div>
                 </div>
-            </form>
-            <div class=" d-flex justify-content-center p-3 ">
-                <button type="button" class="btn btn-danger" style="cursor: pointer;">Add</button>
-            </div>
+                </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="Submit" class="btn btn-deep-orange">Add</button>
+          </div>
         </div>
+      </div>
+    </form>
     </div>
-</div>

@@ -40,7 +40,12 @@
                                         <td>{{lc.mLocationParentId}}</td>   
                                         <td>{{lc.mLocationIsActive}}</td>
                                         <td>
+<<<<<<< HEAD
+                                            <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" 
+                                            ></i>
+=======
                                             <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" ></i>
+>>>>>>> 67064f78c43e354ea500a93f6620ae6649ce4aae
                                             <i class="fa fa-pencil-square-o" (click)="updateLocation(lc.mLocationId)"  data-toggle="modal" data-target="#modalRegisterForm"></i>
                                         </td>
                                     </tr>  
@@ -77,8 +82,17 @@ s
               <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control">
             </div>
             <div class="md-form ">
+<<<<<<< HEAD
               <label >Pin Code</label>
               <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control">
+=======
+<<<<<<< HEAD
+              <input type="password" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control validate">
+=======
+>>>>>>> 67064f78c43e354ea500a93f6620ae6649ce4aae
+              <label data-error="wrong" data-success="right" >Pin Code</label>
+              <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control validate">
+>>>>>>> 060b23fbea3fd7ed86c8d72c40d1455abd0cb4fb
             </div>
             <div class="md-form ">
               <label >Type</label>
@@ -125,12 +139,19 @@ s
       <div class="modal-body">
         <p style="text-transform: uppercase;">Are you sure want to Delete?</p>
       </div>
+<<<<<<< HEAD
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" 
+        (click)="deleteLocation()">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+=======
       <div class="modal-footer d-flex">
         <div class="d-flex justify-content-around">
           <button type="button" class="confirm" 
           (click)="deleteLocation()">Yes</button>
           <button type="button" class="confirm" data-dismiss="modal">No</button>
         </div>
+>>>>>>> 67064f78c43e354ea500a93f6620ae6649ce4aae
       </div>
     </div>
   </div>
