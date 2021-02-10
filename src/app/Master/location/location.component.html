@@ -18,11 +18,11 @@
                                 <thead class=" text-primary">
                                     <tr>
                                         <th>S.No</th>
-                                        <th>Serial No</th>
                                         <th>Name</th>
-                                        <th>Code</th>
-                                        <th>Pin Code</th>
                                         <th>Type</th>
+                                        <th>Pin Code</th>
+                                        <th>Code</th>
+                                        <th>Serial No</th>
                                         <th>Parent Id</th>
                                         <th>Status</th>
                                         <th>Actions</th>
@@ -32,12 +32,12 @@
                                     <tr *ngFor="let lc of Locations; let i=index">
                                         <td>{{i+1}}</td>   
                                         <!-- <td>{{lc.mLocationId}}</td>    -->
+                                        <td>{{lc.mLocationName}}</td>   
                                         <td>{{lc.mLocationType}}</td>   
+                                        <td>{{lc.mLocationPinCode}}</td>   
+                                        <td>{{lc.mLocationCode}}</td>   
                                         <td>{{lc.mLocationSerialNo}}</td>   
                                         <td>{{lc.mLocationParentId}}</td>   
-                                        <td>{{lc.mLocationCode}}</td>   
-                                        <td>{{lc.mLocationName}}</td>   
-                                        <td>{{lc.mLocationPinCode}}</td>   
                                         <td>{{lc.mLocationIsActive}}</td>
                                         <td>
                                             <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal"></i>
@@ -77,6 +77,10 @@
               <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control validate">
             </div>
             <div class="md-form ">
+<<<<<<< HEAD
+              <input type="password" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control validate">
+=======
+>>>>>>> 387651627b3fcdd5d052415b3b9174ebf0693f02
               <label data-error="wrong" data-success="right" >Pin Code</label>
               <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control validate">
             </div>
@@ -134,7 +138,12 @@
         <p>Want to Delete</p>
       </div>
       <div class="modal-footer">
+<<<<<<< HEAD
+        <button type="button" class="btn btn-primary" 
+        (click)="deleteLocation()">Yes</button>
+=======
         <button type="button" class="btn btn-primary" (click)="deleteLocation(mLocationId)">Yes</button>
+>>>>>>> 387651627b3fcdd5d052415b3b9174ebf0693f02
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
       </div>
     </div>
