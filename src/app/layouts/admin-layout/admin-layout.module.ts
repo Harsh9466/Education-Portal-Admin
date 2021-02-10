@@ -1,3 +1,7 @@
+import { TypeComponent } from './../../Master/type/type.component';
+import { TypeDetailsComponent } from './../../Master/type-details/type-details.component';
+import { StreamsComponent } from './../../Master/streams/streams.component';
+import { LocationComponent } from './../../Master/location/location.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -39,6 +43,10 @@ import { MatSelectModule} from '@angular/material/select';
     IconsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    LocationComponent,
+    StreamsComponent,
+    TypeComponent,
+    TypeDetailsComponent
   ]
 })
 
