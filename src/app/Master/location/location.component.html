@@ -40,9 +40,14 @@
                                         <td>{{lc.mLocationParentId}}</td>   
                                         <td>{{lc.mLocationIsActive}}</td>
                                         <td>
+<<<<<<< HEAD
                                             <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" 
                                             ></i>
                                             <i class="fa fa-pencil-square-o" (click)="updateLocation(lc.mLocationId)"  data-toggle="modal" data-target="#modalRegisterForm"></i>
+=======
+                                          <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" ></i>
+                                          <i class="fa fa-pencil-square-o" (click)="updateLocation(lc.mLocationId)"  data-toggle="modal" data-target="#modalRegisterForm"></i>
+>>>>>>> b7fac5a3fc83608e6341bae63efa9a985a14b31f
                                         </td>
                                     </tr>  
                                 </tbody>
@@ -77,7 +82,10 @@
               <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control">
             </div>
             <div class="md-form ">
+<<<<<<< HEAD
 
+=======
+>>>>>>> b7fac5a3fc83608e6341bae63efa9a985a14b31f
               <label >Pin Code</label>
               <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control">
             </div>
@@ -93,12 +101,21 @@
               <label>Status</label>
               <div class="d-flex justify-content-around">
                 <div>
+<<<<<<< HEAD
                   <input type="radio" name="status"[value]="0" >
                   <label class="p-2" >Not Active</label>
                 </div>
                 <div>
                   <input type="radio" name="status">
                   <label class="p-2">Active</label>
+=======
+                  <input type="radio" [(ngModel)]="status" [value]="false" name="mLocationIsActive">
+                  <label class="p-2" >Not Active</label>
+                </div>
+                <div>
+                  <input type="radio"  [(ngModel)]="status" [value]="true" name="mLocationIsActive">
+                  <label class="p-2" >Active</label>
+>>>>>>> b7fac5a3fc83608e6341bae63efa9a985a14b31f
                 </div>
               </div>
           </div>
@@ -126,10 +143,25 @@
       <div class="modal-body">
         <p style="text-transform: uppercase;">Are you sure want to Delete?</p>
       </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b7fac5a3fc83608e6341bae63efa9a985a14b31f
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" 
         (click)="deleteLocation()">Yes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+<<<<<<< HEAD
+=======
+
+      <div class="modal-footer d-flex">
+        <div class="d-flex justify-content-around">
+          <button type="button" class="confirm" 
+          (click)="deleteLocation()">Yes</button>
+          <button type="button" class="confirm" data-dismiss="modal">No</button>
+        </div>
+
+>>>>>>> b7fac5a3fc83608e6341bae63efa9a985a14b31f
       </div>
     </div>
   </div>

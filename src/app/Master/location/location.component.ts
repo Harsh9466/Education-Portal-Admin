@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
 export class LocationComponent implements OnInit {
 Locations:Location[];
 Location:Location;
+status:boolean;
   constructor(private locationService:LocationService) { }
 
   ngOnInit(): void {
@@ -52,24 +53,24 @@ Location:Location;
   }
 
   insertLocation(data:NgForm){
-    var parseData={
-      mLocationCode:data.value.mLocationCode,
-      mLocationName:data.value.mLocationName,
-      mLocationPinCode:parseInt(data.value.mLocationPinCode),
-      mLocationType:data.value.mLocationType,
-      mLocationParentId:parseInt(data.value.mLocationParentId),
-      mLocationIsActive:true ,
-    }
-    this.locationService.insertMasterLocation(parseData).subscribe
-    (
-      (res) =>{ 
-        console.log(res);
-        this.getLocations();
-      },
-      (error)=>{
-        console.log("Error in Post Location !");
-    }); 
-    // console.log(data.value)
+    // var parseData={
+    //   mLocationCode:data.value.mLocationCode,
+    //   mLocationName:data.value.mLocationName,
+    //   mLocationPinCode:parseInt(data.value.mLocationPinCode),
+    //   mLocationType:data.value.mLocationType,
+    //   mLocationParentId:parseInt(data.value.mLocationParentId),
+    //   mLocationIsActive:data.value.mLocationIsActive,
+    // }
+    // this.locationService.insertMasterLocation(parseData).subscribe
+    // (
+    //   (res) =>{ 
+    //     console.log(res);
+    //     this.getLocations();
+    //   },
+    //   (error)=>{
+    //     console.log("Error in Post Location !");
+    // }); 
+    console.log(data.value)
   }
 
   updateLocation(id:number,data:Location){
