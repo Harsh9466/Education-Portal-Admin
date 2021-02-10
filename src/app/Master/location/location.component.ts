@@ -12,6 +12,8 @@ export class LocationComponent implements OnInit {
 Locations:Location[];
 Location:Location;
 status:boolean;
+  
+to_delete_ID : number=0;
   constructor(private locationService:LocationService) { }
 
   ngOnInit(): void {
@@ -28,6 +30,11 @@ status:boolean;
     this.getLocations();
   }
 
+  get_id_to_delete(id:number)
+  {
+    this.to_delete_ID = id;
+    console.log(this.to_delete_ID)
+  }
   getLocations(){
     this.locationService.getMasterLocation().subscribe
     (
@@ -53,23 +60,23 @@ status:boolean;
   }
 
   insertLocation(data:NgForm){
-    // var parseData={
-    //   mLocationCode:data.value.mLocationCode,
-    //   mLocationName:data.value.mLocationName,
-    //   mLocationPinCode:parseInt(data.value.mLocationPinCode),
-    //   mLocationType:data.value.mLocationType,
-    //   mLocationParentId:parseInt(data.value.mLocationParentId),
-    //   mLocationIsActive:data.value.mLocationIsActive,
-    // }
-    // this.locationService.insertMasterLocation(parseData).subscribe
-    // (
-    //   (res) =>{ 
-    //     console.log(res);
-    //     this.getLocations();
-    //   },
-    //   (error)=>{
-    //     console.log("Error in Post Location !");
-    // }); 
+    var parseData={
+      mLocationCode:data.value.mLocationCode,
+      mLocationName:data.value.mLocationName,
+      mLocationPinCode:parseInt(data.value.mLocationPinCode),
+      mLocationType:data.value.mLocationType,
+      mLocationParentId:parseInt(data.value.mLocationParentId),
+      mLocationIsActive:data.value.mLocationIsActive,
+    }
+    this.locationService.insertMasterLocation(parseData).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+        this.getLocations();
+      },
+      (error)=>{
+        console.log("Error in Post Location !");
+    }); 
     console.log(data.value)
   }
 
@@ -86,16 +93,17 @@ status:boolean;
 
   deleteLocation(id:number)
   {
+    id = this.to_delete_ID;
     this.locationService.deleteMasterLocation(id).subscribe
     (
       (res) =>{ 
         console.log(res);
+        this.getLocations();
         console.log("data is deleted");
       },
       (error)=>{
         console.log("Error in Delete Location !");
     })
-    this.getLocations();
   }
 
 
