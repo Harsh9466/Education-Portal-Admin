@@ -21,6 +21,7 @@
                                     <th>Parent Id</th>
                                     <th>Status</th>
                                 </thead>
+<<<<<<< HEAD
                                 <tbody>
                                     <tr *ngFor="let item of listofharsh">{{item}}</tr>
                                     <tr *ngFor="let lc of Locations">
@@ -32,6 +33,20 @@
                                         <td>{{lc.mLocationSerialNo}}</td>   
                                         <td>{{lc.mLocationParentId}}</td>   
                                         <td>{{lc.mLocationIsActive}}</td>   
+=======
+                                <tbody >
+        <tr *ngFor="let item of Locations">{{item}}</tr>
+                                    <tr>
+                                        <!-- <td>{{i+1}}</td>    -->
+                                        <td>{{Locations[0].mLocationId}}</td>   
+                                        <td>{{Locations[0].mLocationName}}</td>   
+                                        <td>{{Locations[0].mLocationCode}}</td>   
+                                        <td>{{Locations[0].mLocationPinCode}}</td>   
+                                        <td>{{Locations[0].mLocationType}}</td>   
+                                        <td>{{Locations[0].mLocationSerialNo}}</td>   
+                                        <td>{{Locations[0].mLocationParentId}}</td>   
+                                        <td>{{Locations[0].mLocationIsActive}}</td>   
+>>>>>>> 0bdd9e8ceb948cb87862c8317eef2233ad4d557b
                                     </tr>
                                 </tbody>
                             </table>
