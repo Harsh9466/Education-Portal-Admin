@@ -2,6 +2,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                <div>
+                    <button class="btn btn-1 btn-sep icon-info" data-toggle="modal" data-target="#modalRegisterForm">Add Location</button>             
+                </div>
+                
                 <div class="card">
 
                     <div class="card-header card-header-danger">
@@ -14,11 +18,11 @@
                                 <thead class=" text-primary">
                                     <tr>
                                         <th>S.No</th>
+                                        <th>Serial No</th>
                                         <th>Name</th>
                                         <th>Code</th>
                                         <th>Pin Code</th>
                                         <th>Type</th>
-                                        <th>S.No</th>
                                         <th>Parent Id</th>
                                         <th>Status</th>
                                         <th>Actions</th>
@@ -27,15 +31,18 @@
                                 <tbody>
                                     <tr *ngFor="let lc of Locations; let i=index">
                                         <td>{{i+1}}</td>   
-                                        <td>{{lc.mLocationId}}</td>   
-                                        <td>{{lc.mLocationCode}}</td>   
-                                        <td>{{lc.mLocationName}}</td>   
-                                        <td>{{lc.mLocationPinCode}}</td>   
+                                        <!-- <td>{{lc.mLocationId}}</td>    -->
                                         <td>{{lc.mLocationType}}</td>   
                                         <td>{{lc.mLocationSerialNo}}</td>   
                                         <td>{{lc.mLocationParentId}}</td>   
+                                        <td>{{lc.mLocationCode}}</td>   
+                                        <td>{{lc.mLocationName}}</td>   
+                                        <td>{{lc.mLocationPinCode}}</td>   
                                         <td>{{lc.mLocationIsActive}}</td>
-                                        <td></td>   
+                                        <td>
+                                            <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal"></i>
+                                            <i class="fa fa-pencil-square-o" (click)="updateLocation(lc.mLocationId)"  data-toggle="modal" data-target="#modalRegisterForm"></i>
+                                        </td>
                                     </tr>  
                                 </tbody>
                             </table>
@@ -47,4 +54,73 @@
     </div>
 </div>
 
+
+<!-- insert modal -->
+<div class="modal fade"  id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<form  #locationform="ngForm" (ngSubmit)="insertLocation(locationform)">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+          <div class="modal-body mx-3">
+            <div class="md-form ">
+              <input type="text" [(ngModel)]="Location.mLocationName" nameclass="form-control validate" name="mLocationName">
+              <label data-error="wrong" data-success="right" >Name</label>
+            </div>
+            <div class="md-form ">
+              <input type="password" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control validate">
+              <label data-error="wrong" data-success="right" >Code</label>
+            </div>
+            <div class="md-form ">
+              <input type="password" [(ngModel)]="Location.mLocationNamePinCode" name="mLocationPinCode" class="form-control validate">
+              <label data-error="wrong" data-success="right" >Pin Code</label>
+            </div>
+            <div class="md-form ">
+              <input type="password" [(ngModel)]="Location.mLocationType" name="mLocationType" class="form-control validate">
+              <label data-error="wrong" data-success="right" >Type</label>
+            </div>
+            <div class="md-form ">
+              <input type="password" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">
+              <label data-error="wrong" data-success="right" >Parent Id</label>
+            </div>
+            <div class="md-form ">
+              <input type="password" [(ngModel)]="Location.mLocationIsActive" name="mLocationIsActive" class="form-control validate">
+              <label data-error="wrong" data-success="right">Status</label>
+            </div>
+          </div>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="Submit" class="btn btn-deep-orange">Add</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+
+<!-- delete modal -->
+<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Want to Delete</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="deleteLocation(lc.mLocationId)">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 

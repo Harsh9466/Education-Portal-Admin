@@ -73,15 +73,18 @@ Location:Location;
     })
   }
 
-  deleteLocation(id:number){
+  deleteLocation(id:number)
+  {
     this.locationService.deleteMasterLocation(id).subscribe
     (
       (res) =>{ 
         console.log(res);
+        console.log("data is deleted");
       },
       (error)=>{
         console.log("Error in Delete Location !");
     })
+    this.getLocations();
   }
 
 
