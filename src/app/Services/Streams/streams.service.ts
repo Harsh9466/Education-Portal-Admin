@@ -1,4 +1,4 @@
-import { Streams } from './../../Interface/Streams';
+import { Streams } from './../../Interface/streams';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

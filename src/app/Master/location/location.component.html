@@ -21,18 +21,17 @@
                                     <th>Parent Id</th>
                                     <th>Status</th>
                                 </thead>
-                                <tbody >
-                                    <tr *ngFor="let item of Locations;let i=index">{{item}}</tr>
-                                    <tr>
-                                        <!-- <td>{{i+1}}</td>    -->
-                                        <td>{{Locations[0].mLocationId}}</td>   
-                                        <td>{{Locations[0].mLocationName}}</td>   
-                                        <td>{{Locations[0].mLocationCode}}</td>   
-                                        <td>{{Locations[0].mLocationPinCode}}</td>   
-                                        <td>{{Locations[0].mLocationType}}</td>   
-                                        <td>{{Locations[0].mLocationSerialNo}}</td>   
-                                        <td>{{Locations[0].mLocationParentId}}</td>   
-                                        <td>{{Locations[0].mLocationIsActive}}</td>   
+                                <tbody>
+                                    <tr *ngFor="let item of listofharsh">{{item}}</tr>
+                                    <tr *ngFor="let lc of Locations">
+                                        <td>{{lc.mLocationId}}</td>   
+                                        <td>{{lc.mLocationCode}}</td>   
+                                        <td>{{lc.mLocationName}}</td>   
+                                        <td>{{lc.mLocationPinCode}}</td>   
+                                        <td>{{lc.mLocationType}}</td>   
+                                        <td>{{lc.mLocationSerialNo}}</td>   
+                                        <td>{{lc.mLocationParentId}}</td>   
+                                        <td>{{lc.mLocationIsActive}}</td>   
                                     </tr>
                                 </tbody>
                             </table>
@@ -44,3 +43,5 @@
         </div>
     </div>
 </div>
+
+
