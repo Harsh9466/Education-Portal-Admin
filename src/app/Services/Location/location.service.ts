@@ -19,7 +19,7 @@ export class LocationService {
     return this.http.get<Location>(this.baseUrl+id);
   }
 
-  insertMasterLocation(location:Location)
+  insertMasterLocation(location:any)
   {
     return this.http.post(this.baseUrl,location,{responseType:"text"});    
   }

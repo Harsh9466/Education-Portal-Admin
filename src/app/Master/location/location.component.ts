@@ -51,15 +51,25 @@ Location:Location;
     });
   }
 
-  insertLocation(data:Location){
-    this.locationService.insertMasterLocation(data).subscribe
+  insertLocation(data:NgForm){
+    var parseData={
+      mLocationCode:data.value.mLocationCode,
+      mLocationName:data.value.mLocationName,
+      mLocationPinCode:parseInt(data.value.mLocationPinCode),
+      mLocationType:data.value.mLocationType,
+      mLocationParentId:parseInt(data.value.mLocationParentId),
+      mLocationIsActive:true ,
+    }
+    this.locationService.insertMasterLocation(parseData).subscribe
     (
       (res) =>{ 
         console.log(res);
+        this.getLocations();
       },
       (error)=>{
         console.log("Error in Post Location !");
     }); 
+    // console.log(data.value)
   }
 
   updateLocation(id:number,data:Location){
