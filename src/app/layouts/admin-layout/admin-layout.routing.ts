@@ -1,8 +1,13 @@
+import { Routes } from '@angular/router';
+import { NgForm } from '@angular/forms';
+
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
 import { TypeComponent } from './../../Master/type/type.component';
 import { StreamsComponent } from './../../Master/streams/streams.component';
 import { TypeDetailsComponent } from './../../Master/type-details/type-details.component';
 import { LocationComponent } from './../../Master/location/location.component';
-import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
