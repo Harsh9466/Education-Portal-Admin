@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <button class="btn btn-1 btn-sep icon-info" data-toggle="modal" data-target="#modalRegisterForm">Add Location</button>             
+                    <button class="btn btn-1 btn-sep icon-info" data-toggle="modal" data-target="#InsertLocationForm">Add Location</button>             
                 </div>
                 
                 <div class="card">
@@ -56,15 +56,15 @@
 
 
 <!-- insert modal -->
-<div class="modal fade"  id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<form  #locationform="ngForm">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
+<div class="modal fade"  id="InsertLocationForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <form  #locationform="ngForm">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
 
       </div>
           <div class="modal-body mx-3">
@@ -100,15 +100,31 @@
                   <label class="p-2" >Active</label>
                 </div>
               </div>
+              <div class="md-form ">
+                <label >Parent Id</label>
+                <input type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">                
+              </div>
+              <div class="form-group ">
+                <label>Status</label>
+                <div class="d-flex justify-content-around">
+                  <div>
+                    <input type="radio" [(ngModel)]="status" [value]="false" name="mLocationIsActive">
+                    <label class="p-2" >Not Active</label>
+                  </div>
+                  <div>
+                    <input type="radio"  [(ngModel)]="status" [value]="true" name="mLocationIsActive">
+                    <label class="p-2" >Active</label>
+                  </div>
+                </div>
+            </div>
           </div>
         </div>
-
-      <div class="modal-footer d-flex justify-content-center">
-        <button type="button" (click)="insertLocation(locationform)" class="btn btn-deep-orange">Add</button>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" (click)="insertLocation(locationform)" class="btn btn-deep-orange">Add</button>
+        </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
 </div>
 
 <!-- Edit Modal -->

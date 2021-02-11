@@ -36,14 +36,15 @@ actionId:number;
     (
       (res) =>{ 
         this.Locations=res;
-        console.log(res);
+        // console.log(res);
       },
       (error)=>{
         console.log("Error in Get Locations!");
     });
   }
 
-  getLocation(id:number){
+  getLocation(id:number)
+  {
     this.locationService.getMasterLocationById(id).subscribe
     (
       (res) =>{ 

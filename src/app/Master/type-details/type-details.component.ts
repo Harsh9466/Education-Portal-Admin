@@ -34,7 +34,6 @@ actionId:number;
     (
       (res) =>{
         this.TypeDetails=res; 
-        console.log(res);
       },
       (error)=>{
         console.log("Error in Get Type Details !");
@@ -45,7 +44,7 @@ actionId:number;
     this.typeDetailService.getMasterTypeDetailsById(id).subscribe
     (
       (res) =>{ 
-        console.log(res);
+        this.TypeDetail=res;
       },
       (error)=>{
         console.log("Error in Get Type Details !");
@@ -60,49 +59,52 @@ actionId:number;
       mtdParentId:parseInt(data.value.mtdParentId),			
       mtdIsActive:data.value.mtdIsActive
     }
-    console.log("Post Data : ",parseData);
-    // this.typeDetailService.insertMasterTypeDetails(data).subscribe
-    // (
-    //   (res) =>{ 
-    //     console.log(res);
-    //   },
-    //   (error)=>{
-    //     console.log("Error in Post Type Details !");
-    // }
-    // )
+    // console.log("Post Data : ",parseData);
+    this.typeDetailService.insertMasterTypeDetails(parseData).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+        this.getTypeDetails();
+      },
+      (error)=>{
+        console.log("Error in Post Type Details !");
+    }
+    )
   }
 
   updateTypedetails(data:NgForm){
     let parseData={
-      mtdSerialNo:parseInt(data.value.mtdSerialNo),
-      mtdName:data.value.mtdName,
-      // mtdParentId:parseInt(data.value.mtdParentId),			
+      mtdId:parseInt(data.value.mtdId),
+      mtdName:data.value.mtdName,		
       mtdIsActive:data.value.mtdIsActive
     }
-    console.log("Update Data : ",parseData);
-    // this.typeDetailService.updateMasterTypeDetails(this.actionId,data).subscribe
-    // (
-    //   (res) =>{ 
-    //     console.log(res);
-    //   },
-    //   (error)=>{
-    //     console.log("Error in Update Type Details!");
-    // })
+    // console.log("Update Data : ",parseData);
+    this.typeDetailService.updateMasterTypeDetails(parseData.mtdId,parseData).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+        this.getTypeDetails();
+        this.EmptyData();
+      },
+      (error)=>{
+        console.log("Error in Update Type Details!");
+    })
   }
 
   deleteConfirm(id:number){
     this.actionId=id;
   }
   deleteTypedetails(){
-    console.log("Id For Delete : ",this.actionId);
-    // this.typeDetailService.deleteMasterTypeDetails(this.actionId).subscribe
-    // (
-    //   (res) =>{ 
-    //     console.log(res);
-    //   },
-    //   (error)=>{
-    //     console.log("Error in Delete Type Details!");
-    // })
+    // console.log("Id For Delete : ",this.actionId);
+    this.typeDetailService.deleteMasterTypeDetails(this.actionId).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+        this.getTypeDetails();
+      },
+      (error)=>{
+        console.log("Error in Delete Type Details!");
+    })
   }
 
 }

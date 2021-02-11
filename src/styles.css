@@ -3,3 +3,8 @@
 .pointer{
     cursor: pointer !important;
 }
+
+body
+{
+	user-select: none;
+}

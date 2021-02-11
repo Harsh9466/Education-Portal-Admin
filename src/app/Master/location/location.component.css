@@ -75,7 +75,7 @@
   height: 100%;
   left: 0;
   top: 0;
-  line-height: 3;
+  line-height: 3s;
   font-size: 140%;
   width: 60px;
 }
@@ -101,3 +101,7 @@
   background-color: #ef5350;
 }
 
+.modal-title
+{
+  color: #ef5350;   
+}
