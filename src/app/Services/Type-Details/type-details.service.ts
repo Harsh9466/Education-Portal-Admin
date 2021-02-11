@@ -19,12 +19,12 @@ export class TypeDetailsService {
     return this.http.get<TypeDetails>(this.baseUrl+id);
   }
 
-  insertMasterTypeDetails(TypeDetails:TypeDetails)
+  insertMasterTypeDetails(TypeDetails:any)
   {
     return this.http.post(this.baseUrl,TypeDetails,{responseType:"text"});    
   }
 
-  updateMasterTypeDetails(id:number,TypeDetails:TypeDetails)
+  updateMasterTypeDetails(id:number,TypeDetails:any)
   {
     return this.http.put(this.baseUrl+id,TypeDetails,{responseType:"text"});    
   }

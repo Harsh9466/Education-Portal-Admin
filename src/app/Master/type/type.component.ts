@@ -1,6 +1,7 @@
 import { TypeService } from './../../Services/Type/type.service';
 import { Type } from './../../Interface/type';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-type',
@@ -10,10 +11,24 @@ import { Component, OnInit } from '@angular/core';
 export class TypeComponent implements OnInit {
 Types:Type[];
 Type:Type;
+actionId:number;
   constructor(private typeService:TypeService) { }
 
   ngOnInit(): void {
+    this.EmptyData();
     this.getTypes();
+  }
+
+  EmptyData(){
+    this.Type={
+      mTypeId:null,
+      mTypeName:'',
+      mTypeCourseType:'',
+      mTypeProgramType:'',
+      mTypeSerialNo:null,
+      mTypeTypeOfCollege:'',
+      mTypeIsActive:false
+    }
   }
 
   getTypes(){
@@ -40,33 +55,58 @@ Type:Type;
     })
   }
 
-  insertType(data:Type){
-    this.typeService.insertMasterType(data).subscribe
+  insertType(data:NgForm){
+    let parseData={
+      mTypeName:data.value.mTypeName,
+      mTypeCourseType:data.value.mTypeCourseType,
+      mTypeProgramType:data.value.mTypeProgramType,
+      mTypeSerialNo:parseInt(data.value.mTypeSerialNo),
+      mTypeTypeOfCollege:data.value.mTypeTypeOfCollege,
+      mTypeIsActive:data.value.mTypeIsActive
+    }
+    // console.log(parseData);
+    this.typeService.insertMasterType(parseData).subscribe
     (
       (res) =>{ 
         console.log(res);
+        this.getTypes();
       },
       (error)=>{
         console.log("Error in Post Type!");
     })
   }
 
-  updateType(id:number,data:Type){
-    this.typeService.updateMasterType(id,data).subscribe
+  updateType(data:NgForm){
+    let parseData={
+      mTypeId:parseInt(data.value.mTypeId),
+      mTypeName:data.value.mTypeName,
+      mTypeCourseType:data.value.mTypeCourseType,
+      mTypeProgramType:data.value.mTypeProgramType,
+      mTypeSerialNo:parseInt(data.value.mTypeSerialNo),
+      mTypeTypeOfCollege:data.value.mTypeTypeOfCollege,
+      mTypeIsActive:data.value.mTypeIsActive
+    }
+    // console.log(parseData);
+    this.typeService.updateMasterType(parseData.mTypeId,parseData).subscribe
     (
       (res) =>{ 
         console.log(res);
+        this.getTypes();
       },
       (error)=>{
         console.log("Error in Update Type!");
     })
   }
-
-  deleteType(id:number){
-    this.typeService.deleteMasterType(id).subscribe
+  deleteConfirm(id:number){
+    this.actionId=id;
+  }
+  deleteType(){
+    // console.log("Id For Delete : ",this.actionId);
+    this.typeService.deleteMasterType(this.actionId).subscribe
     (
       (res) =>{ 
         console.log(res);
+        this.getTypes();
       },
       (error)=>{
         console.log("Error in Delete Type!");

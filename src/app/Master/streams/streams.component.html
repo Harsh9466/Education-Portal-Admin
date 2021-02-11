@@ -2,9 +2,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="button">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Add Stream</button>
-                </div>
+              <div>
+                <button class="btn btn-info" data-toggle="modal" data-target="#streamInsertModal">Add Location</button>             
+              </div>
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Streams</h4>
@@ -21,22 +21,22 @@
                                     <th>Serial No</th>
                                     <th>ParentId</th>
                                     <th>IsActive</th>
+                                    <th>Actions</th>
                                 </thead>
                                 <tbody>
 
                                     <tr *ngFor="let st of Streams; let i=index">
                                         <td>{{i+1}}</td>   
-
-                                    {{Streams}}
-                                    <tr *ngFor="let st of Streams">
-                                        <td>{{st.mStreamsId}}</td>   
-
                                         <td>{{st.mStreamsCode}}</td>   
                                         <td>{{st.mStreamsName}}</td>   
                                         <td>{{st.mStreamsType}}</td>   
                                         <td>{{st.mStreamsSerialNo}}</td>   
                                         <td>{{st.mStreamsParentId}}</td>   
                                         <td>{{st.mStreamsIsActive}}</td>   
+                                        <td>
+                                          <i class="fa fa-pencil-square-o" (click)="getStream(st.mStreamsId)"  data-toggle="modal" data-target="#streamUpdateModel"></i>
+                                          <i class="fa fa-times" data-toggle="modal" data-target="#streamDeletemodal" (click)="deleteConfirm(st.mStreamsId)" ></i>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -51,8 +51,60 @@
 
 
 <!-- insert modal -->
-<div class="modal fade"  id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <form  #locationform="ngForm" (ngSubmit)="insertStreams(locationform)">
+<div class="modal fade"  id="streamInsertModal" >
+  <form  #streamInsertForm="ngForm">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+  
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+  
+        </div>
+            <div class="modal-body mx-3">
+              <div class="md-form ">
+                <label >Name</label>
+                <input type="text" [(ngModel)]="Stream.mStreamsName" class="form-control" name="mStreamsName" >
+              </div>
+              <div class="md-form ">
+                <label >Code</label>
+                <input type="text" [(ngModel)]="Stream.mStreamsCode" name="mStreamsCode" class="form-control">
+              </div>
+              <div class="md-form ">
+                <label >Type</label>
+                <input type="text" [(ngModel)]="Stream.mStreamsType" name="mStreamsType" class="form-control">
+              </div>
+              <div class="md-form ">
+                <label >Parent Id</label>
+                <input type="text" [(ngModel)]="Stream.mStreamsParentId" name="mStreamsParentId" class="form-control">                
+              </div>
+              <div class="form-group ">
+                <label>Status</label>
+                <div class="d-flex justify-content-around">
+                  <div>
+                    <input type="radio" [(ngModel)]="Stream.mStreamsIsActive" [value]="false" name="mStreamsIsActive">
+                    <label class="p-2" >Not Active</label>
+                  </div>
+                  <div>
+                    <input type="radio"  [(ngModel)]="Stream.mStreamsIsActive" [value]="true" name="mStreamsIsActive">
+                    <label class="p-2" >Active</label>
+                  </div>
+                </div>
+            </div>
+          </div>
+  
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-danger" (click)="insertStreams(streamInsertForm)" data-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade"  id="streamUpdateModel">
+    <form  #streamUpdateForm="ngForm">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
@@ -64,38 +116,68 @@
           </div>
               <div class="modal-body mx-3">
                 <div class="md-form ">
-                  <label>Name</label>
-                  <input type="text"class="form-control" name="mLocationName">
+                  <label >Name</label>
+                  <!-- Hidden Id -->
+                  <input type="number" [(ngModel)]="Stream.mStreamsId" class="form-control" name="mStreamsId" hidden>
+  
+                  <input type="text" [(ngModel)]="Stream.mStreamsName" class="form-control" name="mStreamsName">
                 </div>
                 <div class="md-form ">
-                  <label>Code</label>
-                  <input type="text"  name="mLocationCode" class="form-control">
+                  <label >Code</label>
+                  <input type="text" [(ngModel)]="Stream.mStreamsCode" name="mStreamsCode" class="form-control">
                 </div>
                 <div class="md-form ">
-                  <label>Pin Code</label>
-                  <input type="text"  name="mLocationPinCode" class="form-control">
+                  <label >Type</label>
+                  <input type="text" [(ngModel)]="Stream.mStreamsType" name="mStreamsType" class="form-control">
                 </div>
-                <div class="md-form ">
-                  <label>Type</label>
-                  <input type="text" name="mLocationType" class="form-control">
-                </div>
-                <div class="md-form ">
-                  <label>Parent Id</label>
-                  <input type="text"name="mLocationParentId" class="form-control">
-                </div>
-                <div class="form-group">
-                    <div class="d-flex justify-content-start">
-                        <input type="radio" name="status">
-                        <label >Active</label>
-                        <input type="radio"  name="status">      
-                        <label>Not Active</label>
+
+                <!-- Parent Id (Doubt for Update or Not) -->
+                <!-- <div class="md-form ">
+                  <label >Parent Id</label>
+                  <input type="text" [(ngModel)]="Stream.mStreamsParentId" name="mStreamsParentId" class="form-control">                
+                </div> -->
+
+                <div class="form-group ">
+                  <label>Status</label>
+                  <div class="d-flex justify-content-around">
+                    <div>
+                      <input type="radio" [(ngModel)]="Stream.mStreamsIsActive" [value]="false" name="mStreamsIsActive">
+                      <label class="p-2" >Not Active</label>
                     </div>
-                </div>
-                </div>
+                    <div>
+                      <input type="radio"  [(ngModel)]="Stream.mStreamsIsActive" [value]="true" name="mStreamsIsActive">
+                      <label class="p-2" >Active</label>
+                    </div>
+                  </div>
+              </div>
+            </div>
+    
           <div class="modal-footer d-flex justify-content-center">
-            <button type="Submit" class="btn btn-deep-orange">Add</button>
+            <button type="button" (click)="updateStreams(streamUpdateForm)" class="btn btn-danger" data-dismiss="modal">Update</button>
           </div>
         </div>
       </div>
     </form>
+</div>
+
+<!-- delete modal -->
+<div class="modal" id="streamDeletemodal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p style="text-transform: uppercase;">Are you sure want to Delete?</p>
+          <div class="d-flex justify-content-around">
+            <button type="button" class="confirm" 
+            (click)="deleteStreams()" data-dismiss="modal">Yes</button>
+            <button type="button" class="confirm" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
     </div>
+</div>

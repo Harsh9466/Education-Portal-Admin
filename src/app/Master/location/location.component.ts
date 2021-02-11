@@ -12,22 +12,25 @@ export class LocationComponent implements OnInit {
 Locations:Location[];
 Location:Location;
 status:boolean;
+actionId:number;
   constructor(private locationService:LocationService) { }
 
   ngOnInit(): void {
-    this.Location={
-      mLocationId:null,
-      mLocationCode:'',
-      mLocationName:'',
-      mLocationPinCode:null,
-      mLocationType:'',
-      mLocationSerialNo:null,
-      mLocationParentId:null,
-      mLocationIsActive:true ,
-    }
+    this.EmptyData();
     this.getLocations();
   }
-
+ EmptyData(){
+  this.Location={
+    mLocationId:null,
+    mLocationCode:'',
+    mLocationName:'',
+    mLocationPinCode:null,
+    mLocationType:'',
+    mLocationSerialNo:null,
+    mLocationParentId:null,
+    mLocationIsActive:true ,
+  }
+ }
   getLocations(){
     this.locationService.getMasterLocation().subscribe
     (
@@ -53,49 +56,61 @@ status:boolean;
   }
 
   insertLocation(data:NgForm){
-    // var parseData={
-    //   mLocationCode:data.value.mLocationCode,
-    //   mLocationName:data.value.mLocationName,
-    //   mLocationPinCode:parseInt(data.value.mLocationPinCode),
-    //   mLocationType:data.value.mLocationType,
-    //   mLocationParentId:parseInt(data.value.mLocationParentId),
-    //   mLocationIsActive:data.value.mLocationIsActive,
-    // }
-    // this.locationService.insertMasterLocation(parseData).subscribe
-    // (
-    //   (res) =>{ 
-    //     console.log(res);
-    //     this.getLocations();
-    //   },
-    //   (error)=>{
-    //     console.log("Error in Post Location !");
-    // }); 
-    console.log(data.value)
-  }
-
-  updateLocation(id:number,data:Location){
-    this.locationService.updateMasterLocation(id,data).subscribe
+    var parseData={
+      mLocationCode:data.value.mLocationCode,
+      mLocationName:data.value.mLocationName,
+      mLocationPinCode:parseInt(data.value.mLocationPinCode),
+      mLocationType:data.value.mLocationType,
+      mLocationParentId:parseInt(data.value.mLocationParentId),
+      mLocationIsActive:data.value.mLocationIsActive,
+    }
+    this.locationService.insertMasterLocation(parseData).subscribe
     (
       (res) =>{ 
         console.log(res);
+        this.getLocations();
+      },
+      (error)=>{
+        console.log("Error in Post Location !");
+    }); 
+    console.log(data.value)
+  }
+
+  updateLocation(data:NgForm){
+    var parseData={
+        mLocationId:data.value.mLocationId,
+        mLocationCode:data.value.mLocationCode,
+        mLocationName:data.value.mLocationName,
+        mLocationPinCode:parseInt(data.value.mLocationPinCode),
+        mLocationType:data.value.mLocationType,
+        mLocationIsActive:data.value.mLocationIsActive,
+      }
+    this.locationService.updateMasterLocation(parseData.mLocationId,parseData).subscribe
+    (
+      (res) =>{ 
+        console.log(res);
+        this.getLocations();
       },
       (error)=>{
         console.log("Error in Update Location !");
     })
   }
 
-  deleteLocation(id:number)
+  deleteConfirm(id:number){
+    this.actionId=id;
+  }
+
+  deleteLocation()
   {
-    this.locationService.deleteMasterLocation(id).subscribe
+    this.locationService.deleteMasterLocation(this.actionId).subscribe
     (
       (res) =>{ 
         console.log(res);
-        console.log("data is deleted");
+        this.getLocations();
       },
       (error)=>{
         console.log("Error in Delete Location !");
     })
-    this.getLocations();
   }
 
 

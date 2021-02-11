@@ -19,12 +19,12 @@ export class StreamsService {
     return this.http.get<Streams>(this.baseUrl+id);
   }
 
-  insertMasterStreams(Streams:Streams)
+  insertMasterStreams(Streams:any)
   {
     return this.http.post(this.baseUrl,Streams,{responseType:"text"});    
   }
 
-  updateMasterStreams(id:number,Streams:Streams)
+  updateMasterStreams(id:number,Streams:any)
   {
     return this.http.put(this.baseUrl+id,Streams,{responseType:"text"});    
   }

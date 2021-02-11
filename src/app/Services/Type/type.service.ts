@@ -19,12 +19,12 @@ export class TypeService {
     return this.http.get<Type>(this.baseUrl+id);
   }
 
-  insertMasterType(Type:Type)
+  insertMasterType(Type:any)
   {
     return this.http.post(this.baseUrl,Type,{responseType:"text"});    
   }
 
-  updateMasterType(id:number,Type:Type)
+  updateMasterType(id:number,Type:any)
   {
     return this.http.put(this.baseUrl+id,Type,{responseType:"text"});    
   }

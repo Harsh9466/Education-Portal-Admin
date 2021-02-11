@@ -24,7 +24,7 @@ export class LocationService {
     return this.http.post(this.baseUrl,location,{responseType:"text"});    
   }
 
-  updateMasterLocation(id:number,location:Location)
+  updateMasterLocation(id:number,location:any)
   {
     return this.http.put(this.baseUrl+id,location,{responseType:"text"});    
   }
