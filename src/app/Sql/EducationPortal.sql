@@ -295,3 +295,13 @@ begin
 	where mtdId=@mtdId
 select 'Updated Successfully!' as msg 
 end
+
+
+
+-- Master Location Dropdown Get By Type
+ALTER PROC dbo.spMasterLocationTypeGet(@mLocationType VARCHAR(50))
+AS
+select 
+ mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive  from MasterLocation where mLocationType=@mLocationType;
+
+ select * from sys.procedures

@@ -6,31 +6,41 @@ import { Location } from '../../Interface/location';
   providedIn: 'root'
 })
 export class LocationService {
-  baseUrl:string= "http://demo3.kmatechnoware.com/api/masterlocation/";
+  
   
   constructor(private http:HttpClient) { }
 
   getMasterLocation()
   {
-    return this.http.get<Location[]>(this.baseUrl);
+    let baseUrl= "http://demo3.kmatechnoware.com/api/MasterLocation/GetAll/";
+    return this.http.get<Location[]>(baseUrl);
   }
   getMasterLocationById(id:number)
   {
-    return this.http.get<Location>(this.baseUrl+id);
+    let baseUrl= "http://demo3.kmatechnoware.com/api/MasterLocation/GetById/";
+    return this.http.get<Location>(baseUrl+id);
+  }
+  getMasterLocationTypeGet(type:string)
+  {
+    let baseUrl= "http://demo3.kmatechnoware.com/api/MasterLocation/TypeGet/";
+    return this.http.get<Location[]>(baseUrl+type);
   }
 
   insertMasterLocation(location:any)
   {
-    return this.http.post(this.baseUrl,location,{responseType:"text"});    
+    let baseUrl= "http://demo3.kmatechnoware.com/api/MasterLocation/Insert/";
+    return this.http.post(baseUrl,location,{responseType:"text"});    
   }
 
   updateMasterLocation(id:number,location:any)
   {
-    return this.http.put(this.baseUrl+id,location,{responseType:"text"});    
+    let baseUrl= "http://demo3.kmatechnoware.com/api/MasterLocation/Update/";
+    return this.http.put(baseUrl+id,location,{responseType:"text"});    
   }
 
   deleteMasterLocation(id:number)
   {
-    return this.http.delete(this.baseUrl+id,{responseType:'text'});
+    let baseUrl= "http://demo3.kmatechnoware.com/api/MasterLocation/Delete/";
+    return this.http.delete(baseUrl+id,{responseType:'text'});
   }
 }

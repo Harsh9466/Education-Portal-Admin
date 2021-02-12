@@ -16,6 +16,9 @@
 
  */
 /*     brand Colors              */
+.outline-none{
+  outline: none;
+}
 .card {
   font-size: .875rem; }
 

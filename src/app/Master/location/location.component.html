@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <button class="btn btn-1 btn-sep icon-info" data-toggle="modal" data-target="#InsertLocationForm">Add Location</button>             
+                    <button class="btn btn-lg btn-danger" data-toggle="modal" data-target="#InsertLocationForm">Add Location</button>             
                 </div>
                 
                 <div class="card">
@@ -56,13 +56,13 @@
 
 
 <!-- insert modal -->
-<div class="modal fade"  id="InsertLocationForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade"  id="InsertLocationForm">
   <form  #locationform="ngForm">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
 
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" (click)="EmptyData()">
             <span aria-hidden="true">&times;</span>
           </button>
 
@@ -70,57 +70,56 @@
           <div class="modal-body mx-3">
             <div class="md-form ">
               <label >Name</label>
-              <input type="text" [(ngModel)]="Location.mLocationName" class="form-control" name="mLocationName">
+              <input type="text" [(ngModel)]="Location.mLocationName" class="form-control shadow-none" name="mLocationName">
             </div>
             <div class="md-form ">
               <label >Code</label>
-              <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control">
+              <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control shadow-none">
             </div>
             <div class="md-form ">
               <label >Pin Code</label>
-              <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control">
+              <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control shadow-none">
             </div>
+
             <div class="md-form ">
               <label >Type</label>
-              <input type="text" [(ngModel)]="Location.mLocationType" name="mLocationType" class="form-control">
+              <select class="form-control shadow-none" [(ngModel)]="selectType" name="mLocationType" (change)="getDropdown()">
+                <option value="country">Country</option>
+                <option value="state">State</option>
+                <option value="city">City</option>
+              </select>               
             </div>
-            <div class="md-form ">
-              <label >Parent Id</label>
-              <input type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">                
+
+            <div class="md-form" *ngIf="countryDropdown">
+              <label >Country</label>
+              <select class="form-control shadow-none" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId">
+                <option *ngFor="let country of countryData" [value]="country.mLocationId">{{country.mLocationName}}</option>
+              </select>          
             </div>
+
+            <div class="md-form" *ngIf="stateDropdown">       
+              <label >State</label>
+              <select class="form-control shadow-none" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId">
+                <option *ngFor="let state of stateData" [value]="state.mLocationId">{{state.mLocationName}}</option>
+              </select>          
+            </div>
+
             <div class="form-group ">
-              <label>Status</label>
-              <div class="d-flex justify-content-around">
-                <div>
-                  <input type="radio" [(ngModel)]="Location.mLocationIsActive" [value]="false" name="mLocationIsActive">
-                  <label class="p-2" >Not Active</label>
-                </div>
-                <div>
-                  <input type="radio"  [(ngModel)]="Location.mLocationIsActive" [value]="true" name="mLocationIsActive">
-                  <label class="p-2" >Active</label>
-                </div>
-              </div>
-              <div class="md-form ">
-                <label >Parent Id</label>
-                <input type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">                
-              </div>
-              <div class="form-group ">
                 <label>Status</label>
-                <div class="d-flex justify-content-around">
-                  <div>
-                    <input type="radio" [(ngModel)]="status" [value]="false" name="mLocationIsActive">
-                    <label class="p-2" >Not Active</label>
+                <div class="d-flex justify-content-lg-start">
+                  <div class="mr-3">
+                    <input type="radio" [(ngModel)]="Location.mLocationIsActive" [value]="true" name="mLocationIsActive">
+                    <label class="p-2" >Active</label>
                   </div>
                   <div>
-                    <input type="radio"  [(ngModel)]="status" [value]="true" name="mLocationIsActive">
-                    <label class="p-2" >Active</label>
+                    <input type="radio" [(ngModel)]="Location.mLocationIsActive" [value]="false" name="mLocationIsActive">
+                    <label class="p-2" >Not Active</label>
                   </div>
                 </div>
             </div>
           </div>
-        </div>
         <div class="modal-footer d-flex justify-content-center">
-          <button type="button" (click)="insertLocation(locationform)" class="btn btn-deep-orange">Add</button>
+          <button type="button" (click)="insertLocation(locationform)" class="btn btn-danger btn-round" data-dismiss="modal" >Add</button>
         </div>
       </div>
     </div>
@@ -134,7 +133,7 @@
       <div class="modal-content">
         <div class="modal-header text-center">
   
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="EmptyData()">
             <span aria-hidden="true">&times;</span>
           </button>
   
@@ -143,7 +142,7 @@
               <div class="md-form ">
                 <label >Name</label>
                 <!-- Hidden Id -->
-                <input type="number" [(ngModel)]="Location.mLocationId" class="form-control" name="mLocationId" hidden>
+                <input type="number" [(ngModel)]="Location.mLocationId" class="form-control shadow-none" name="mLocationId" hidden>
 
                 <input type="text" [(ngModel)]="Location.mLocationName" class="form-control" name="mLocationName">
               </div>
@@ -159,9 +158,10 @@
                 <label >Type</label>
                 <input type="text" [(ngModel)]="Location.mLocationType" name="mLocationType" class="form-control">
               </div>
+              
               <div class="md-form ">
                 <label >Parent Id</label>
-                <input type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control validate">                
+                <input type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control">                
               </div>
               <div class="form-group ">
                 <label>Status</label>
@@ -179,7 +179,7 @@
           </div>
   
         <div class="modal-footer d-flex justify-content-center">
-          <button type="button" (click)="updateLocation(locationUpadateForm)" class="btn btn-deep-orange" data-dismiss="modal">Update</button>
+          <button type="button" (click)="updateLocation(locationUpadateForm)" class="btn btn-danger btn-round" data-dismiss="modal">Update</button>
         </div>
       </div>
     </div>
@@ -192,16 +192,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Confirm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <p style="text-transform: uppercase;">Are you sure want to Delete?</p>
         <div class="d-flex justify-content-around">
-          <button type="button" class="confirm" 
+          <button type="button" class="btn btn-danger btn-round" 
           (click)="deleteLocation()" data-dismiss="modal">Yes</button>
-          <button type="button" class="confirm" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger btn-round" data-dismiss="modal">No</button>
         </div>
       </div>
     </div>

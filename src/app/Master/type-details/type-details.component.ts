@@ -65,6 +65,7 @@ actionId:number;
       (res) =>{ 
         console.log(res);
         this.getTypeDetails();
+        this.EmptyData();
       },
       (error)=>{
         console.log("Error in Post Type Details !");
