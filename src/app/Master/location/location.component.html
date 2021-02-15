@@ -1,10 +1,17 @@
-<div class="main-content">
+<div class="main-content">  
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div>
-                    <button class="btn btn-lg btn-danger" data-toggle="modal" data-target="#InsertLocationForm">Add Location</button>             
-                </div>
+                    <div class="dropdown">
+                      <button class="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"  aria-expanded="false">
+                        Add Location
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#InsertLocationForm" (click)="showDropdown('country')">Country</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#InsertLocationForm" (click)="showDropdown('state')">State</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#InsertLocationForm" (click)="showDropdown('city')">City</a>
+                      </div>
+                    </div>
                 
                 <div class="card">
 
@@ -29,7 +36,22 @@
                                     </tr>    
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let lc of Locations; let i=index">
+                                  <!-- <tr>
+                                    <td>1</td>   
+                                    <td>India</td>   
+                                    <td>Country</td>   
+                                    <td>0</td>   
+                                    <td>IND</td>   
+                                    <td>1</td>   
+                                    <td>0</td>   
+                                    <td>true</td>
+                                    <td>
+                                      <i class="fa fa-pencil-square-o mr-md-2" (click)="getLocation(1)"  data-toggle="modal" data-target="#UpdateModel"></i>
+                                      <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" (click)="deleteConfirm(1)" ></i>
+                                    </td>
+                                  </tr>   -->
+
+                                  <tr *ngFor="let lc of Locations; let i=index">
                                         <td>{{i+1}}</td>   
                                         <!-- <td>{{lc.mLocationId}}</td>    -->
                                         <td>{{lc.mLocationName}}</td>   
@@ -43,7 +65,9 @@
                                           <i class="fa fa-pencil-square-o mr-md-2" (click)="getLocation(lc.mLocationId)"  data-toggle="modal" data-target="#UpdateModel"></i>
                                           <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" (click)="deleteConfirm(lc.mLocationId)" ></i>
                                         </td>
-                                    </tr>  
+                                  </tr>  
+
+                                  
                                 </tbody>
                             </table>
                         </div>
@@ -76,33 +100,28 @@
               <label >Code</label>
               <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control shadow-none">
             </div>
-            <div class="md-form ">
-              <label >Pin Code</label>
-              <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control shadow-none">
-            </div>
-
-            <div class="md-form ">
-              <label >Type</label>
-              <select class="form-control shadow-none" [(ngModel)]="selectType" name="mLocationType" (change)="getDropdown()">
-                <option value="country">Country</option>
-                <option value="state">State</option>
-                <option value="city">City</option>
-              </select>               
-            </div>
 
             <div class="md-form" *ngIf="countryDropdown">
               <label >Country</label>
-              <select class="form-control shadow-none" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId">
+              <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mLocationParentId" (change)="getNameByParentId()" >
+                <option [value]=0 selected>Select Country....</option>
                 <option *ngFor="let country of countryData" [value]="country.mLocationId">{{country.mLocationName}}</option>
               </select>          
             </div>
 
-            <div class="md-form" *ngIf="stateDropdown">       
+            <div class="md-form" *ngIf="stateDropdown">      
               <label >State</label>
-              <select class="form-control shadow-none" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId">
+              <select class="form-control shadow-none" [(ngModel)]="stateId"  name="mLocationParentId" (change)='toggleActionId()'>
+                <option [value]=0 selected>Select State....</option>
                 <option *ngFor="let state of stateData" [value]="state.mLocationId">{{state.mLocationName}}</option>
               </select>          
             </div>
+
+            <div class="md-form " *ngIf="pinCodedropdown">
+              <label >Pin Code</label>
+              <input type="text" [(ngModel)]="pinCode" name="mLocationPinCode" class="form-control shadow-none">
+            </div>
+
 
             <div class="form-group ">
                 <label>Status</label>
@@ -150,18 +169,30 @@
                 <label >Code</label>
                 <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control">
               </div>
-              <div class="md-form ">
+              <div class="md-form" *ngIf="countryDropdown">
+                <label >Country</label>
+                <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mLocationParentId" (change)="getNameByParentId()" >
+                  <option [value]=0 selected>Select Country....</option>
+                  <option *ngFor="let country of countryData" [value]="country.mLocationId">{{country.mLocationName}}</option>
+                </select>          
+              </div>
+  
+              <div class="md-form" *ngIf="stateDropdown">   
+                <label >Country</label>
+                <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mLocationParentId" (change)="getNameByParentId()" >
+                  <option [value]=0 selected>Select Country....</option>
+                  <option *ngFor="let country of countryData" [value]="country.mLocationId">{{country.mLocationName}}</option>
+                </select>     
+                <label >State</label>
+                <select class="form-control shadow-none" [(ngModel)]="stateId"  name="mLocationParentId" (change)='toggleActionId()'>
+                  <option [value]=0 selected>Select State....</option>
+                  <option *ngFor="let state of stateData" [value]="state.mLocationId">{{state.mLocationName}}</option>
+                </select>          
+              </div>
+  
+              <div class="md-form " *ngIf="pinCodedropdown">
                 <label >Pin Code</label>
-                <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control">
-              </div>
-              <div class="md-form ">
-                <label >Type</label>
-                <input type="text" [(ngModel)]="Location.mLocationType" name="mLocationType" class="form-control">
-              </div>
-              
-              <div class="md-form ">
-                <label >Parent Id</label>
-                <input type="text" [(ngModel)]="Location.mLocationParentId" name="mLocationParentId" class="form-control">                
+                <input type="text" [(ngModel)]="Location.mLocationPinCode" name="mLocationPinCode" class="form-control shadow-none">
               </div>
               <div class="form-group ">
                 <label>Status</label>
@@ -179,7 +210,7 @@
           </div>
   
         <div class="modal-footer d-flex justify-content-center">
-          <button type="button" (click)="updateLocation(locationUpadateForm)" class="btn btn-danger btn-round" data-dismiss="modal">Update</button>
+          <button type="button" (click)="updateLocation(locationUpadateForm)"  class="btn btn-danger btn-round" data-dismiss="modal">Update</button>
         </div>
       </div>
     </div>

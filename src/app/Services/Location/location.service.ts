@@ -25,6 +25,11 @@ export class LocationService {
     let baseUrl= "http://demo3.kmatechnoware.com/api/MasterLocation/TypeGet/";
     return this.http.get<Location[]>(baseUrl+type);
   }
+  getMasterLocationTypeGet1(parentId:number)
+  {
+    let baseUrl= "http://demo3.kmatechnoware.com/api/MasterLocation/TypeGet1/";
+    return this.http.get<Location[]>(baseUrl+parentId);
+  }
 
   insertMasterLocation(location:any)
   {

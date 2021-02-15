@@ -304,4 +304,11 @@ AS
 select 
  mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive  from MasterLocation where mLocationType=@mLocationType;
 
+
+CREATE PROC dbo.spMasterLocationTypeGet1(@mLocationParentId int)
+AS
+select 
+ mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive  from MasterLocation where mLocationParentId=@mLocationParentId
+
+ 
  select * from sys.procedures

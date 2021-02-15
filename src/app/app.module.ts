@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -21,7 +22,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     HttpClientModule,
     ComponentsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatSliderModule
   ],
   declarations: [
     AppComponent,
