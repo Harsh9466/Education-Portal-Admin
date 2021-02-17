@@ -8,19 +8,30 @@ import { NgForm } from '@angular/forms';
   templateUrl: './streams.component.html',
   styleUrls: ['./streams.component.css']
 })
-export class StreamsComponent implements OnInit {
-Streams:Streams[];
-Stream:Streams;
-actionId:number;
+export class StreamsComponent implements OnInit 
+{
+  Streams:Streams[];
+  Stream:Streams;
+
+  DegreeDropdown:boolean=false;
+  CourseDropdown:boolean=false;
+  substreamdropdown:boolean=false;
+
+  actionId:number;
+
+  degreeData:Streams[];
+  courseData:Streams[];
 
   constructor(private streamsService:StreamsService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.EmptyData();
     this.getStreams();
   }
 
-  EmptyData(){
+  EmptyData()
+  {
     this.Stream={
       mStreamsId:null,
       mStreamsCode:"",
@@ -32,7 +43,40 @@ actionId:number;
     }
   }
 
-  getStreams(){
+
+
+  showDropdown(data)
+  {
+    this.getStreams();
+
+    
+    if(data=="degree")
+    {
+      this.Stream.mStreamsParentId=0;
+      this.DegreeDropdown=false;
+      this.CourseDropdown=false;
+      this.substreamdropdown=false;
+    }
+
+    if(data=="course")
+    {
+      this.DegreeDropdown=true;
+      this.CourseDropdown=false;
+      this.substreamdropdown=false;
+    }
+
+    if(data=="substream")
+    {
+      this.DegreeDropdown=true;
+      this.CourseDropdown=true;
+      this.substreamdropdown=true;
+    }
+  }
+  
+
+
+  getStreams()
+  {
     this.streamsService.getMasterStreams().subscribe
     (
       (res) =>{ 
@@ -54,7 +98,8 @@ actionId:number;
     })
   }
 
-  insertStreams(data:NgForm){
+  insertStreams(data:NgForm)
+  {
     let parseData={
       mStreamsCode:data.value.mStreamsCode,
       mStreamsName:data.value.mStreamsName,
@@ -70,13 +115,14 @@ actionId:number;
         this.getStreams();
       },
       (error)=>{
-        console.log("Error in Post Stream !");
-    }
-    )
+        console.log("Error in Post Stream!");
+    })
   }
 
-  updateStreams(data:NgForm){
-    let parseData={
+  updateStreams(data:NgForm)
+  {
+    let parseData=
+    {
       mStreamsId:parseInt(data.value.mStreamsId),
       mStreamsCode:data.value.mStreamsCode,
       mStreamsName:data.value.mStreamsName,
@@ -95,11 +141,13 @@ actionId:number;
     });
   }
 
-  deleteConfirm(id:number){
+  deleteConfirm(id:number)
+  {
     this.actionId=id
   }
 
-  deleteStreams(){
+  deleteStreams()
+  {
     // console.log("Id For Delete : ",this.actionId)
     this.streamsService.deleteMasterStreams(this.actionId).subscribe
     (
@@ -109,8 +157,7 @@ actionId:number;
       },
       (error)=>{
         console.log("Error in Delete Streams Type !");
-    }
-    )
+    })
   }
 
 }

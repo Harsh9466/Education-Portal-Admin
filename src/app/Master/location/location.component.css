@@ -1,0 +1,5 @@
+.dropdown-item:hover, .dropdown-item:active, .dropdown-toggle
+{
+	background-image: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53));
+	background: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53));
+}

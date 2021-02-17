@@ -137,6 +137,7 @@
                 </div>
             </div>
           </div>
+
         <div class="modal-footer d-flex justify-content-center">
           <button type="button" (click)="insertLocation(locationform)" class="btn btn-danger btn-round" data-dismiss="modal" >Add</button>
         </div>
@@ -169,6 +170,7 @@
                 <label >Code</label>
                 <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control">
               </div>
+
               <div class="md-form" *ngIf="countryDropdown">
                 <label >Country</label>
                 <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mLocationParentId" (change)="getNameByParentId()" >
@@ -177,13 +179,14 @@
                 </select>          
               </div>
   
-              <div class="md-form" *ngIf="stateDropdown">   
+              <div class="md-form" *ngIf="stateDropdown">
                 <label >Country</label>
                 <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mLocationParentId" (change)="getNameByParentId()" >
                   <option [value]=0 selected>Select Country....</option>
                   <option *ngFor="let country of countryData" [value]="country.mLocationId">{{country.mLocationName}}</option>
-                </select>     
-                <label >State</label>
+                </select>
+
+                <label>State</label>
                 <select class="form-control shadow-none" [(ngModel)]="stateId"  name="mLocationParentId" (change)='toggleActionId()'>
                   <option [value]=0 selected>Select State....</option>
                   <option *ngFor="let state of stateData" [value]="state.mLocationId">{{state.mLocationName}}</option>
