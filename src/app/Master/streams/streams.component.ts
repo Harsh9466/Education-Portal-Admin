@@ -13,13 +13,16 @@ export class StreamsComponent implements OnInit
   Streams:Streams[];
   Stream:Streams;
 
-  DegreeDropdown:boolean=false;
+  StreamDropdown:boolean=false;
   CourseDropdown:boolean=false;
   substreamdropdown:boolean=false;
 
-  actionId:number;
+  selectType:string;
 
-  degreeData:Streams[];
+  actionId:number;
+  courseId:number=0;
+
+  streamdata:Streams[];
   courseData:Streams[];
 
   constructor(private streamsService:StreamsService) { }
@@ -32,48 +35,88 @@ export class StreamsComponent implements OnInit
 
   EmptyData()
   {
-    this.Stream={
+    this.Stream =
+    {
       mStreamsId:null,
-      mStreamsCode:"",
-      mStreamsName:"",
-      mStreamsType:"",
-      mStreamsParentId:null,
+      mStreamsCode:'',
+      mStreamsName:'',
+      mStreamsType:'',
       mStreamsSerialNo:null,
+      mStreamsParentId:null,
       mStreamsIsActive:true
-    }
+    };
+
+    this.selectType="stream";
+    this.actionId=0;
+    this.StreamDropdown=false;
+    this.CourseDropdown=false;
+    this.substreamdropdown=false;
+    this.courseId=0;
   }
-
-
 
   showDropdown(data)
   {
     this.getStreams();
+    this.selectType=data
 
-    
-    if(data=="degree")
+    if(data=="stream" || data=="Stream")
     {
       this.Stream.mStreamsParentId=0;
-      this.DegreeDropdown=false;
+      this.StreamDropdown=false;
       this.CourseDropdown=false;
       this.substreamdropdown=false;
     }
 
-    if(data=="course")
+    if(data=="course" || data=="Course")
     {
-      this.DegreeDropdown=true;
+      this.StreamDropdown=true;
       this.CourseDropdown=false;
       this.substreamdropdown=false;
     }
 
-    if(data=="substream")
+    if(data=="substream" || data=="Substream")
     {
-      this.DegreeDropdown=true;
+      this.StreamDropdown=true;
       this.CourseDropdown=true;
       this.substreamdropdown=true;
     }
   }
+
+  getMainStreams(){
+    this.streamsService.getMasterStreamsTypeGet("stream").subscribe
+    (
+      (res)=>{
+        this.streamdata=res;
+      },
+      (error)=>{
+        console.log("Error in Get Stream By Type");
+      });
+  }
   
 
+  
+  getCourse(){
+   this.streamsService.getMasterStreamsTypeGet("course").subscribe
+    (
+      (res)=>{
+        this.courseData=res;
+      },
+      (error)=>{
+        console.log("Error in Get Course By Type");
+      });
+  }
+
+  getNameByParentId(){
+    this.streamsService.getMasterStreamsTypeGet1(this.actionId).subscribe
+    (
+      (res)=>{
+        this.courseData=res;
+        console.log(res);
+      },
+      (error)=>{
+        console.log("Error in Get Course By Type");
+      });
+  }
 
   getStreams()
   {
@@ -98,13 +141,19 @@ export class StreamsComponent implements OnInit
     })
   }
 
+   toggleActionId(){
+    this.actionId=this.courseId
+  }
+
+
   insertStreams(data:NgForm)
   {
     let parseData={
       mStreamsCode:data.value.mStreamsCode,
       mStreamsName:data.value.mStreamsName,
-      mStreamsType:data.value.mStreamsType,
-      mStreamsParentId:parseInt(data.value.mStreamsParentId),
+      // mStreamsType:data.value.mStreamsType,
+      mStreamsType:this.selectType,
+      mStreamsParentId:+this.actionId,
       mStreamsIsActive:data.value.mStreamsIsActive
     }
     // console.log("Post Data : ",parseData);
@@ -126,7 +175,8 @@ export class StreamsComponent implements OnInit
       mStreamsId:parseInt(data.value.mStreamsId),
       mStreamsCode:data.value.mStreamsCode,
       mStreamsName:data.value.mStreamsName,
-      mStreamsType:data.value.mStreamsType,
+      // mStreamsType:data.value.mStreamsType,
+      mStreamsType:this.selectType,
       mStreamsIsActive:data.value.mStreamsIsActive
     }
     // console.log("Update Data : ",parseData);

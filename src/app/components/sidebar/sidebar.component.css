@@ -4,14 +4,10 @@ padding: 5px;
 border: 1px solid;
 border-radius: 5px;
 }
-.dropdown-item:active, .active 
+
+.dropdown-item:hover, .dropdown-item:active, .dropdown-toggle, #dropdownBtn .nav-link, .dropdown-menu-1 .active
 {
-    background-image: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53));
-    background: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53));
-}
-#dropdownBtn,#dropdownBtn:hover
-{
-	background-image: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53));
-    background: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53));
+	/*background-image: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53)) !important;*/
+	background: linear-gradient(60deg, rgb(239, 83, 80), rgb(229, 57, 53)) !important;
 }
 

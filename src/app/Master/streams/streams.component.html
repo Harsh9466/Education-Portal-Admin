@@ -7,7 +7,7 @@
                         Add Streams
                       </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#streamInsertModal" (click)="showDropdown('degree')">Degree</a>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#streamInsertModal" (click)="showDropdown('stream')">Stream</a>
                   <a class="dropdown-item" href="#" data-toggle="modal" data-target="#streamInsertModal" (click)="showDropdown('course')">Course</a>
                   <a class="dropdown-item" href="#" data-toggle="modal" data-target="#streamInsertModal" (click)="showDropdown('substream')">Sub-Stream</a>
                 </div>
@@ -53,6 +53,56 @@
 
                 </div>
             </div>
+
+
+           <!--  <div class="col-md-12">
+              <div class="dropdown">
+                <button class="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"  aria-expanded="false" (click)="showDropdown('stream')">Add Stream</button>
+              </div>
+
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Streams</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <thead class=" text-primary">
+                                    <th>S.No</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Serial No</th>
+                                    <th>ParentId</th>
+                                    <th>IsActive</th>
+                                    <th>Actions</th>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let st of Streams; let i=index">
+                                        <td>{{i+1}}</td>   
+                                        <td>{{st.mStreamsCode}}</td>   
+                                        <td>{{st.mStreamsName}}</td>   
+                                        <td>{{st.mStreamsType}}</td>   
+                                        <td>{{st.mStreamsSerialNo}}</td>   
+                                        <td>{{st.mStreamsParentId}}</td>   
+                                        <td>{{st.mStreamsIsActive}}</td>   
+                                        <td>
+                                          <i class="fa fa-pencil-square-o" (click)="getStream(st.mStreamsId)"  data-toggle="modal" data-target="#streamUpdateModel"></i>
+                                          <i class="fa fa-times" data-toggle="modal" data-target="#streamDeletemodal" (click)="deleteConfirm(st.mStreamsId)" ></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>  
+ -->
+
+
         </div>
     </div>
 </div>
@@ -79,11 +129,28 @@
                 <label >Code</label>
                 <input type="text" [(ngModel)]="Stream.mStreamsCode" name="mStreamsCode" class="form-control">
               </div>
-              <div class="md-form ">
+              <!-- <div class="md-form ">
                 <label >Type</label>
                 <input type="text" [(ngModel)]="Stream.mStreamsType" name="mStreamsType" class="form-control">
+              </div> -->
+
+              <div class="md-form" *ngIf="StreamDropdown">
+                <label>Stream</label>
+                <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mStreamsParentId" (change)="getNameByParentId()" >
+                  <option [value]=0 selected>Select Stream....</option>
+                  <option *ngFor="let sd of streamdata" [value]="sd.mStreamsId">{{sd.mStreamsName}}</option>
+                </select>          
               </div>
-              <div class="md-form">
+
+              <div class="md-form" *ngIf="CourseDropdown">      
+                <label >Course</label>
+                <select class="form-control shadow-none" [(ngModel)]="stateId"  name="mStreamsParentId" (change)='toggleActionId()'>
+                  <option [value]=0 selected>Select Course....</option>
+                  <option *ngFor="let cd of courseData" [value]="cd.mStreamsId">{{cd.mStreamsName}}</option>
+                </select>          
+              </div>
+
+              <div class="md-form" *ngIf="StreamDropdown">
                 <label >Parent Id</label>
                 <input type="text" [(ngModel)]="Stream.mStreamsParentId" name="mStreamsParentId" class="form-control">                
               </div>
@@ -101,7 +168,7 @@
                 </div>
             </div>
           </div>
-  
+
         <div class="modal-footer d-flex justify-content-center">
           <button type="button" class="btn btn-danger" (click)="insertStreams(streamInsertForm)" data-dismiss="modal">Add</button>
         </div>
@@ -134,9 +201,32 @@
                   <label >Code</label>
                   <input type="text" [(ngModel)]="Stream.mStreamsCode" name="mStreamsCode" class="form-control">
                 </div>
-                <div class="md-form ">
+
+                <!-- <div class="md-form ">
                   <label >Type</label>
                   <input type="text" [(ngModel)]="Stream.mStreamsType" name="mStreamsType" class="form-control">
+                </div> -->
+
+                <div class="md-form" *ngIf="StreamDropdown">
+                  <label>Stream</label>
+                  <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mStreamsParentId" (change)="getNameByParentId()" >
+                    <option [value]=0 selected>Select Stream....</option>
+                    <option *ngFor="let sd of streamdata" [value]="sd.mStreamsId">{{sd.mStreamsName}}</option>
+                  </select>          
+                </div>
+
+                <div class="md-form" *ngIf="CourseDropdown">
+                  <label>Stream</label>
+                  <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mStreamsParentId" (change)="getNameByParentId()" >
+                    <option [value]=0 selected>Select Stream....</option>
+                    <option *ngFor="let sd of streamdata" [value]="sd.mStreamsId">{{sd.mStreamsName}}</option>
+                  </select> 
+                        
+                  <label >Course</label>
+                  <select class="form-control shadow-none" [(ngModel)]="stateId"  name="mStreamsParentId" (change)='toggleActionId()'>
+                    <option [value]=0 selected>Select Course....</option>
+                    <option *ngFor="let cd of courseData" [value]="cd.mStreamsId">{{cd.mStreamsName}}</option>
+                  </select>          
                 </div>
 
                 <!-- Parent Id (Doubt for Update or Not) -->

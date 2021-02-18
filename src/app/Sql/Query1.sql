@@ -34,13 +34,13 @@ spMasterLocationTypeGet 'country'
 sp_helptext spMasterLocationTypeGet
 
 
+
 alter PROC dbo.spMasterLocationTypeGet(@mLocationType VARCHAR(50),@isactive int=-1)
 AS
 select 
  mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive  from MasterLocation where mLocationType=@mLocationType and ( @isactive=-1 or mLocationIsActive=@isactive)
  
  spMasterLocationTypeGet 'country',
-
 
 
 
