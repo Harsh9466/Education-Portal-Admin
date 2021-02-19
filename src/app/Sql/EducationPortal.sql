@@ -304,7 +304,8 @@ AS
 select 
  mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive  from MasterLocation where mLocationType=@mLocationType;
 
-
+spMasterLocationTypeGet 'city'
+spMasterLocationTypeGet1 1
 CREATE PROC dbo.spMasterLocationTypeGet1(@mLocationParentId int)
 AS
 select 
@@ -312,3 +313,33 @@ select
 
  
  select * from sys.procedures
+
+ alter PROC dbo.spMasterLocationTypeGet(@mLocationType VARCHAR(50),@isactive int=-1)
+AS
+select 
+ mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive  from MasterLocation where mLocationType=@mLocationType and ( @isactive=-1 or mLocationIsActive=@isactive)
+ 
+ spMasterLocationTypeGet 'country',1
+
+
+ 
+-- Master Stream Dropdown Get By Type
+CREATE PROC dbo.spMasterStreamsTypeGet(@mStreamsType VARCHAR(50))
+AS
+ select mStreamsId,mStreamsCode,mStreamsName,mStreamsType,mStreamsSerialNo,isnull(mStreamsParentId,'') as mStreamsParentId ,mStreamsIsActive from MasterStreams where mStreamsType=@mStreamsType;
+
+spMasterStreamsTypeGet 'city'
+
+spMasterStreamsTypeGet1 1
+
+CREATE PROC dbo.spMasterStreamsTypeGet1(@mStreamsParentId int)
+AS
+select mStreamsId,mStreamsCode,mStreamsName,mStreamsType,mStreamsSerialNo,isnull(mStreamsParentId,'') as mStreamsParentId ,mStreamsIsActive from MasterStreams where mStreamsId=@mStreamsId;
+
+ 
+ select * from sys.procedures
+
+ CREATE PROC dbo.spMasterStreamsTypeGet(@mStreamsType VARCHAR(50),@isactive int=-1)
+AS
+ select mStreamsId,mStreamsCode,mStreamsName,mStreamsType,mStreamsSerialNo,isnull(mStreamsParentId,'') as mStreamsParentId ,mStreamsIsActive from MasterStreams where mStreamsType=@mStreamsType; and ( @isactive=-1 or mStreamsIsActive=@isactive)
+ 

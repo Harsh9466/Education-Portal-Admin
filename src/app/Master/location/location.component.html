@@ -6,7 +6,7 @@
                       <button class="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"  aria-expanded="false">
                         Add Location
                       </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <div class="dropdown-menu">
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#InsertLocationForm" (click)="showDropdown('country')">Country</a>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#InsertLocationForm" (click)="showDropdown('state')">State</a>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#InsertLocationForm" (click)="showDropdown('city')">City</a>
@@ -29,7 +29,7 @@
                                         <th>Type</th>
                                         <th>Pin Code</th>
                                         <th>Code</th>
-                                        <th>Serial No</th>
+                                        <!-- <th>Serial No</th> -->
                                         <th>Parent Id</th>
                                         <th>Status</th>
                                         <th>Actions</th>
@@ -58,7 +58,7 @@
                                         <td>{{lc.mLocationType}}</td>   
                                         <td>{{lc.mLocationPinCode}}</td>   
                                         <td>{{lc.mLocationCode}}</td>   
-                                        <td>{{lc.mLocationSerialNo}}</td>   
+                                        <!-- <td>{{lc.mLocationSerialNo}}</td>    -->
                                         <td>{{lc.mLocationParentId}}</td>   
                                         <td>{{lc.mLocationIsActive}}</td>
                                         <td>
@@ -169,14 +169,6 @@
               <div class="md-form ">
                 <label >Code</label>
                 <input type="text" [(ngModel)]="Location.mLocationCode" name="mLocationCode" class="form-control">
-              </div>
-
-              <div class="md-form" *ngIf="countryDropdown">
-                <label >Country</label>
-                <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mLocationParentId" (change)="getNameByParentId()" >
-                  <option [value]=0 selected>Select Country....</option>
-                  <option *ngFor="let country of countryData" [value]="country.mLocationId">{{country.mLocationName}}</option>
-                </select>          
               </div>
   
               <div class="md-form" *ngIf="stateDropdown">

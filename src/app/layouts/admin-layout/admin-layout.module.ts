@@ -1,19 +1,13 @@
-import { TypeComponent } from './../../Master/type/type.component';
-import { TypeDetailsComponent } from './../../Master/type-details/type-details.component';
-import { StreamsComponent } from './../../Master/streams/streams.component';
-import { LocationComponent } from './../../Master/location/location.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AdminLayoutRoutes } from './admin-layout.routing';
+
 import { DashboardComponent } from '../../dashboard/dashboard.component';
-import { UserProfileComponent } from '../../user-profile/user-profile.component';
-import { TableListComponent } from '../../table-list/table-list.component';
-import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
-import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { TypeComponent } from './../../Master/type/type.component';
+import { TypeDetailsComponent } from './../../Master/type-details/type-details.component';
+import { StreamsComponent } from './../../Master/streams/streams.component';
+import { LocationComponent } from './../../Master/location/location.component';
 import { MatButtonModule} from '@angular/material/button';
 import { MatInputModule} from '@angular/material/input';
 import { MatRippleModule} from '@angular/material/core';
@@ -22,6 +16,7 @@ import { MatTooltipModule} from '@angular/material/tooltip';
 import { MatSelectModule} from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatMenuModule} from '@angular/material/menu';
+import { AdminLayoutRoutes } from './admin-layout.routing';
 
 
 @NgModule({
@@ -43,12 +38,6 @@ import {MatMenuModule} from '@angular/material/menu';
   ],
   declarations: [
     DashboardComponent,
-    UserProfileComponent,
-    TableListComponent,
-    TypographyComponent,
-    IconsComponent,
-    NotificationsComponent,
-    UpgradeComponent,
     LocationComponent,
     StreamsComponent,
     TypeComponent,

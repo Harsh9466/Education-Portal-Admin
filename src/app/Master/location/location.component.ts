@@ -22,7 +22,7 @@ export class LocationComponent implements OnInit
   countryDropdown:boolean=false;
   stateDropdown:boolean=false;
   pinCodedropdown:boolean=false;
-
+  parentName:string="";
   pinCode:number;
   actionId:number=0;
   stateId:number=0;
@@ -174,7 +174,7 @@ export class LocationComponent implements OnInit
     (
       (res) =>{ 
         console.log(res);
-        this.getLocations();
+        // this.getLocations();
       },
       (error)=>{
         console.log("Error in Post Location !");
@@ -194,6 +194,14 @@ export class LocationComponent implements OnInit
         mLocationIsActive:data.value.mLocationIsActive,
       }
       console.log(parseData);
+      this.locationService.updateMasterLocation(parseData.mLocationId,parseData).subscribe(
+        (res)=>{
+          console.log(res);
+        },
+        (error)=>{
+          console.log("Error in Update Location !")
+        }
+      )
 
   }
 
