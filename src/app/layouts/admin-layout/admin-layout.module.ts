@@ -1,3 +1,32 @@
+import { UpdateCodeComponent } from './../../Master/code/Update-Code/Update-Code.component';
+import { DeleteCodeComponent } from './../../Master/code/Delete-Code/Delete-Code.component';
+import { AddCodeComponent } from './../../Master/code/Add-Code/Add-Code.component';
+import { DeleteBankSetupComponent } from './../../Master/bank-setup/Delete-Bank-Setup/Delete-Bank-Setup.component';
+import { UpdateBankSetupComponent } from './../../Master/bank-setup/Update-Bank-Setup/Update-Bank-Setup.component';
+import { AddBankSetupComponent } from './../../Master/bank-setup/Add-Bank-Setup/Add-Bank-Setup.component';
+import { UpdateBankComponent } from './../../Master/bank/Update-Bank/Update-Bank.component';
+import { DeleteBankComponent } from './../../Master/bank/Delete-Bank/Delete-Bank.component';
+import { AddBankComponent } from './../../Master/bank/Add-Bank/Add-Bank.component';
+import { UpdateTypeDetailComponent } from './../../Master/type-details/Update-Type-Detail/Update-Type-Detail.component';
+import { DeleteTypeDetailComponent } from './../../Master/type-details/Delete-Type-Detail/Delete-Type-Detail.component';
+import { AddTypeDetailComponent } from './../../Master/type-details/Add-Type-Detail/Add-Type-Detail.component';
+import { UpdateTypeComponent } from './../../Master/type/Update-Type/Update-Type.component';
+import { DeleteTypeComponent } from './../../Master/type/Delete-Type/Delete-Type.component';
+import { AddTypeComponent } from './../../Master/type/Add-Type/Add-Type.component';
+import { UpdateStreamComponent } from './../../Master/streams/Update-Stream/Update-Stream.component';
+import { DeleteStreamComponent } from './../../Master/streams/Delete-Stream/Delete-Stream.component';
+import { AddStreamComponent } from './../../Master/streams/Add-Stream/Add-Stream.component';
+import { AddLocationComponent } from './../../Master/location/Add-Location/Add-Location.component';
+
+import { DeleteLocationComponent } from './../../Master/location/Delete-Location/Delete-Location.component';
+import { UpdateLocationComponent } from './../../Master/location/Update-Location/Update-Location.component';
+import { CodeComponent } from './../../Master/code/code.component';
+import { BankSetupComponent } from './../../Master/bank-setup/bank-setup.component';
+import { BankComponent } from './../../Master/bank/bank.component';
+import { MasterLocationResolver } from './../../_resolvers/master-location.resolver';
+import { TypeDetailsService } from '../../_services/master-type-details.service';
+import { TypeService } from '../../_services/master-type.service';
+import { StreamsService } from '../../_services/master-streams.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -16,7 +45,11 @@ import { MatTooltipModule} from '@angular/material/tooltip';
 import { MatSelectModule} from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AdminLayoutRoutes } from './admin-layout.routing';
+import { LocationService } from '../../_services/master-location.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -32,16 +65,48 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
     MatSelectModule,
     MatTooltipModule,
     MatSliderModule,
-    MatMenuModule
-    
-    
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatRadioModule
   ],
   declarations: [
     DashboardComponent,
     LocationComponent,
+    AddLocationComponent,
+    UpdateLocationComponent,
+    DeleteLocationComponent,
     StreamsComponent,
+    AddStreamComponent,
+    DeleteStreamComponent,
+    UpdateStreamComponent,
     TypeComponent,
-    TypeDetailsComponent
+    AddTypeComponent,
+    DeleteTypeComponent,
+    UpdateTypeComponent,
+    TypeDetailsComponent,
+    AddTypeDetailComponent,
+    DeleteTypeDetailComponent,
+    UpdateTypeDetailComponent,
+    BankComponent,
+    AddBankComponent,
+    DeleteBankComponent,
+    UpdateBankComponent,
+    BankSetupComponent,
+    AddBankSetupComponent,
+    UpdateBankSetupComponent,
+    DeleteBankSetupComponent,
+    CodeComponent,
+    AddCodeComponent,
+    DeleteCodeComponent,
+    UpdateCodeComponent
+  ],
+  providers:[
+    LocationService,
+    StreamsService,
+    TypeService,
+    TypeDetailsService,
+    MasterLocationResolver
   ]
 })
 

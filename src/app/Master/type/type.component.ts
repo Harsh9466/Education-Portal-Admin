@@ -1,5 +1,5 @@
-import { TypeService } from './../../Services/Type/type.service';
-import { Type } from './../../Interface/type';
+import { TypeService } from '../../_services/master-type.service';
+import { Type } from '../../_models/master-type';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 

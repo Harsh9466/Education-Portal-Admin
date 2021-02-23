@@ -27,15 +27,11 @@
             <a class="dropdown-item" [routerLink]="['master/streams']" routerLinkActive="active">Streams</a>
             <a class="dropdown-item" [routerLink]="['master/type']" routerLinkActive="active">Type</a>
             <a class="dropdown-item" [routerLink]="['master/type-details']" routerLinkActive="active">Type Details</a>
+            <a class="dropdown-item" [routerLink]="['master/bank']" routerLinkActive="active">Bank</a>
+            <a class="dropdown-item" [routerLink]="['master/bank-setup']" routerLinkActive="active">Bank Setup</a>
+            <a class="dropdown-item" [routerLink]="['master/code']" routerLinkActive="active">Code</a>
         </div>
 
-         <!-- Other -->
-         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            <a class="nav-link" [routerLink]="[menuItem.path]">
-                <i class="material-icons">{{menuItem.icon}}</i>
-                <p>{{menuItem.title}}</p>
-            </a>
-        </li>
 
         <!-- Log Out -->
         <li  class="nav-item">

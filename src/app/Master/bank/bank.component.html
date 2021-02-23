@@ -1,0 +1,56 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-lg btn-danger" type="button">Add Bank</button>
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Locations</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead class="text-primary">
+                  <tr>
+                    <th>S.No</th>
+                    <th>Code ID</th>
+                    <th>Bank ID</th>
+                    <th>Account No.</th>
+                    <th>Code</th>
+                    <th>IFSC Code</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let bank of Banks; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ bank.mbCodeId }}</td>
+                    <td>{{ bank.mbBankId }}</td>
+                    <td>{{ bank.mbAccountNo }}</td>
+                    <td>{{ bank.mbIFSCCode }}</td>
+                    <td>{{ bank.mbIsActive }}</td>
+                    <td>
+                      <i
+                        class="fa fa-pencil-square-o mr-md-2"
+                        (click)="getLocation(bank.mbId)"
+                        data-toggle="modal"
+                        data-target="#UpdateModel"
+                      ></i>
+                      <i
+                        class="fa fa-times"
+                        data-toggle="modal"
+                        data-target="#deletemodal"
+                        (click)="deleteConfirm(bank.mbId)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { AuthService } from './../../_services/auth.service';
 import { AdminLoginComponent } from './../../login/admin-login/admin-login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +15,8 @@ import { AuthLayoutRoutes } from './auth-layout.routing';
     HttpClientModule
   ],
   declarations: [AdminLoginComponent],
-  providers:[]
+  providers:[
+    AuthService
+  ]
 })
 export class AuthLayoutModule { }

@@ -1,5 +1,5 @@
-import { Streams } from './../../Interface/streams';
-import { StreamsService } from './../../Services/Streams/streams.service';
+import { Streams } from '../../_models/master-streams';
+import { StreamsService } from '../../_services/master-streams.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 

@@ -1,3 +1,4 @@
+import { NotificationService } from './_services/notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,8 +12,13 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-// import { AdminLoginComponent } from './login/admin-login/admin-login.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { JwtModule } from '@auth0/angular-jwt';
+
+
+export function tokenGetter(){
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   imports: [
@@ -25,15 +31,23 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    MatSliderModule
+    MatSliderModule,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter:tokenGetter,
+        allowedDomains:['localhost:5000'],
+        disallowedRoutes:['localhost:5000/api/auth']
+      }
+    }),
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    // AdminLoginComponent,
     AuthLayoutComponent
   ],
-  providers: [],
+  providers: [
+    NotificationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

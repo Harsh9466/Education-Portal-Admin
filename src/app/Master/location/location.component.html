@@ -1,86 +1,176 @@
-<div class="main-content">  
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                    <div class="dropdown">
-                      <button class="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"  aria-expanded="false">
-                        Add Location
-                      </button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#InsertLocationForm" (click)="showDropdown('country')">Country</a>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#InsertLocationForm" (click)="showDropdown('state')">State</a>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#InsertLocationForm" (click)="showDropdown('city')">City</a>
-                      </div>
-                    </div>
-                
-                <div class="card">
-
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Locations</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table text-center">
-                                <thead class=" text-primary">
-                                    <tr>
-                                        <th>S.No</th>
-                                        <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Pin Code</th>
-                                        <th>Code</th>
-                                        <!-- <th>Serial No</th> -->
-                                        <th>Parent Id</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>    
-                                </thead>
-                                <tbody>
-                                  <!-- <tr>
-                                    <td>1</td>   
-                                    <td>India</td>   
-                                    <td>Country</td>   
-                                    <td>0</td>   
-                                    <td>IND</td>   
-                                    <td>1</td>   
-                                    <td>0</td>   
-                                    <td>true</td>
-                                    <td>
-                                      <i class="fa fa-pencil-square-o mr-md-2" (click)="getLocation(1)"  data-toggle="modal" data-target="#UpdateModel"></i>
-                                      <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" (click)="deleteConfirm(1)" ></i>
-                                    </td>
-                                  </tr>   -->
-
-                                  <tr *ngFor="let lc of Locations; let i=index">
-                                        <td>{{i+1}}</td>   
-                                        <!-- <td>{{lc.mLocationId}}</td>    -->
-                                        <td>{{lc.mLocationName}}</td>   
-                                        <td>{{lc.mLocationType}}</td>   
-                                        <td>{{lc.mLocationPinCode}}</td>   
-                                        <td>{{lc.mLocationCode}}</td>   
-                                        <!-- <td>{{lc.mLocationSerialNo}}</td>    -->
-                                        <td>{{lc.mLocationParentId}}</td>   
-                                        <td>{{lc.mLocationIsActive}}</td>
-                                        <td>
-                                          <i class="fa fa-pencil-square-o mr-md-2" (click)="getLocation(lc.mLocationId)"  data-toggle="modal" data-target="#UpdateModel"></i>
-                                          <i class="fa fa-times" data-toggle="modal" data-target="#deletemodal" (click)="deleteConfirm(lc.mLocationId)" ></i>
-                                        </td>
-                                  </tr>  
-
-                                  
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="dropdown">
+          <button class="btn btn-lg btn-danger dropdown-toggle" type="button"
+            data-toggle="dropdown">Add Location</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="addLocation('country')">Country</a
+            >
+            <a class="dropdown-item" (click)="addLocation('state')" >State</a
+            >
+            <a class="dropdown-item" (click)="addLocation('city')" >City</a
+            >
+          </div>
         </div>
+
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Countries</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead class="text-primary">
+                  <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <!-- <th>Type</th>
+                    <th>Pin Code</th>
+                    <th>Parent Id</th> -->
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let lc of countryData; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ lc.mLocationName }}</td>
+                    <td>{{ lc.mLocationCode }}</td>
+                    <!-- <td>{{ lc.mLocationType }}</td>
+                    <td>{{ lc.mLocationPinCode }}</td>
+                    <td>{{ lc.mLocationParentId }}</td> -->
+                    <td>{{ lc.mLocationIsActive }}</td>
+                    <td>
+                      <i
+                        class="fa fa-pencil-square-o mr-md-2"
+                        (click)="getLocation(lc.mLocationId)"
+                      ></i>
+                      <i
+                        class="fa fa-times"
+                        (click)="deleteLocation(lc.mLocationId)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">States</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead class="text-primary">
+                  <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Type</th>
+                    <!-- <th>Pin Code</th> -->
+                    <th>Parent Id</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let lc of stateData; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ lc.mLocationName }}</td>
+                    <td>{{ lc.mLocationCode }}</td>
+                    <td>{{ lc.mLocationType }}</td>
+                    <!-- <td>{{ lc.mLocationPinCode }}</td> -->
+                    <td>{{ lc.mLocationParentId }}</td>
+                    <td>{{ lc.mLocationIsActive }}</td>
+                    <td>
+                      <i
+                        class="fa fa-pencil-square-o mr-md-2"
+                        (click)="getLocation(lc.mLocationId)"
+                      ></i>
+                      <i
+                        class="fa fa-times"
+                        (click)="deleteLocation(lc.mLocationId)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Cities</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead class="text-primary">
+                  <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Type</th>
+                    <th>Pin Code</th>
+                    <th>Parent Id</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let lc of cityData; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ lc.mLocationName }}</td>
+                    <td>{{ lc.mLocationCode }}</td>
+                    <td>{{ lc.mLocationType }}</td>
+                    <td>{{ lc.mLocationPinCode }}</td>
+                    <td>{{ lc.mLocationParentId }}</td>
+                    <td>{{ lc.mLocationIsActive }}</td>
+                    <td>
+                      <i
+                        class="fa fa-pencil-square-o mr-md-2"
+                        (click)="getLocation(lc.mLocationId)"
+                      ></i>
+                      <i
+                        class="fa fa-times"
+                        (click)="deleteLocation(lc.mLocationId)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-
 <!-- insert modal -->
-<div class="modal fade"  id="InsertLocationForm">
+<!-- <div class="modal fade"  id="InsertLocationForm">
   <form  #locationform="ngForm">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -144,10 +234,10 @@
       </div>
     </div>
   </form>
-</div>
+</div> -->
 
 <!-- Edit Modal -->
-<div class="modal fade"  id="UpdateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal fade"  id="UpdateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <form  #locationUpadateForm="ngForm">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -161,7 +251,6 @@
             <div class="modal-body mx-3">
               <div class="md-form ">
                 <label >Name</label>
-                <!-- Hidden Id -->
                 <input type="number" [(ngModel)]="Location.mLocationId" class="form-control shadow-none" name="mLocationId" hidden>
 
                 <input type="text" [(ngModel)]="Location.mLocationName" class="form-control" name="mLocationName">
@@ -210,10 +299,10 @@
       </div>
     </div>
   </form>
-  </div>
+  </div> -->
 
 <!-- delete modal -->
-<div class="modal" id="deletemodal">
+<!-- <div class="modal" id="deletemodal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -226,10 +315,10 @@
         <p style="text-transform: uppercase;">Are you sure want to Delete?</p>
         <div class="d-flex justify-content-around">
           <button type="button" class="btn btn-danger btn-round" 
-          (click)="deleteLocation()" data-dismiss="modal">Yes</button>
+           data-dismiss="modal">Yes</button>
           <button type="button" class="btn btn-danger btn-round" data-dismiss="modal">No</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->

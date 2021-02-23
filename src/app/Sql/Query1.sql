@@ -28,26 +28,26 @@
 
 select * from MasterLocation 
 
-
-spMasterLocationTypeGet 'country'
-
-sp_helptext spMasterLocationTypeGet
-
-
-
-alter PROC dbo.spMasterLocationTypeGet(@mLocationType VARCHAR(50),@isactive int=-1)
+CREATE PROC dbo.spMasterLocationTypeGet(@mLocationType VARCHAR(50),@isactive int=-1)
 AS
 select 
- mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive  from MasterLocation where mLocationType=@mLocationType and ( @isactive=-1 or mLocationIsActive=@isactive)
- 
- spMasterLocationTypeGet 'country',
+ mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive  from MasterLocation where mLocationType=@mLocationType and ( @is
+active=-1 or mLocationIsActive=@isactive)
 
 
+sp_helptext spMasterLocationByType
+exec spMasterLocationByParentId 1
+exec spMasterLocationByType 'country'
+
+create proc spMasterLocationByTypeParentId(@mLocationType VARCHAR(20),@mLocationParentId int=0,@mLocationIsActive int=-1)
+as 
+select * from MasterLocation WHERE mLocationType = @mLocationType and(mLocationParentId = @mLocationParentId or @mLocationParentId = 0 ) and (
+@mLocationIsActive=-1 or mLocationIsActive=@mLocationIsActive)
+
+use dbEdushalacollege
 
 
-
-
-
+spMasterLocationByTypeParentId 'country'
 
 
 

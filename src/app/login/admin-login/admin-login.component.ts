@@ -1,7 +1,7 @@
-import { NotificationService } from '../../notification.service';
+import { NotificationService } from '../../_services/notification.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -13,6 +13,7 @@ export class AdminLoginComponent implements OnInit {
   password:string;
 
   constructor(private authService:AuthService,private notification:NotificationService,private router:Router) {
+    
    }
 
   ngOnInit(): void {
@@ -22,7 +23,7 @@ export class AdminLoginComponent implements OnInit {
     if(this.username=='harsh' && this.password=='harsh')
     {
       localStorage.setItem("token","test_token");
-      this.notification.showNotification("Log In Successfull !!","success");
+      this.notification.showNotification("Log In Successful !!","success");
       this.router.navigate(["dashboard"]);
     }
   }
