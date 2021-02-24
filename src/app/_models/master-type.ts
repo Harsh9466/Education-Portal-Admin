@@ -3,7 +3,7 @@ export interface Type {
 	mTypeSerialNo:number;
 	mTypeName:string;
 	mTypeProgramType:string;			
-	mTypeTypeOfCollege:string;			
+	mTypeTypeofCollege:string;			
 	mTypeCourseType:string;
 	mTypeIsActive :boolean;
 }

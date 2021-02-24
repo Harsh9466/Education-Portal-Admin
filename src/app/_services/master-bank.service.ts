@@ -33,5 +33,6 @@ export class MasterBankService {
   DeleteMasterBank(id:number){
     return this.http.delete(this.baseUrl+id,{responseType:'text'}); 
   }
+  
 
 }

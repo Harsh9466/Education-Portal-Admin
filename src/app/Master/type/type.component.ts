@@ -1,7 +1,13 @@
+import { UpdateTypeComponent } from './Update-Type/Update-Type.component';
+import { AddTypeComponent } from './Add-Type/Add-Type.component';
+import { NotificationService } from './../../_services/notification.service';
+import { MatDialog } from '@angular/material/dialog';
 import { TypeService } from '../../_services/master-type.service';
 import { Type } from '../../_models/master-type';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { DeleteTypeComponent } from './Delete-Type/Delete-Type.component';
 
 @Component({
   selector: 'app-type',
@@ -12,34 +18,27 @@ export class TypeComponent implements OnInit {
 Types:Type[];
 Type:Type;
 actionId:number;
-  constructor(private typeService:TypeService) { }
+  constructor(
+    private typeService:TypeService,
+    private _dialog:MatDialog,
+    private notification:NotificationService,
+    private route:ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
-    this.EmptyData();
-    this.getTypes();
+    this.route.data.subscribe((data)=>{
+      this.Types=data["type"];
+    })
   }
 
-  EmptyData(){
-    this.Type={
-      mTypeId:null,
-      mTypeName:'',
-      mTypeCourseType:'',
-      mTypeProgramType:'',
-      mTypeSerialNo:null,
-      mTypeTypeOfCollege:'',
-      mTypeIsActive:false
-    }
-  }
-
-  getTypes(){
+  getTypes(id:number){
     this.typeService.getMasterType().subscribe
     (
       (res) =>{ 
         this.Types=res;
-        console.log(res);
       },
       (error)=>{
-        console.log("Error in Get Master Type!");
+        this.notification.showNotification("Problem On Retriving Data!","danger")
     })
   }
 
@@ -48,69 +47,50 @@ actionId:number;
     (
       (res) =>{ 
         this.Type=res;
-        console.log(res);
+        this.updateType(res.mTypeId,res)
       },
       (error)=>{
-        console.log("Error in Get Type By Id!");
+        this.notification.showNotification("Problem On Retriving Data!","danger")
     })
   }
 
-  insertType(data:NgForm){
-    let parseData={
-      mTypeName:data.value.mTypeName,
-      mTypeCourseType:data.value.mTypeCourseType,
-      mTypeProgramType:data.value.mTypeProgramType,
-      mTypeSerialNo:parseInt(data.value.mTypeSerialNo),
-      mTypeTypeOfCollege:data.value.mTypeTypeOfCollege,
-      mTypeIsActive:data.value.mTypeIsActive
-    }
-    // console.log(parseData);
-    this.typeService.insertMasterType(parseData).subscribe
-    (
-      (res) =>{ 
-        console.log(res);
-        this.getTypes();
-      },
-      (error)=>{
-        console.log("Error in Post Type!");
-    })
+  addType(){
+    this._dialog.open(AddTypeComponent,{
+      width:"600px"
+    });
+
   }
 
-  updateType(data:NgForm){
-    let parseData={
-      mTypeId:parseInt(data.value.mTypeId),
-      mTypeName:data.value.mTypeName,
-      mTypeCourseType:data.value.mTypeCourseType,
-      mTypeProgramType:data.value.mTypeProgramType,
-      mTypeSerialNo:parseInt(data.value.mTypeSerialNo),
-      mTypeTypeOfCollege:data.value.mTypeTypeOfCollege,
-      mTypeIsActive:data.value.mTypeIsActive
-    }
-    // console.log(parseData);
-    this.typeService.updateMasterType(parseData.mTypeId,parseData).subscribe
-    (
-      (res) =>{ 
-        console.log(res);
-        this.getTypes();
-      },
-      (error)=>{
-        console.log("Error in Update Type!");
-    })
+  updateType(id:number,data:any){
+    this._dialog.open(UpdateTypeComponent,{
+      width:"600px",
+      data:{
+        id:id,
+        type:data
+      }
+    });
+    this._dialog.afterAllClosed.subscribe(result => {
+      this.route.data.subscribe((data)=>{
+        this.Types=data["type"];
+      })
+    });
   }
-  deleteConfirm(id:number){
-    this.actionId=id;
+
+  deleteType(id:number){
+    this._dialog.open(DeleteTypeComponent,{
+      width:"600px",
+      data:{
+        id:id
+      }
+    });
+    this._dialog.afterAllClosed.subscribe(result => {
+      this.route.data.subscribe((data)=>{
+        this.Types=data["type"];
+      })
+    });
   }
-  deleteType(){
-    // console.log("Id For Delete : ",this.actionId);
-    this.typeService.deleteMasterType(this.actionId).subscribe
-    (
-      (res) =>{ 
-        console.log(res);
-        this.getTypes();
-      },
-      (error)=>{
-        console.log("Error in Delete Type!");
-    })
-  }
+
+
+
 
 }

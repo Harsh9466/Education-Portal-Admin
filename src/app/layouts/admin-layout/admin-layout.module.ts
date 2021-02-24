@@ -1,4 +1,6 @@
-import { UpdateCodeComponent } from './../../Master/code/Update-Code/Update-Code.component';
+import { MasterBankService } from './../../_services/master-bank.service';
+import { MasterTypeDetailResolver } from './../../_resolvers/master-type-detail.resolver';
+import { UpdateCodeComponent } from './../../Master/code/Update-Code/Update-Component.component';
 import { DeleteCodeComponent } from './../../Master/code/Delete-Code/Delete-Code.component';
 import { AddCodeComponent } from './../../Master/code/Add-Code/Add-Code.component';
 import { DeleteBankSetupComponent } from './../../Master/bank-setup/Delete-Bank-Setup/Delete-Bank-Setup.component';
@@ -100,13 +102,16 @@ import {MatRadioModule} from '@angular/material/radio';
     AddCodeComponent,
     DeleteCodeComponent,
     UpdateCodeComponent
+   
   ],
   providers:[
     LocationService,
     StreamsService,
     TypeService,
     TypeDetailsService,
-    MasterLocationResolver
+    MasterBankService,
+    MasterLocationResolver,
+    MasterTypeDetailResolver
   ]
 })
 

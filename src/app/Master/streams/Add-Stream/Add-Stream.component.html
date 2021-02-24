@@ -1,3 +1,45 @@
-<p>
-  Add-Stream works!
-</p>
+<h1 mat-dialog-title>Add Type Details</h1>
+<div mat-dialog-content>
+  <form #typeDetailForm="ngForm" id="typeDetailForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" name="mStreamsName"[(ngModel)]="streamData.mStreamsName">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Code</mat-label>
+        <input matInput placeholder="Code" name="mStreamsName"[(ngModel)]="streamData.mStreamsCode">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <input matInput placeholder="Type" name="mStreamsType"[(ngModel)]="streamData.mStreamsType">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Serial No.</mat-label>
+        <input matInput placeholder="Serial No." name="mStreamsSerialNo"[(ngModel)]="streamData.mStreamsSerialNo">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Parent Id</mat-label>
+        <input matInput placeholder="Parent Id" name="mStreamsParentId"[(ngModel)]="streamData.mStreamsParentId">
+      </mat-form-field>
+    </p>
+    <mat-radio-group aria-label="Status" name="mtdIsActive" [(ngModel)]="streamData.mStreamsIsActive">
+      <mat-radio-button [value]="true">Enable</mat-radio-button>
+      <mat-radio-button [value]="false" class="ml-3">Disable</mat-radio-button>
+    </mat-radio-group>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close (click)="add()">Add</button>
+</div>
+
+

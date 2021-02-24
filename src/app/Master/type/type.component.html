@@ -1,193 +1,56 @@
 <div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#typeInsertModal">Add Type</button>             
-                </div>
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Type</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table text-center">
-                                <thead class=" text-primary">
-                                    <th>S.No</th>
-                                    <th>Name</th>
-                                    <th>Serial No</th>
-                                    <th>Program Type</th>
-                                    <th>Type Of College</th>
-                                    <th>Course Type</th>
-                                    <th>IsActive</th>
-                                    <th>Actions</th>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let tp of Types;let i=index">
-                                        <td>{{i+1}}</td>   
-                                        <td>{{tp.mTypeName}}</td>   
-                                        <td>{{tp.mTypeSerialNo}}</td>   
-                                        <td>{{tp.mTypeProgramType}}</td>   
-                                        <td>{{tp.mTypeTypeOfCollege}}</td>   
-                                        <td>{{tp.mTypeCourseType}}</td>   
-                                        <td>{{tp.mTypeIsActive}}</td>   
-                                        <td>
-                                            <i class="fa fa-pencil-square-o"   data-toggle="modal" data-target="#typeUpdateModel"
-                                            (click)="getType(tp.mTypeId)"></i>
-                                            <i class="fa fa-times" data-toggle="modal" data-target="#typeDeletemodal" 
-                                            (click)="deleteConfirm(tp.mTypeId)"></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div>
+          <button class="btn btn-danger btn-lg" (click)="addType()">
+            Add Type
+          </button>
         </div>
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Type</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead class="text-primary">
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Serial No</th>
+                  <th>Program Type</th>
+                  <th>Type Of College</th>
+                  <th>Course Type</th>
+                  <th>IsActive</th>
+                  <th>Actions</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tp of Types; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ tp.mTypeName }}</td>
+                    <td>{{ tp.mTypeSerialNo }}</td>
+                    <td>{{ tp.mTypeProgramType }}</td>
+                    <td>{{ tp.mTypeTypeofCollege }}</td>
+                    <td>{{ tp.mTypeCourseType }}</td>
+                    <td>{{ tp.mTypeIsActive }}</td>
+                    <td>
+                      <i
+                        class="fa fa-pencil-square-o"
+                        (click)="getType(tp.mTypeId)"
+                      ></i>
+                      <i
+                        class="fa fa-times"
+                        (click)="deleteType(tp.mTypeId)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
-
-<!-- insert modal -->
-<div class="modal fade"  id="typeInsertModal" >
-    <form  #typeInsertForm="ngForm">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-    
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-    
-          </div>
-              <div class="modal-body mx-3">
-                <div class="md-form ">
-                  <label >S.No</label>
-                  <input type="text" [(ngModel)]="Type.mTypeSerialNo" class="form-control" name="mTypeSerialNo" >
-                </div>
-                <div class="md-form ">
-                  <label >Name</label>
-                  <input type="text" [(ngModel)]="Type.mTypeName" class="form-control" name="mTypeName" >
-                </div>
-                <div class="md-form ">
-                  <label >Program Type</label>
-                  <input type="text" [(ngModel)]="Type.mTypeProgramType" name="mTypeProgramType" class="form-control">
-                </div>
-                <div class="md-form ">
-                  <label >Type of College</label>
-                  <input type="text" [(ngModel)]="Type.mTypeTypeOfCollege" name="mTypeTypeOfCollege" class="form-control">
-                </div>
-                <div class="md-form ">  
-                  <label >Course Type</label>
-                  <input type="text" [(ngModel)]="Type.mTypeCourseType" name="mTypeCourseType" class="form-control">                
-                </div>
-                <div class="form-group ">
-                  <label>Status</label>
-                  <div class="d-flex justify-content-around">
-                    <div>
-                      <input type="radio" [(ngModel)]="Type.mTypeIsActive" [value]="false" name="mTypeIsActive">
-                      <label class="p-2" >Not Active</label>
-                    </div>
-                    <div>
-                      <input type="radio"  [(ngModel)]="Type.mTypeIsActive" [value]="true" name="mTypeIsActive">
-                      <label class="p-2" >Active</label>
-                    </div>
-                  </div>
-              </div>
-            </div>
-    
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-danger" (click)="insertType(typeInsertForm)" data-dismiss="modal">Add</button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-  
-  <!-- Edit Modal -->
-  <div class="modal fade"  id="typeUpdateModel">
-      <form  #typeUpdateForm="ngForm">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header text-center">
-      
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-      
-            </div>
-                <div class="modal-body mx-3">
-                  <!-- Hidden Id -->
-                  <input type="number" [(ngModel)]="Type.mTypeId" class="form-control" name="mTypeId" hidden>
-
-                  <div class="md-form ">
-                    <label >Serial No.</label>
-                    <input type="text" [(ngModel)]="Type.mTypeSerialNo" class="form-control" name="mTypeSerialNo">
-                  </div>
-
-                  <div class="md-form ">
-                    <label >Name</label>
-                    <input type="text" [(ngModel)]="Type.mTypeName" name="mTypeName" class="form-control">
-                  </div>
-
-                  <div class="md-form ">
-                    <label >Program Type</label>
-                    <input type="text" [(ngModel)]="Type.mTypeProgramType" name="mTypeProgramType" class="form-control">
-                  </div>
-
-                  <div class="md-form ">
-                    <label >College Type</label>
-                    <input type="text" [(ngModel)]="Type.mTypeTypeOfCollege" name="mTypeTypeOfCollege" class="form-control">
-                  </div>
-
-                  <div class="md-form ">
-                    <label >Course Type</label>
-                    <input type="text" [(ngModel)]="Type.mTypeCourseType" name="mTypeCourseType" class="form-control">
-                  </div>
-  
-                  <div class="form-group ">
-                    <label>Status</label>
-                    <div class="d-flex justify-content-around">
-                      <div>
-                        <input type="radio" [(ngModel)]="Type.mTypeIsActive" [value]="false" name="mTypeIsActive">
-                        <label class="p-2" >Not Active</label>
-                      </div>
-                      <div>
-                        <input type="radio"  [(ngModel)]="Type.mTypeIsActive" [value]="true" name="mTypeIsActive">
-                        <label class="p-2" >Active</label>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button type="button" (click)="updateType(typeUpdateForm)" class="btn btn-danger" data-dismiss="modal">Update</button>
-            </div>
-          </div>
-        </div>
-      </form>
-  </div>
-  
-  <!-- delete modal -->
-  <div class="modal" id="typeDeletemodal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Confirm</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p style="text-transform: uppercase;">Are you sure want to Delete?</p>
-            <div class="d-flex justify-content-around">
-              <button type="button" class="confirm" 
-              (click)="deleteType()" data-dismiss="modal">Yes</button>
-              <button type="button" class="confirm" data-dismiss="modal">No</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>

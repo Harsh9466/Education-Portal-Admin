@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { TypeDetails } from '../_models/master-type-details';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TypeDetailsService {
-  baseUrl:string= "http://demo3.kmatechnoware.com/api/MasterTypeDetails/";
+  baseUrl:string= environment.url+"MasterTypeDetails/";
   
   constructor(private http:HttpClient) { }
 

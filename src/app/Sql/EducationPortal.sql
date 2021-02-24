@@ -218,6 +218,7 @@
 -- spMasterTypeGet
 -- --update
 -- create proc dbo.spMasterTypeUpdate(@mTypeId int,@mTypeSerialNo int,@mTypeName varchar(50),@mTypeProgramType varchar(50),	@mTypeTypeOfCollege varchar(50),@mTypeCourseType varchar(50),@mTypeIsActive int)
+
 -- as
 -- if exists(select * from MasterType where mTypeName=@mTypeName and mTypeId!=@mTypeId)
 --  begin 
@@ -361,3 +362,16 @@
 -- MasterCode.mCodeEmployeeId as mCodeEmployeeId
 -- FROM MasterBank INNER JOIN  MasterCode on MasterBank.mbId=MasterCode.mCodeId where mbId=@mbId or @mbId = 0
 -- spMasterCodeJoin
+
+sp_help MasterTypeDetails
+CREATE proc dbo.spMasterTypeDetailsInsert(@mtdSerialNo int,@mtdName varchar(50),@mtdParentId int,@mtdIsActive int)
+as
+if exists(select * from MasterTypeDetails where mtdName=@mtdName)
+begin
+	select 'Already Exists!' as msg
+end
+else
+begin
+	insert into MasterTypeDetails(mtdSerialNo,mtdName,mtdParentId,mtdIsActive) values(@mtdSerialNo,@mtdName,case when @mtdParentId=0 then null else @mtdParentId end,@mtdIsActive) 
+	select 'Inserted Successfully!' as msg
+end

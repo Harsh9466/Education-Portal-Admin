@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <button class="btn btn-lg btn-danger" data-toggle="modal" data-target="#typeDetailsInsertModal">Add Type Details</button>             
+                  <button class="btn btn-lg btn-danger" type="button" (click)="addTypeDetail()"
+                  >Add Type Detail</button>           
                 </div>
                 <div class="card">
                     <div class="card-header card-header-danger">
@@ -31,7 +32,7 @@
                                             <i class="fa fa-pencil-square-o"   data-toggle="modal" data-target="#typeDetailsUpdateModel"
                                             (click)="getTypeDetail(tpd.mtdId)"></i>
                                             <i class="fa fa-times" data-toggle="modal" data-target="#typeDetailsDeleteModal" 
-                                            (click)="deleteConfirm(tpd.mtdId)"></i>
+                                            (click)="deleteTypeDetail(tpd.mtdId)"></i>
                                         </td>   
                                     </tr>
                                 </tbody>
@@ -44,113 +45,3 @@
     </div>
 </div>
 
-
-<!-- insert modal -->
-<div class="modal fade"  id="typeDetailsInsertModal" >
-    <form  #typeInsertForm="ngForm">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-    
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-    
-          </div>
-            <div class="modal-body mx-3">
-                <div class="md-form ">
-                  <label >S.No</label>
-                  <input type="text" [(ngModel)]="TypeDetail.mtdSerialNo" class="form-control" name="mtdSerialNo" >
-                </div>
-                <div class="md-form ">
-                  <label >Name</label>
-                  <input type="text" [(ngModel)]="TypeDetail.mtdName" class="form-control" name="mtdName" >
-                </div>
-                <div class="md-form ">
-                  <label >Parent Id</label>
-                  <input type="text" [(ngModel)]="TypeDetail.mtdParentId" class="form-control" name="mtdParentId" >
-                </div>
-                <div class="form-group ">
-                  <label>Status</label>
-                  <div class="d-flex justify-content-around">
-                    <div>
-                      <input type="radio" [(ngModel)]="TypeDetail.mtdIsActive" [value]="false" name="mtdIsActive">
-                      <label class="p-2" >Not Active</label>
-                    </div>
-                    <div>
-                      <input type="radio"  [(ngModel)]="TypeDetail.mtdIsActive" [value]="true" name="mtdIsActive">
-                      <label class="p-2" >Active</label>
-                    </div>
-                  </div>
-              </div>
-            </div>
-    
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-danger" (click)="insertTypeDetails(typeInsertForm)" data-dismiss="modal">Add</button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-  
-  <!-- Edit Modal -->
-  <div class="modal fade"  id="typeDetailsUpdateModel">
-      <form  #typeDetalisUpdateForm="ngForm">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header text-center">
-      
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-      
-            </div>
-            <div class="modal-body mx-3">
-                <input type="text" [(ngModel)]="TypeDetail.mtdId" class="form-control" name="mtdId" hidden>
-                <div class="md-form ">
-                  <label >Name</label>
-                  <input type="text" [(ngModel)]="TypeDetail.mtdName" class="form-control" name="mtdName" >
-                </div>
-                <div class="form-group ">
-                  <label>Status</label>
-                  <div class="d-flex justify-content-around">
-                    <div>
-                      <input type="radio" [(ngModel)]="TypeDetail.mtdIsActive" [value]="false" name="mtdIsActive">
-                      <label class="p-2" >Not Active</label>
-                    </div>
-                    <div>
-                      <input type="radio"  [(ngModel)]="TypeDetail.mtdIsActive" [value]="true" name="mtdIsActive">
-                      <label class="p-2" >Active</label>
-                    </div>
-                  </div>
-              </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button type="button" (click)="updateTypedetails(typeDetalisUpdateForm)" class="btn btn-danger" data-dismiss="modal">Update</button>
-            </div>
-          </div>
-        </div>
-      </form>
-  </div>
-  
-  <!-- delete modal -->
-  <div class="modal" id="typeDetailsDeleteModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Confirm</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p style="text-transform: uppercase;">Are you sure want to Delete?</p>
-            <div class="d-flex justify-content-around">
-              <button type="button" class="btn btn-danger btn-round" 
-              (click)="deleteTypedetails()" data-dismiss="modal">Yes</button>
-              <button type="button" class="btn btn-danger btn-round" data-dismiss="modal">No</button>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>

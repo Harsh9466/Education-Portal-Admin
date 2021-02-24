@@ -1,7 +1,12 @@
+import { ActivatedRoute } from '@angular/router';
+import { NotificationService } from './../../_services/notification.service';
+import { UpdateTypeDetailComponent } from './Update-Type-Detail/Update-Type-Detail.component';
+import { DeleteTypeDetailComponent } from './Delete-Type-Detail/Delete-Type-Detail.component';
+import { AddTypeDetailComponent } from './Add-Type-Detail/Add-Type-Detail.component';
+import { MatDialog } from '@angular/material/dialog';
 import { TypeDetailsService } from '../../_services/master-type-details.service';
 import { TypeDetails } from '../../_models/master-type-details';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-type-details',
@@ -13,99 +18,56 @@ TypeDetails:TypeDetails[];
 TypeDetail:TypeDetails;
 actionId:number;
 
-  constructor(private typeDetailService:TypeDetailsService) { }
+  constructor(
+    private typeDetailService:TypeDetailsService,
+    private _dialog:MatDialog,
+    private notification:NotificationService,
+    private route:ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
-    this.EmptyData();
-    this.getTypeDetails();
-  }
-  EmptyData(){
-    this.TypeDetail={
-      mtdId:null,
-      mtdSerialNo:null,
-      mtdName:'',
-      mtdParentId:null,			
-      mtdIsActive:false
-    }
+    this.route.data.subscribe((data)=>{
+      this.TypeDetails=data["typeDetail"];
+    })
   }
 
-  getTypeDetails(){
-    this.typeDetailService.getMasterTypeDetails().subscribe
-    (
-      (res) =>{
-        this.TypeDetails=res; 
-      },
-      (error)=>{
-        console.log("Error in Get Type Details !");
+  addTypeDetail(){
+    this._dialog.open(AddTypeDetailComponent,{
+      width:"600px",
+      data:{}
+    })
+  }
+
+  updateTypeDetail(id:number,data:any){
+    this._dialog.open(UpdateTypeDetailComponent,{
+      width:"600px",
+      data:{
+        id:id,
+        typeDetail:data
+      }
+    })
+  }
+
+  deleteTypeDetail(id:number){
+    this._dialog.open(DeleteTypeDetailComponent,{
+      width:"600px",
+      data:{
+        id:id
+      }
     })
   }
 
   getTypeDetail(id:number){
-    this.typeDetailService.getMasterTypeDetailsById(id).subscribe
+   return this.typeDetailService.getMasterTypeDetailsById(id).subscribe
     (
-      (res) =>{ 
+      (res:TypeDetails) =>{ 
         this.TypeDetail=res;
+        this.updateTypeDetail(res.mtdId,res)
       },
       (error)=>{
-        console.log("Error in Get Type Details !");
+        this.notification.showNotification("Problem On Retriving Data!","error")
     })
   }
 
-  insertTypeDetails(data:NgForm)
-  {
-    let parseData={
-      mtdSerialNo:parseInt(data.value.mtdSerialNo),
-      mtdName:data.value.mtdName,
-      mtdParentId:parseInt(data.value.mtdParentId),			
-      mtdIsActive:data.value.mtdIsActive
-    }
-    // console.log("Post Data : ",parseData);
-    this.typeDetailService.insertMasterTypeDetails(parseData).subscribe
-    (
-      (res) =>{ 
-        console.log(res);
-        this.getTypeDetails();
-        this.EmptyData();
-      },
-      (error)=>{
-        console.log("Error in Post Type Details !");
-    }
-    )
-  }
-
-  updateTypedetails(data:NgForm){
-    let parseData={
-      mtdId:parseInt(data.value.mtdId),
-      mtdName:data.value.mtdName,		
-      mtdIsActive:data.value.mtdIsActive
-    }
-    // console.log("Update Data : ",parseData);
-    this.typeDetailService.updateMasterTypeDetails(parseData.mtdId,parseData).subscribe
-    (
-      (res) =>{ 
-        console.log(res);
-        this.getTypeDetails();
-        this.EmptyData();
-      },
-      (error)=>{
-        console.log("Error in Update Type Details!");
-    })
-  }
-
-  deleteConfirm(id:number){
-    this.actionId=id;
-  }
-  deleteTypedetails(){
-    // console.log("Id For Delete : ",this.actionId);
-    this.typeDetailService.deleteMasterTypeDetails(this.actionId).subscribe
-    (
-      (res) =>{ 
-        console.log(res);
-        this.getTypeDetails();
-      },
-      (error)=>{
-        console.log("Error in Delete Type Details!");
-    })
-  }
 
 }
