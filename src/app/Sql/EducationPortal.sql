@@ -297,8 +297,6 @@
 -- select 'Updated Successfully!' as msg 
 -- end
 
-
-
 -- -- Master Location Dropdown Get By Type
 -- ALTER PROC dbo.spMasterLocationTypeGet(@mLocationType VARCHAR(50))
 -- AS

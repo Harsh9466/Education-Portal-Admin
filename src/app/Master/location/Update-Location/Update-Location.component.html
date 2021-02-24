@@ -17,8 +17,9 @@
     <div *ngIf="isState">
       <mat-form-field appearance="fill" >
         <mat-label>Country</mat-label>
-        <mat-select name="mLocationParentId"[(ngModel)]="countryId"  (selectionChange)="onChangeCountry($event.value)" >
-          <mat-option *ngFor="let country of countryData" [value]="id" selected>{{country.mLocationName}}</mat-option>
+        <mat-select name="mLocationParentId" [value]="countryId" (selectionChange)="onChangeCountry($event.value)" >
+          <mat-option *ngFor="let country of countryData" [value]="country.mLocationId">{{country.mLocationName}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -26,7 +27,7 @@
     <div *ngIf="isCity">
       <mat-form-field appearance="fill" >
         <mat-label>State</mat-label>
-        <mat-select name="mLocationParentId" [(ngModel)]="parentId"  (selectionChange)="onChangeState($event.value)">
+        <mat-select name="mLocationParentId" [value]="stateId" (selectionChange)="onChangeState($event.value)">
           <mat-option *ngFor="let state of stateData" [value]="state.mLocationId">{{state.mLocationName}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -48,5 +49,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
-  <button mat-button mat-dialog-close >Update</button>
+  <button mat-button mat-dialog-close (click)="update()" >Update</button>
 </div>

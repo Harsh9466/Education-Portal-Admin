@@ -1,7 +1,7 @@
 import { Location } from "./../../../_models/master-location";
 import { NotificationService } from "./../../../_services/notification.service";
 import { LocationService } from "./../../../_services/master-location.service";
-import { Component, Inject, OnInit } from "@angular/core";
+import { AfterViewInit, Component, Inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
@@ -18,26 +18,26 @@ export class UpdateLocationComponent implements OnInit {
 
   isState: boolean = false;
   isCity: boolean = false;
-  countryData:Location[]=this.getData.countries;
+  countryData:Location[];
   stateData:Location[];
-  parentId=this.getData.data.mLocationParentId;
-  id=this.getData.data.mLocationId;
-  countryId=0;
+  stateId:number=this.getData.stateId;
+  countryId:number=this.getData.countryId;
 
   locationData: Partial<Location> = {
     mLocationId: null,
     mLocationName: null,
     mLocationCode: null,
     mLocationPinCode: null,
+    mLocationParentId:null,
     mLocationType: null,
     mLocationIsActive: false,
   };
 
   ngOnInit() {
-    console.log("Parent Id : ",this.parentId);
-    console.log("Id : ",this.id);
-    this.getStates(this.parentId);
+
     this.locationData=this.getData.data;
+    this.countryData=this.getData.countries;
+    this.getStates(this.getData.countryId);
    
     if((this.getData.data.mLocationType).toLowerCase() =='country')
     {
@@ -52,7 +52,7 @@ export class UpdateLocationComponent implements OnInit {
       this.isCity=false;
     }
     if((this.getData.data.mLocationType).toLowerCase() =='city')
-    {
+    {   
       this.isState=true;
       this.isCity=true;
     }
@@ -69,32 +69,23 @@ export class UpdateLocationComponent implements OnInit {
 
   getStates(id:number){
     this.locationService.getMasterLocationTypeParentIdGet("state",id).subscribe((res)=>{
-      this.countryId=res[0].mLocationParentId;
-    },(error)=>{
-      this.notification.showNotification("Problem On Retriving Data!","error")
-    }
-    )
-  }
-  getCountries(id:number){
-    this.locationService.getMasterLocationTypeParentIdGet("country",id).subscribe((res)=>{
       this.stateData=res;
     },(error)=>{
-      this.notification.showNotification("Problem On Retriving Data!","error")
+      this.notification.showNotification("Problem On Retriving Data!","danger")
     }
     )
   }
-  
 
   update() {
-    console.log(this.locationData);
-    // this.locationService.updateMasterLocation(this.getData.id, this.locationData).subscribe
-    // (
-    //   (res: Location) => {
-    //     this.notification.showNotification("Data Updated successfully","success"
-    //     );
-    //   },
-    //   (error) => {
-    //     this.notification.showNotification("Some error occured ! ", "danger");
-    //   });
+    this.locationService.updateMasterLocation(this.getData.id, this.locationData).subscribe
+    (
+      (res: Location) => {
+        this.notification.showNotification("Data Updated successfully","success"
+        );
+      },
+      (error) => {
+        console.log(error);
+        this.notification.showNotification("Some error occured ! ", "danger");
+      });
   }
 }

@@ -3,13 +3,11 @@
         <div class="row">
             <div class="col-md-12">
               <div class="dropdown">
-                <button class="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"  aria-expanded="false">
-                        Add Streams
-                      </button>
+                <button class="btn btn-lg btn-danger dropdown-toggle" type="button" data-toggle="dropdown"  >Add Streams</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#streamInsertModal" (click)="showDropdown('stream')">Stream</a>
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#streamInsertModal" (click)="showDropdown('course')">Course</a>
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#streamInsertModal" (click)="showDropdown('substream')">Sub-Stream</a>
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="addStream('stream')">Stream</a>
+                  <a class="dropdown-item"  href="javascript:void(0)" (click)="addStream('course')">Course</a>
+                  <a class="dropdown-item"  href="javascript:void(0)" (click)="addStream('substream')">Sub-Stream</a>
                 </div>
               </div>
 
@@ -42,8 +40,8 @@
                                         <td>{{st.mStreamsParentId}}</td>   
                                         <td>{{st.mStreamsIsActive}}</td>   
                                         <td>
-                                          <i class="fa fa-pencil-square-o" (click)="getStream(st.mStreamsId)"  data-toggle="modal" data-target="#streamUpdateModel"></i>
-                                          <i class="fa fa-times" data-toggle="modal" data-target="#streamDeletemodal" (click)="deleteConfirm(st.mStreamsId)" ></i>
+                                          <i class="fa fa-pencil-square-o" (click)="getStream(st.mStreamsId)"  ></i>
+                                          <i class="fa fa-times"(click)="deleteStream(st.mStreamsId)" ></i>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -55,227 +53,7 @@
             </div>
 
 
-           <!--  <div class="col-md-12">
-              <div class="dropdown">
-                <button class="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"  aria-expanded="false" (click)="showDropdown('stream')">Add Stream</button>
-              </div>
-
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Streams</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table text-center">
-                                <thead class=" text-primary">
-                                    <th>S.No</th>
-                                    <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Type</th>
-                                    <th>Serial No</th>
-                                    <th>ParentId</th>
-                                    <th>IsActive</th>
-                                    <th>Actions</th>
-                                </thead>
-                                <tbody>
-
-                                    <tr *ngFor="let st of Streams; let i=index">
-                                        <td>{{i+1}}</td>   
-                                        <td>{{st.mStreamsCode}}</td>   
-                                        <td>{{st.mStreamsName}}</td>   
-                                        <td>{{st.mStreamsType}}</td>   
-                                        <td>{{st.mStreamsSerialNo}}</td>   
-                                        <td>{{st.mStreamsParentId}}</td>   
-                                        <td>{{st.mStreamsIsActive}}</td>   
-                                        <td>
-                                          <i class="fa fa-pencil-square-o" (click)="getStream(st.mStreamsId)"  data-toggle="modal" data-target="#streamUpdateModel"></i>
-                                          <i class="fa fa-times" data-toggle="modal" data-target="#streamDeletemodal" (click)="deleteConfirm(st.mStreamsId)" ></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-            </div>  
- -->
-
-
         </div>
     </div>
 </div>
 
-
-<!-- insert modal -->
-<div class="modal fade"  id="streamInsertModal" >
-  <form  #streamInsertForm="ngForm">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header text-center">
-  
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-  
-        </div>
-            <div class="modal-body mx-3">
-              <div class="md-form ">
-                <label >Name</label>
-                <input type="text" [(ngModel)]="Stream.mStreamsName" class="form-control" name="mStreamsName" >
-              </div>
-              <div class="md-form ">
-                <label >Code</label>
-                <input type="text" [(ngModel)]="Stream.mStreamsCode" name="mStreamsCode" class="form-control">
-              </div>
-              <!-- <div class="md-form ">
-                <label >Type</label>
-                <input type="text" [(ngModel)]="Stream.mStreamsType" name="mStreamsType" class="form-control">
-              </div> -->
-
-              <div class="md-form" *ngIf="StreamDropdown">
-                <label>Stream</label>
-                <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mStreamsParentId" (change)="getNameByParentId()" >
-                  <option [value]=0 selected>Select Stream....</option>
-                  <option *ngFor="let sd of streamdata" [value]="sd.mStreamsId">{{sd.mStreamsName}}</option>
-                </select>          
-              </div>
-
-              <div class="md-form" *ngIf="CourseDropdown">      
-                <label >Course</label>
-                <select class="form-control shadow-none" [(ngModel)]="stateId"  name="mStreamsParentId" (change)='toggleActionId()'>
-                  <option [value]=0 selected>Select Course....</option>
-                  <option *ngFor="let cd of courseData" [value]="cd.mStreamsId">{{cd.mStreamsName}}</option>
-                </select>          
-              </div>
-
-              <div class="md-form" *ngIf="StreamDropdown">
-                <label >Parent Id</label>
-                <input type="text" [(ngModel)]="Stream.mStreamsParentId" name="mStreamsParentId" class="form-control">                
-              </div>
-              <div class="form-group ">
-                <label>Status</label>
-                <div class="d-flex justify-content-around">
-                  <div>
-                    <input type="radio" [(ngModel)]="Stream.mStreamsIsActive" [value]="false" name="mStreamsIsActive">
-                    <label class="p-2" >Not Active</label>
-                  </div>
-                  <div>
-                    <input type="radio"  [(ngModel)]="Stream.mStreamsIsActive" [value]="true" name="mStreamsIsActive">
-                    <label class="p-2" >Active</label>
-                  </div>
-                </div>
-            </div>
-          </div>
-
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="button" class="btn btn-danger" (click)="insertStreams(streamInsertForm)" data-dismiss="modal">Add</button>
-        </div>
-      </div>
-    </div>
-  </form>
-</div>
-
-<!-- Edit Modal -->
-<div class="modal fade"  id="streamUpdateModel">
-    <form  #streamUpdateForm="ngForm">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-    
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-    
-          </div>
-              <div class="modal-body mx-3">
-                <div class="md-form ">
-                  <label >Name</label>
-                  <!-- Hidden Id -->
-                  <input type="number" [(ngModel)]="Stream.mStreamsId" class="form-control" name="mStreamsId" hidden>
-  
-                  <input type="text" [(ngModel)]="Stream.mStreamsName" class="form-control" name="mStreamsName">
-                </div>
-                <div class="md-form ">
-                  <label >Code</label>
-                  <input type="text" [(ngModel)]="Stream.mStreamsCode" name="mStreamsCode" class="form-control">
-                </div>
-
-                <!-- <div class="md-form ">
-                  <label >Type</label>
-                  <input type="text" [(ngModel)]="Stream.mStreamsType" name="mStreamsType" class="form-control">
-                </div> -->
-
-                <div class="md-form" *ngIf="StreamDropdown">
-                  <label>Stream</label>
-                  <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mStreamsParentId" (change)="getNameByParentId()" >
-                    <option [value]=0 selected>Select Stream....</option>
-                    <option *ngFor="let sd of streamdata" [value]="sd.mStreamsId">{{sd.mStreamsName}}</option>
-                  </select>          
-                </div>
-
-                <div class="md-form" *ngIf="CourseDropdown">
-                  <label>Stream</label>
-                  <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mStreamsParentId" (change)="getNameByParentId()" >
-                    <option [value]=0 selected>Select Stream....</option>
-                    <option *ngFor="let sd of streamdata" [value]="sd.mStreamsId">{{sd.mStreamsName}}</option>
-                  </select> 
-                        
-                  <label >Course</label>
-                  <select class="form-control shadow-none" [(ngModel)]="stateId"  name="mStreamsParentId" (change)='toggleActionId()'>
-                    <option [value]=0 selected>Select Course....</option>
-                    <option *ngFor="let cd of courseData" [value]="cd.mStreamsId">{{cd.mStreamsName}}</option>
-                  </select>          
-                </div>
-
-                <!-- Parent Id (Doubt for Update or Not) -->
-                <!-- <div class="md-form ">
-                  <label >Parent Id</label>
-                  <input type="text" [(ngModel)]="Stream.mStreamsParentId" name="mStreamsParentId" class="form-control">                
-                </div> -->
-
-                <div class="form-group ">
-                  <label>Status</label>
-                  <div class="d-flex justify-content-around">
-                    <div>
-                      <input type="radio" [(ngModel)]="Stream.mStreamsIsActive" [value]="false" name="mStreamsIsActive">
-                      <label class="p-2" >Not Active</label>
-                    </div>
-                    <div>
-                      <input type="radio"  [(ngModel)]="Stream.mStreamsIsActive" [value]="true" name="mStreamsIsActive">
-                      <label class="p-2" >Active</label>
-                    </div>
-                  </div>
-              </div>
-            </div>
-    
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="button" (click)="updateStreams(streamUpdateForm)" class="btn btn-danger" data-dismiss="modal">Update</button>
-          </div>
-        </div>
-      </div>
-    </form>
-</div>
-
-<!-- delete modal -->
-<div class="modal" id="streamDeletemodal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Confirm</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p style="text-transform: uppercase;">Are you sure want to Delete?</p>
-          <div class="d-flex justify-content-around">
-            <button type="button" class="confirm" 
-            (click)="deleteStreams()" data-dismiss="modal">Yes</button>
-            <button type="button" class="confirm" data-dismiss="modal">No</button>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>

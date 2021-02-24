@@ -31,7 +31,7 @@ actionId:number;
     })
   }
 
-  getTypes(id:number){
+  getTypes(){
     this.typeService.getMasterType().subscribe
     (
       (res) =>{ 
@@ -58,7 +58,7 @@ actionId:number;
     this._dialog.open(AddTypeComponent,{
       width:"600px"
     });
-
+    this._dialog.afterAllClosed.subscribe(() =>this.getTypes());
   }
 
   updateType(id:number,data:any){
@@ -69,11 +69,7 @@ actionId:number;
         type:data
       }
     });
-    this._dialog.afterAllClosed.subscribe(result => {
-      this.route.data.subscribe((data)=>{
-        this.Types=data["type"];
-      })
-    });
+    this._dialog.afterAllClosed.subscribe(() =>this.getTypes());
   }
 
   deleteType(id:number){
@@ -83,14 +79,7 @@ actionId:number;
         id:id
       }
     });
-    this._dialog.afterAllClosed.subscribe(result => {
-      this.route.data.subscribe((data)=>{
-        this.Types=data["type"];
-      })
-    });
+    this._dialog.afterAllClosed.subscribe(() =>this.getTypes());
   }
-
-
-
 
 }

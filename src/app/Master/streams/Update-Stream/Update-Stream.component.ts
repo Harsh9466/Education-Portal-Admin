@@ -13,7 +13,7 @@ export class UpdateStreamComponent implements OnInit {
 
   constructor(
     private streamsService:StreamsService,
-    @Inject(MAT_DIALOG_DATA) public dialogData: any,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private notification:NotificationService
   ) { }
 
@@ -28,13 +28,13 @@ export class UpdateStreamComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.streamData=this.dialogData.stream;
-    console.log(this.dialogData.stream);
+    this.streamData=this.data.stream;
+    console.log(this.data.stream);
   }
 
   update(){
-    // this.streamsService.updateMasterStreams(this.dialogData.id,this.streamData).subscribe
-    // (
+    // this.streamsService.updateMasterStreams(this.data.id,this.streamData).subscribe
+    // (  
     //   (res) => {
     //     this.notification.showNotification("Updated Successfully !", "success");
     //   },

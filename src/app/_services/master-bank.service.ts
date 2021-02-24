@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { MasterBank } from './../_models/master-bank';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class MasterBankService {
   
-  baseUrl = "http://localhost:5000/api/MasterBank/";
+  baseUrl = environment.url+"MasterBank/";
 
   constructor(private http:HttpClient) {}
 

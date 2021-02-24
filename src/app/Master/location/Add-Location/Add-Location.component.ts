@@ -4,6 +4,7 @@ import { Location } from "./../../../_models/master-location";
 
 import { Component, Inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-Add-Location",
@@ -14,7 +15,8 @@ export class AddLocationComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private locationService: LocationService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private router:Router
   ) {}
 
   isState: boolean = false;
@@ -64,7 +66,6 @@ export class AddLocationComponent implements OnInit {
     this.locationData.mLocationParentId = +data;
   }
   add() {
-    console.log(this.locationData);
     this.locationService.insertMasterLocation(this.locationData).subscribe(
       (res) => {
         this.notification.showNotification("Added Successfully !", "success");

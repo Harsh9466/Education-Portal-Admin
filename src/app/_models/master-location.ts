@@ -5,6 +5,6 @@ export interface Location {
 	mLocationPinCode:number ;
 	mLocationType:string;
 	mLocationSerialNo:number ;
-	mLocationParentId:number ;
+	mLocationParentId:any ;
 	mLocationIsActive:boolean ;
 }

@@ -1,3 +1,5 @@
+import { Type } from './../../_models/master-type';
+import { TypeService } from './../../_services/master-type.service';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationService } from './../../_services/notification.service';
 import { UpdateTypeDetailComponent } from './Update-Type-Detail/Update-Type-Detail.component';
@@ -16,9 +18,11 @@ import { Component, OnInit } from '@angular/core';
 export class TypeDetailsComponent implements OnInit {
 TypeDetails:TypeDetails[];
 TypeDetail:TypeDetails;
+Types:Type[];
 actionId:number;
 
   constructor(
+    private typeService:TypeService,
     private typeDetailService:TypeDetailsService,
     private _dialog:MatDialog,
     private notification:NotificationService,
@@ -28,6 +32,7 @@ actionId:number;
   ngOnInit(): void {
     this.route.data.subscribe((data)=>{
       this.TypeDetails=data["typeDetail"];
+      this.getType();
     })
   }
 
@@ -35,7 +40,7 @@ actionId:number;
     this._dialog.open(AddTypeDetailComponent,{
       width:"600px",
       data:{}
-    })
+    });
   }
 
   updateTypeDetail(id:number,data:any){
@@ -45,7 +50,8 @@ actionId:number;
         id:id,
         typeDetail:data
       }
-    })
+    });
+        
   }
 
   deleteTypeDetail(id:number){
@@ -57,15 +63,35 @@ actionId:number;
     })
   }
 
+  getTypeDetails(){
+   return this.typeDetailService.getMasterTypeDetails().subscribe
+    (
+      (res) =>{ 
+        this.TypeDetails=res;
+      },
+      (error)=>{
+        this.notification.showNotification("Problem On Retriving Data!","error")
+    })
+  }
+  getType(){
+    this.typeService.getMasterType().subscribe
+    (
+      (res) =>{ 
+        this.Types=res;
+      },
+      (error)=>{
+      this.notification.showNotification("Problem On Retriving Data!","error")
+    })
+  }
   getTypeDetail(id:number){
-   return this.typeDetailService.getMasterTypeDetailsById(id).subscribe
+    this.typeDetailService.getMasterTypeDetailsById(id).subscribe
     (
       (res:TypeDetails) =>{ 
         this.TypeDetail=res;
         this.updateTypeDetail(res.mtdId,res)
       },
       (error)=>{
-        this.notification.showNotification("Problem On Retriving Data!","error")
+      this.notification.showNotification("Problem On Retriving Data!","error")
     })
   }
 

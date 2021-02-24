@@ -1,3 +1,4 @@
+import { MasterStreamsResolver } from './../../_resolvers/master-stream.resolver';
 import { MasterBankService } from './../../_services/master-bank.service';
 import { MasterTypeDetailResolver } from './../../_resolvers/master-type-detail.resolver';
 import { UpdateCodeComponent } from './../../Master/code/Update-Code/Update-Component.component';
@@ -111,7 +112,8 @@ import {MatRadioModule} from '@angular/material/radio';
     TypeDetailsService,
     MasterBankService,
     MasterLocationResolver,
-    MasterTypeDetailResolver
+    MasterTypeDetailResolver,
+    MasterStreamsResolver
   ]
 })
 

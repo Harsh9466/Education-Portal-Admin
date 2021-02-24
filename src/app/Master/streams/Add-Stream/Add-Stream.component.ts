@@ -25,21 +25,44 @@ export class AddStreamComponent implements OnInit {
       mStreamsParentId:null,
       mStreamsIsActive:false
     }
+    isCourse:boolean=false;
+    isSubStream:boolean=false;
 
   ngOnInit() {
+    if((this.data.type).toLowerCase() =="stream")
+    {
+      this.isCourse=false;
+      this.isSubStream=false;
+    }
+
+    if((this.data.type).toLowerCase()=="course")
+    {
+      this.isCourse=true;
+      this.isSubStream=false;
+    }
+
+    if((this.data.type).toLowerCase()=="substream")
+    {
+      this.isCourse=true;
+      this.isSubStream=true;
+    }
   }
 
   add(){
     console.log(this.streamData);
-    // this.streamsService.insertMasterStreams(this.streamData).subscribe
-    // (
-    //   (res) => {
-    //     this.notification.showNotification("Added Successfully !", "success");
-    //   },
-    //   (error) => {
-    //     this.notification.showNotification("Some error occured !", "danger");
-    //   }
-    // );
+    this.streamsService.insertMasterStreams(this.streamData).subscribe
+    (
+      (res) => {
+        this.notification.showNotification("Added Successfully !", "success");
+      },
+      (error) => {
+        this.notification.showNotification("Some error occured !", "danger");
+      }
+    );
+
+    // select * from (
+    //   SELECT mLocationId,mLocationName,ROW_NUMBER() over (order by mLocationId asc) as RN FROM MasterLocation
+    //   ) as Data where RN <=3
   }
 
 }

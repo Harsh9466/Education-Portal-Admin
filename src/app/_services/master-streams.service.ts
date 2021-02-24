@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Streams } from '../_models/master-streams';
 
 import { HttpClient } from '@angular/common/http';
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StreamsService {
-  baseUrl:string= "http://demo3.kmatechnoware.com/api/MasterStreams/";
+  baseUrl:string= environment.url+"MasterStreams/";
   
   constructor(private http:HttpClient) { }
 
