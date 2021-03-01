@@ -2,9 +2,10 @@ import { NotificationService } from "./../../../_services/notification.service";
 import { LocationService } from "./../../../_services/master-location.service";
 import { Location } from "./../../../_models/master-location";
 
-import { Component, Inject, OnInit } from "@angular/core";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Component, EventEmitter, Inject, OnInit, Output } from "@angular/core";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
+import { LocationComponent } from "../location.component";
 
 @Component({
   selector: "app-Add-Location",
@@ -12,18 +13,19 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./Add-Location.component.css"],
 })
 export class AddLocationComponent implements OnInit {
+  @Output() close = new EventEmitter<boolean>();
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private locationService: LocationService,
-    private notification: NotificationService,
-    private router:Router
+    private notification: NotificationService
   ) {}
 
   isState: boolean = false;
   isCity: boolean = false;
   countryData:Location[]=this.data.countrydata;
   stateData:Location[];
-
+    update:any=this.data.update;
 
   locationData: Partial<Location> = {
     mLocationCode: "",
@@ -65,6 +67,7 @@ export class AddLocationComponent implements OnInit {
   onChangeState(data: Event) {
     this.locationData.mLocationParentId = +data;
   }
+
   add() {
     this.locationService.insertMasterLocation(this.locationData).subscribe(
       (res) => {
@@ -73,7 +76,22 @@ export class AddLocationComponent implements OnInit {
       (error) => {
         console.log("Error in Post Location !");
         this.notification.showNotification("Some error occured !", "danger");
+      },()=>{
       }
     );
   }
+
+  getLocations(){
+    this.locationService.getMasterLocation().subscribe(
+      (res) => {
+        this.notification.showNotification("Added Successfully !", "success");
+
+      },
+      (error) => {
+        console.log("Error in Post Location !");
+        this.notification.showNotification("Some error occured !", "danger");
+      });
+  }
+
+
 }

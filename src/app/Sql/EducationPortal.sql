@@ -1,5 +1,31 @@
 -- use dbEdushalacollege;
 
+sp_helptext spMasterStreamsGet
+
+CREATE proc dbo.spMasterStreamsGet(@mStreamsId int = 0)
+as
+select 
+stream.mStreamsId as mStreamsId,
+stream.mStreamsCode as mStreamsCode,
+stream.mStreamsName as mStreamsName,
+stream.mStreamsType as mStreamsType,
+stream.mStreamsSerialNo as mStreamsSerialNo,
+isnull(stream.mStreamsParentId,'') as mStreamsParentId,
+stream.mStreamsIsActive as mStreamsIsActive,
+
+B.mStreamsName as mStreamsParentName,
+
+substream.mStreamsId as msubStreamsId,
+Course.mStreamsId as mCourseId,
+spec.mStreamsId as mSpecializationId
+
+from MasterStreams as stream 
+	left join MasterStreams as B on stream.mStreamsParentId=B.mStreamsId 
+	left join  MasterStreams as substream on substream.mStreamsParentId=stream.mStreamsId 
+	left join MasterStreams as Course on Course.mStreamsParentId=substream.mStreamsId 
+	left join MasterStreams as spec on spec.mStreamsParentId=Course.mStreamsId 
+	where stream.mStreamsId=@mStreamsId or @mStreamsId=0
+
 
 -- --MasterLocation
 -- create table dbo.MasterLocation
@@ -14,11 +40,25 @@
 -- 	mLocationIsActive int,
 -- )
 
--- spMasterTypeDetailsGet
--- --select
--- alter proc dbo.spMasterLocationGet(@mLocationId int = 0)
--- as 	
--- select mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive from MasterLocation where mLocationId=@mLocationId or @mLocationId=0;
+-- spMasterLocationGet
+alter proc dbo.spMasterLocationGet(@mLocationId int = 0)
+as 	
+select 
+A.mLocationId as mLocationId,
+A.mLocationCode as mLocationCode,
+A.mLocationName as mLocationName,
+isnull(A.mLocationPinCode,'') as mLocationPinCode,
+A.mLocationType as mLocationType ,
+A.mLocationSerialNo as mLocationSerialNo, 
+isnull(A.mLocationParentId,'') as	mLocationParentId,
+B.mLocationName as	mLocationParentName,
+A.mLocationIsActive as mLocationIsActive 
+from MasterLocation as A inner join MasterLocation as B on B.mLocationId=A.mLocationId where A.mLocationId=@mLocationId or @mLocationId=0;
+
+--select
+alter proc dbo.spMasterLocationGet(@mLocationId int = 0)
+as 	
+select mLocationId,mLocationCode,mLocationName,isnull(mLocationPinCode,'') as mLocationPinCode,mLocationType,mLocationSerialNo, isnull(mLocationParentId,'') as	mLocationParentId,mLocationIsActive from MasterLocation where mLocationId=@mLocationId or @mLocationId=0;
  
 -- sp_helptext spMasterLocationInsert
 -- --sp_helptext spMasterLocationInsert

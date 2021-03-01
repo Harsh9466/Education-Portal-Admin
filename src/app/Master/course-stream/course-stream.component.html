@@ -1,0 +1,59 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Streams</h4>
+          </div>
+          <div class="card-body">
+            <div class="streams">
+              <ul class="ks-cboxtags">
+                <li class="form-check" *ngFor="let stream of streamData">
+                    <input class="form-check-input" [value]="stream.mtdId"  name="{{ stream.mtdName }}" type="checkbox" id="{{stream.mtdName}}" (change)="onChangeStream(stream.mtdId)">
+                    <label class="form-check-label" for="{{stream.mtdName}}">
+                        {{stream.mtdName}}
+                    </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Courses</h4>
+          </div>
+
+          <!-- <div class="d-flex justify-content-center">
+            <mat-form-field appearance="outline" >
+              <mat-label>Search</mat-label>
+              <input matInput placeholder="Search" (keyup)="filter(searchValue.value)" name="search" #searchValue>
+            </mat-form-field>
+          </div>  -->
+
+          <div class="card-body">
+              <div class="courses">
+                <ul class="ks-cboxtags">
+                <li class="form-check" *ngFor="let course of courseData">
+                    <input class="form-check-input"  name="{{ course.mtdName }}" [value]="course.mtdId" type="checkbox" id="{{course.mtdName}}" (change)="onChangeCourses()">
+                    <label class="form-check-label" for="{{course.mtdName}}">
+                        {{course.mtdName}}
+                    </label>
+                </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button class="btn btn-danger btn-lg" type="button" (click)="OnSubmit()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

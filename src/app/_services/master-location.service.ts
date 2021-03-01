@@ -16,6 +16,7 @@ export class LocationService {
     let baseUrl= environment.url+"MasterLocation/GetAll/";
     return this.http.get<Location[]>(baseUrl);
   }
+  
   getMasterLocationById(id:number)
   {
     let baseUrl= environment.url+"MasterLocation/GetById/";
@@ -36,7 +37,7 @@ export class LocationService {
   updateMasterLocation(id:number,location:any)
   {
     let baseUrl= environment.url+"MasterLocation/Update/";
-    return this.http.put(baseUrl+id,location);    
+    return this.http.put(baseUrl+id,location,{responseType:'text'});    
   }
 
   deleteMasterLocation(id:number)

@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TypeDetailsService {
-  baseUrl:string= environment.url+"MasterTypeDetails/";
+  baseUrl:string= environment.url+"MasterTypeDetail/";
   
   constructor(private http:HttpClient) { }
 

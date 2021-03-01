@@ -5,5 +5,6 @@ export interface Streams {
 	mStreamsType:string;	 
 	mStreamsSerialNo:number
 	mStreamsParentId:number;
+	mStreamsParentName:string;
 	mStreamsIsActive:boolean;
 }

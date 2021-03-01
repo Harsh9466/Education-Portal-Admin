@@ -7,12 +7,25 @@
         <input matInput placeholder="Name" name="mtdName"[(ngModel)]="typeDetailData.mtdName">
       </mat-form-field>
     </p>
-    <!--<p>
-      <mat-form-field appearance="outline">
-        <mat-label>Parent Id</mat-label>
-        <input type="number" matInput placeholder="Name" name="mtdParentId"[(ngModel)]="typeDetailData.mtdParentId">
+ 
+    <div *ngIf="isSubStream">
+      <mat-form-field appearance="fill" >
+        <mat-label>Stream</mat-label>
+        <mat-select name="mtdParentId" [(ngModel)]="typeDetailData.mtdParentId" >
+          <mat-option *ngFor="let stream of streams" [value]="stream.mtdId">{{stream.mtdName}}</mat-option>
+        </mat-select>
       </mat-form-field>
-    </p> -->
+    </div>
+
+    <div *ngIf="isSpecialization">
+      <mat-form-field appearance="fill" >
+        <mat-label>Course</mat-label>
+        <!-- (selectionChange)="onChangeCountry($event.value)" -->
+        <mat-select name="mtdParentId" [(ngModel)]="typeDetailData.mtdParentId" >
+          <mat-option *ngFor="let course of courses" [value]="course.mtdId">{{course.mtdName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
     <mat-radio-group aria-label="Status" name="mtdIsActive" [(ngModel)]="typeDetailData.mtdIsActive">
       <mat-radio-button [value]="true">Enable</mat-radio-button>

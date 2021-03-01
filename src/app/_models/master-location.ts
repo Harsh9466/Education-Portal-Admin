@@ -6,5 +6,6 @@ export interface Location {
 	mLocationType:string;
 	mLocationSerialNo:number ;
 	mLocationParentId:any ;
+	mLocationParentName:string ;
 	mLocationIsActive:boolean ;
 }

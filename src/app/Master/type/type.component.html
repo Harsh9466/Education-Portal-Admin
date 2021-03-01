@@ -18,21 +18,15 @@
                 <thead class="text-primary">
                   <th>S.No</th>
                   <th>Name</th>
-                  <th>Serial No</th>
-                  <th>Program Type</th>
-                  <th>Type Of College</th>
-                  <th>Course Type</th>
-                  <th>IsActive</th>
+                  <!-- <th>Serial No</th> -->
+                  <th>Status</th>
                   <th>Actions</th>
                 </thead>
                 <tbody>
                   <tr *ngFor="let tp of Types; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ tp.mTypeName }}</td>
+                    <!-- <td>{{ i + 1 }}</td> -->
                     <td>{{ tp.mTypeSerialNo }}</td>
-                    <td>{{ tp.mTypeProgramType }}</td>
-                    <td>{{ tp.mTypeTypeofCollege }}</td>
-                    <td>{{ tp.mTypeCourseType }}</td>
+                    <td>{{ tp.mTypeName }}</td>
                     <td>{{ tp.mTypeIsActive }}</td>
                     <td>
                       <i

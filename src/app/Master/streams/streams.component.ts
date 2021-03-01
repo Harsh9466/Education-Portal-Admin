@@ -17,7 +17,7 @@ import { DeleteStreamComponent } from './Delete-Stream/Delete-Stream.component';
 export class StreamsComponent implements OnInit 
 {
   Streams:Streams[];
-  Stream:Streams;
+  Stream:Partial<Streams>;
 
   StreamDropdown:boolean=false;
   CourseDropdown:boolean=false;
@@ -28,8 +28,10 @@ export class StreamsComponent implements OnInit
   actionId:number;
   courseId:number=0;
 
-  streamdata:Streams[];
+  streamData:Streams[];
+  subStreamdata:Streams[];
   courseData:Streams[];
+  specializationData:Streams[];
 
   constructor(
     private streamsService:StreamsService,
@@ -41,6 +43,11 @@ export class StreamsComponent implements OnInit
   ngOnInit(): void{
     this.route.data.subscribe((data)=>{
       this.Streams=data["stream"];
+      this.streamData=this.Streams.filter((v,i)=>v.mStreamsType.toLowerCase()==='stream');
+      this.subStreamdata=this.Streams.filter((v,i)=>v.mStreamsType.toLowerCase()==='substream');
+      this.courseData=this.Streams.filter((v,i)=>v.mStreamsType.toLowerCase()==='course');
+      this.specializationData=this.Streams.filter((v,i)=>v.mStreamsType.toLowerCase()==='specialization');
+      console.log(this.Streams);
     })
   }
 

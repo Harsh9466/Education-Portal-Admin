@@ -19,7 +19,7 @@ export class UpdateTypeDetailComponent implements OnInit {
   typeDetailData:Partial<TypeDetails>={
     mtdName:null,
     mtdParentId:null,
-    mtdSerialNo:null,
+    mtdSrNo:null,
     mtdIsActive:false
   }
 

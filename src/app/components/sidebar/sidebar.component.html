@@ -1,44 +1,92 @@
 <div class="logo">
-    <a routerLink="['master']" class="simple-text">
-        Education Portal
-    </a>
+  <a routerLink="['master']" class="simple-text"> Education Portal </a>
 </div>
 <div class="sidebar-wrapper">
-    <ul class="nav">
+  <ul class="nav">
+    <!-- Dashboard -->
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" [routerLink]="['dashboard']">
+        <i class="material-icons">dashboard</i>
+        <p>Dashboard</p>
+      </a>
+    </li>
 
-       
-        <!-- Dashboard -->
-        <li routerLinkActive="active" class="nav-item">
-            <a class="nav-link" [routerLink]="['dashboard']">
-                <i class="material-icons">dashboard</i>
-                <p>Dashboard</p>
-            </a>
-        </li>
+    <!-- Master -->
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link cursor-pointer" (click)="showDrop()">
+        <i class="material-icons">person</i>
+        <p>Master</p>
+      </a>
+    </li>
+    <div id="dropdownContent" class="dropdown-menu-1" style="display: none">
+      <a
+        class="dropdown-item"
+        [routerLink]="['master/location']"
+        routerLinkActive="active"
+        >Location</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['master/streams']"
+        routerLinkActive="active"
+        >Streams</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['master/course-stream']"
+        routerLinkActive="active"
+        >Course-Streams</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['master/type']"
+        routerLinkActive="active"
+        >Type</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['master/type-details']"
+        routerLinkActive="active"
+        >Type Details</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['master/bank']"
+        routerLinkActive="active"
+        >Bank</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['master/bank-setup']"
+        routerLinkActive="active"
+        >Bank Setup</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['master/code']"
+        routerLinkActive="active"
+        >Code</a
+      >
+    </div>
 
-        <!-- Master -->
-        <li routerLinkActive="active" class="nav-item">
-            <a class="nav-link cursor-pointer" (click)="showDrop()">
-                <i class="material-icons">person</i>
-                <p>Master</p>
-            </a>
-        </li>
-        <div id="dropdownContent" class="dropdown-menu-1" style="display: none;">
-            <a class="dropdown-item" [routerLink]="['master/location']" routerLinkActive="active">Location</a>
-            <a class="dropdown-item" [routerLink]="['master/streams']" routerLinkActive="active">Streams</a>
-            <a class="dropdown-item" [routerLink]="['master/type']" routerLinkActive="active">Type</a>
-            <a class="dropdown-item" [routerLink]="['master/type-details']" routerLinkActive="active">Type Details</a>
-            <a class="dropdown-item" [routerLink]="['master/bank']" routerLinkActive="active">Bank</a>
-            <a class="dropdown-item" [routerLink]="['master/bank-setup']" routerLinkActive="active">Bank Setup</a>
-            <a class="dropdown-item" [routerLink]="['master/code']" routerLinkActive="active">Code</a>
-        </div>
+    <!-- College-Registration -->
+    <li class="nav-item">
+      <a
+        class="nav-link cursor-pointer"
+        [routerLink]="['/college-registration']"
+        routerLinkActive="active"
+      >
+        <i class="material-icons">dashboard</i>
+        <p>College Registration</p>
+      </a>
+    </li>
 
-
-        <!-- Log Out -->
-        <li  class="nav-item">
-            <a class="nav-link cursor-pointer" (click)="LogOut()" >
-                <i class="material-icons">dashboard</i>
-                <p>Log Out</p>
-            </a>
-        </li>
-    </ul>
+    <!-- Log Out -->
+    <li class="nav-item">
+      <a class="nav-link cursor-pointer" (click)="LogOut()">
+        <i class="material-icons">dashboard</i>
+        <p>Log Out</p>
+      </a>
+    </li>
+  </ul>
 </div>

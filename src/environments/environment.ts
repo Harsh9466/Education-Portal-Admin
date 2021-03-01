@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   // url:"http://demo3.kmatechnoware.com/api/"
   url:"http://localhost:5000/api/"
-  // url:"http://localhost:65353/api/"/
+  // url:"http://localhost:65353/api/"
 };

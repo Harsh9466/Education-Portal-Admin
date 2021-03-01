@@ -79,12 +79,11 @@ export class UpdateLocationComponent implements OnInit {
   update() {
     this.locationService.updateMasterLocation(this.getData.id, this.locationData).subscribe
     (
-      (res: Location) => {
+      (res) => {
         this.notification.showNotification("Data Updated successfully","success"
         );
       },
       (error) => {
-        console.log(error);
         this.notification.showNotification("Some error occured ! ", "danger");
       });
   }

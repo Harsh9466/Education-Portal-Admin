@@ -1,59 +1,208 @@
 <div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-              <div class="dropdown">
-                <button class="btn btn-lg btn-danger dropdown-toggle" type="button" data-toggle="dropdown"  >Add Streams</button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="addStream('stream')">Stream</a>
-                  <a class="dropdown-item"  href="javascript:void(0)" (click)="addStream('course')">Course</a>
-                  <a class="dropdown-item"  href="javascript:void(0)" (click)="addStream('substream')">Sub-Stream</a>
-                </div>
-              </div>
-
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Streams</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table text-center">
-                                <thead class=" text-primary">
-                                    <th>S.No</th>
-                                    <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Type</th>
-                                    <th>Serial No</th>
-                                    <th>ParentId</th>
-                                    <th>IsActive</th>
-                                    <th>Actions</th>
-                                </thead>
-                                <tbody>
-
-                                    <tr *ngFor="let st of Streams; let i=index">
-                                        <td>{{i+1}}</td>   
-                                        <td>{{st.mStreamsCode}}</td>   
-                                        <td>{{st.mStreamsName}}</td>   
-                                        <td>{{st.mStreamsType}}</td>   
-                                        <td>{{st.mStreamsSerialNo}}</td>   
-                                        <td>{{st.mStreamsParentId}}</td>   
-                                        <td>{{st.mStreamsIsActive}}</td>   
-                                        <td>
-                                          <i class="fa fa-pencil-square-o" (click)="getStream(st.mStreamsId)"  ></i>
-                                          <i class="fa fa-times"(click)="deleteStream(st.mStreamsId)" ></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="dropdown">
+          <button
+            class="btn btn-lg btn-danger dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+          >
+            Add Streams
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="javascript:void(0)" (click)="addStream('stream')">Stream</a>
+            <a class="dropdown-item" href="javascript:void(0)" (click)="addStream('course')">Course</a>
+            <a class="dropdown-item" href="javascript:void(0)" (click)="addStream('substream')">Sub-Stream</a
+            >
+          </div>
         </div>
-    </div>
-</div>
 
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Streams</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead class="text-primary">
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Code</th>
+                  <!-- <th>Type</th> -->
+                  <th>Serial No</th>
+                  <!-- <th>ParentId</th> -->
+                  <th>IsActive</th>
+                  <th>Actions</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sd of streamData; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ sd.mStreamsName }}</td>
+                    <td>{{ sd.mStreamsCode }}</td>
+                    <!-- <td>{{ sd.mStreamsType }}</td> -->
+                    <td>{{ sd.mStreamsSerialNo }}</td>
+                    <!-- <td>{{ sd.mStreamsParentName }}</td> -->
+                    <td>{{ sd.mStreamsIsActive }}</td>
+                    <td>
+                      <i
+                        class="fa fa-pencil-square-o"
+                        (click)="getStream(st.mStreamsId)"
+                      ></i>
+                      <i
+                        class="fa fa-times"
+                        (click)="deleteStream(st.mStreamsId)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Sub-Stream</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead class="text-primary">
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Code</th>
+                  <!-- <th>Type</th> -->
+                  <th>Serial No</th>
+                  <th>ParentId</th>
+                  <th>IsActive</th>
+                  <th>Actions</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let ssd of subStreamdata; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ ssd.mStreamsName }}</td>
+                    <td>{{ ssd.mStreamsCode }}</td>
+                    <!-- <td>{{ ssd.mStreamsType }}</td> -->
+                    <td>{{ ssd.mStreamsSerialNo }}</td>
+                    <td>{{ ssd.mStreamsParentName }}</td>
+                    <td>{{ ssd.mStreamsIsActive }}</td>
+                    <td>
+                      <i
+                        class="fa fa-pencil-square-o"
+                        (click)="getStream(st.mStreamsId)"
+                      ></i>
+                      <i
+                        class="fa fa-times"
+                        (click)="deleteStream(st.mStreamsId)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Course</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead class="text-primary">
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Code</th>
+                  <!-- <th>Type</th> -->
+                  <th>Serial No</th>
+                  <th>ParentId</th>
+                  <th>IsActive</th>
+                  <th>Actions</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cd of courseData; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ cd.mStreamsName }}</td>
+                    <td>{{ cd.mStreamsCode }}</td>
+                    <!-- <td>{{ cd.mStreamsType }}</td> -->
+                    <td>{{ cd.mStreamsSerialNo }}</td>
+                    <td>{{ cd.mStreamsParentName }}</td>
+                    <td>{{ cd.mStreamsIsActive }}</td>
+                    <td>
+                      <i
+                        class="fa fa-pencil-square-o"
+                        (click)="getStream(st.mStreamsId)"
+                      ></i>
+                      <i
+                        class="fa fa-times"
+                        (click)="deleteStream(st.mStreamsId)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Specialization</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead class="text-primary">
+                  <th>S.No</th>
+                  <th>Name</th>
+                  <th>Code</th>
+                  <!-- <th>Type</th> -->
+                  <th>Serial No</th>
+                  <th>ParentId</th>
+                  <th>IsActive</th>
+                  <th>Actions</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sd of specializationData; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ sd.mStreamsName }}</td>
+                    <td>{{ sd.mStreamsCode }}</td>
+                    <!-- <td>{{ sd.mStreamsType }}</td> -->
+                    <td>{{ sd.mStreamsSerialNo }}</td>
+                    <td>{{ sd.mStreamsParentName }}</td>
+                    <td>{{ sd.mStreamsIsActive }}</td>
+                    <td>
+                      <i
+                        class="fa fa-pencil-square-o"
+                        (click)="getStream(st.mStreamsId)"
+                      ></i>
+                      <i
+                        class="fa fa-times"
+                        (click)="deleteStream(st.mStreamsId)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

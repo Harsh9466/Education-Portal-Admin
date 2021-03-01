@@ -80,9 +80,9 @@
                     <th>S.No</th>
                     <th>Name</th>
                     <th>Code</th>
-                    <th>Type</th>
+                    <!-- <th>Type</th> -->
                     <!-- <th>Pin Code</th> -->
-                    <th>Parent Id</th>
+                    <th>State of</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
@@ -92,9 +92,9 @@
                     <td>{{ i + 1 }}</td>
                     <td>{{ lc.mLocationName }}</td>
                     <td>{{ lc.mLocationCode }}</td>
-                    <td>{{ lc.mLocationType }}</td>
+                    <!-- <td>{{ lc.mLocationType }}</td> -->
                     <!-- <td>{{ lc.mLocationPinCode }}</td> -->
-                    <td>{{ lc.mLocationParentId }}</td>
+                    <td>{{ lc.mLocationParentName }}</td>
                     <td>{{ lc.mLocationIsActive }}</td>
                     <td>
                       <i
@@ -132,9 +132,9 @@
                     <th>S.No</th>
                     <th>Name</th>
                     <th>Code</th>
-                    <th>Type</th>
+                    <!-- <th>Type</th> -->
                     <th>Pin Code</th>
-                    <th>Parent Id</th>
+                    <th>City of</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
@@ -144,9 +144,9 @@
                     <td>{{ i + 1 }}</td>
                     <td>{{ lc.mLocationName }}</td>
                     <td>{{ lc.mLocationCode }}</td>
-                    <td>{{ lc.mLocationType }}</td>
+                    <!-- <td>{{ lc.mLocationType }}</td> -->
                     <td>{{ lc.mLocationPinCode }}</td>
-                    <td>{{ lc.mLocationParentId }}</td>
+                    <td>{{ lc.mLocationParentName }}</td>
                     <td>{{ lc.mLocationIsActive }}</td>
                     <td>
                       <i
@@ -193,7 +193,7 @@
 
             <div class="md-form" *ngIf="countryDropdown">
               <label >Country</label>
-              <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mLocationParentId" (change)="getNameByParentId()" >
+              <select class="form-control shadow-none" [(ngModel)]="actionId"  name="mLocationParentName" (change)="getNameByParentId()" >
                 <option [value]=0 selected>Select Country....</option>
                 <option *ngFor="let country of countryData" [value]="country.mLocationId">{{country.mLocationName}}</option>
               </select>          
