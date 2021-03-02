@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import * as anime from "animejs";
 
 @Component({
   selector: "app-College-Registration",
@@ -8,5 +9,12 @@ import { Component, OnInit } from "@angular/core";
 export class CollegeRegistrationComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    anime({
+      targets: "#cssSelector",
+      translateY: 250,
+      loop: true,
+      easing: "easeInOutSine",
+    });
+  }
 }
