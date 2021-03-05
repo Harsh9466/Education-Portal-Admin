@@ -32,9 +32,8 @@ export class LocationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe((data) => {
-      this.Locations = data["location"];
-    });
+    this.Locations = this.locationService.Locations;
+    console.log(this.locationService.Locations);
     this.countryData = this.Locations.filter(
       (v, i) => v.mLocationType.toLocaleLowerCase() === "country"
     );
