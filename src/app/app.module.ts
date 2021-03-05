@@ -34,8 +34,11 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:5000"],
-        disallowedRoutes: ["localhost:5000/api/auth"],
+        allowedDomains: ["localhost:5000", "demo3.kmatechnoware.com"],
+        disallowedRoutes: [
+          "localhost:5000/api/auth",
+          "demo3.kmatechnoware.com/api/auth",
+        ],
       },
     }),
   ],

@@ -11,6 +11,7 @@ import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import PerfectScrollbar from "perfect-scrollbar";
 import * as $ from "jquery";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Component({
   selector: "app-admin-layout",
@@ -21,6 +22,7 @@ export class AdminLayoutComponent implements OnInit {
   private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
+  jwthelper = new JwtHelperService();
 
   constructor(public location: Location, private router: Router) {}
 

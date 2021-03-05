@@ -1,3 +1,7 @@
+import { UrlLinkComponent } from "./../../Url/Url-Link/Url-Link.component";
+import { UrlPermissionComponent } from "./../../Url/Url-Permission/Url-Permission.component";
+import { UrlGroupComponent } from "./../../Url/Url-Group/Url-Group.component";
+import { UrlTypeComponent } from "./../../Url/Url-Type/Url-Type.component";
 import { CollegeRegistrationComponent } from "./../../College-Registration/College-Registration.component";
 import { MasterStreamCourseResolver } from "./../../_resolvers/master-stream-course.resolver";
 import { CourseStreamComponent } from "./../../Master/course-stream/course-stream.component";
@@ -65,6 +69,26 @@ export const AdminLayoutRoutes: Routes = [
       },
       { path: "code", canActivate: [AuthGuard], component: CodeComponent },
     ],
+  },
+  {
+    path: "url-type",
+    canActivate: [AuthGuard],
+    component: UrlTypeComponent,
+  },
+  {
+    path: "url-group",
+    canActivate: [AuthGuard],
+    component: UrlGroupComponent,
+  },
+  {
+    path: "url-link",
+    canActivate: [AuthGuard],
+    component: UrlLinkComponent,
+  },
+  {
+    path: "url-permission",
+    canActivate: [AuthGuard],
+    component: UrlPermissionComponent,
   },
   {
     path: "college-registration",

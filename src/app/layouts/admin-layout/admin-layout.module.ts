@@ -1,3 +1,8 @@
+import { JwtModule } from "@auth0/angular-jwt";
+import { UrlTypeComponent } from "./../../Url/Url-Type/Url-Type.component";
+import { UrlPermissionComponent } from "./../../Url/Url-Permission/Url-Permission.component";
+import { UrlLinkComponent } from "./../../Url/Url-Link/Url-Link.component";
+import { UrlGroupComponent } from "./../../Url/Url-Group/Url-Group.component";
 import { CollegeRegistrationComponent } from "./../../College-Registration/College-Registration.component";
 import { CourseStreamComponent } from "./../../Master/course-stream/course-stream.component";
 import { MasterStreamsResolver } from "./../../_resolvers/master-stream.resolver";
@@ -57,6 +62,10 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatTableModule } from "@angular/material/table";
 
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -108,6 +117,10 @@ import { MatTableModule } from "@angular/material/table";
     UpdateCodeComponent,
     CourseStreamComponent,
     CollegeRegistrationComponent,
+    UrlGroupComponent,
+    UrlLinkComponent,
+    UrlPermissionComponent,
+    UrlTypeComponent,
   ],
   providers: [
     LocationService,

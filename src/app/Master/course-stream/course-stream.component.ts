@@ -91,6 +91,7 @@ export class CourseStreamComponent implements OnInit {
         mcsCourseId: +this.selectedCourses[i],
         mcsStreamId: +this.selectedStream,
       };
+      console.log(this.CourseStreams);
       // console.log(this.CourseStreams);
       this.courseStreamService.insertCourseStream(this.CourseStreams).subscribe(
         (res) => {

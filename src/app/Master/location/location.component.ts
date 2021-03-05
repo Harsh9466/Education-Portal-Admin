@@ -1,5 +1,5 @@
 import { Component, DoCheck, OnChanges, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { NotificationService } from "./../../_services/notification.service";
 import { LocationService } from "../../_services/master-location.service";
@@ -26,6 +26,7 @@ export class LocationComponent implements OnInit {
   constructor(
     private locationService: LocationService,
     private route: ActivatedRoute,
+    private router: Router,
     private dailog: MatDialog,
     private notification: NotificationService
   ) {}
@@ -34,28 +35,25 @@ export class LocationComponent implements OnInit {
     this.route.data.subscribe((data) => {
       this.Locations = data["location"];
     });
-    this.getLocations();
+    this.countryData = this.Locations.filter(
+      (v, i) => v.mLocationType.toLocaleLowerCase() === "country"
+    );
+    this.stateData = this.Locations.filter(
+      (v, i) => v.mLocationType.toLocaleLowerCase() === "state"
+    );
+    this.cityData = this.Locations.filter(
+      (v, i) => v.mLocationType.toLocaleLowerCase() === "city"
+    );
   }
 
   getLocations() {
     this.locationService.getMasterLocation().subscribe(
-      (res) => this.Locations,
+      (res) => (this.Locations = res),
       (err) =>
         this.notification.showNotification(
           "Problem in Retriving Data!",
           "danger"
-        ),
-      () => {
-        this.countryData = this.Locations.filter(
-          (v, i) => v.mLocationType.toLocaleLowerCase() === "country"
-        );
-        this.stateData = this.Locations.filter(
-          (v, i) => v.mLocationType.toLocaleLowerCase() === "state"
-        );
-        this.cityData = this.Locations.filter(
-          (v, i) => v.mLocationType.toLocaleLowerCase() === "city"
-        );
-      }
+        )
     );
   }
 
@@ -85,8 +83,12 @@ export class LocationComponent implements OnInit {
         countrydata: this.countryData,
       },
     });
-    dialog.afterClosed().subscribe(() => {
-      this.getLocations();
+    dialog.afterClosed().subscribe((resp) => {
+      this.locationService.getMasterLocation().subscribe(
+        (res) => (this.Locations = res),
+        (err) => console.log("Error"),
+        () => this.getLocations()
+      );
       console.log("Added!");
     });
   }
@@ -103,7 +105,7 @@ export class LocationComponent implements OnInit {
       },
     });
     dialog.afterClosed().subscribe(() => {
-      this.getLocations();
+      this.ngOnInit();
       console.log("Updated!");
     });
   }
@@ -170,7 +172,7 @@ export class LocationComponent implements OnInit {
       },
     });
     dialog.afterClosed().subscribe(() => {
-      this.getLocations();
+      this.ngOnInit();
       console.log("Deleted!");
     });
   }

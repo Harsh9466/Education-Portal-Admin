@@ -1,5 +1,4 @@
 <div class="main-content">
-  <p id="cssSelector">fdsa</p>
   <div class="container-fluid">
     <div class="col-md-12">
       <div class="row">
@@ -13,60 +12,108 @@
             <div class="card-body">
               <div class="col-md-12">
                 <div class="row">
-                  <div class="col-md-8">
-                    <mat-form-field appearance="outline">
-                      <mat-label>First Name</mat-label>
-                      <input matInput placeholder="First Name" />
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Last Name</mat-label>
-                      <input matInput placeholder="Last Name" />
-                    </mat-form-field>
-                    <div class="col-md-12 p-0">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <mat-form-field appearance="outline">
-                            <mat-label>Mobile No.</mat-label>
-                            <input matInput placeholder="Mobile No." />
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                          <mat-form-field appearance="outline">
-                            <mat-label>Alternate No.</mat-label>
-                            <input matInput placeholder="Alternate No." />
-                          </mat-form-field>
-                        </div>
-                      </div>
-                    </div>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Email</mat-label>
-                      <input matInput placeholder="Email" />
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Address 1</mat-label>
-                      <input matInput placeholder="Address 1" />
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Address 2</mat-label>
-                      <input matInput placeholder="Address 2" />
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                      <mat-label>Pin Code</mat-label>
-                      <input matInput placeholder="Pin Code" />
-                    </mat-form-field>
-                    <!-- <mat-form-field appearance="outline">
-                      <mat-label>Image</mat-label>
-                      <input type="file" placeholder="Image" />
-                    </mat-form-field> -->
-                  </div>
                   <div class="col-md-4">
                     <div
                       class="border"
                       style="height: 250px; width: 250px; border-radius: 50%"
                     ></div>
                   </div>
+                  <div class="col-md-8">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Code ID</mat-label>
+                      <input
+                        matInput
+                        placeholder="Code ID"
+                        [(ngModel)]="profile.mpCodeId"
+                      />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>First Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="First Name"
+                        [(ngModel)]="profile.mpFirstName"
+                      />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Last Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="Last Name"
+                        [(ngModel)]="profile.mpLastName"
+                      />
+                    </mat-form-field>
+                    <div class="col-md-12 p-0">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Mobile No.</mat-label>
+                            <input
+                              matInput
+                              placeholder="Mobile No."
+                              [(ngModel)]="profile.mpMobileNo"
+                            />
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Alternate No.</mat-label>
+                            <input
+                              matInput
+                              placeholder="Alternate No."
+                              [(ngModel)]="profile.mpAlternateMobileNo"
+                            />
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input
+                        matInput
+                        placeholder="Email"
+                        [(ngModel)]="profile.mpEmailId"
+                      />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Address 1</mat-label>
+                      <input
+                        matInput
+                        placeholder="Address 1"
+                        [(ngModel)]="profile.mpAddress1"
+                      />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Address 2</mat-label>
+                      <input
+                        matInput
+                        placeholder="Address 2"
+                        [(ngModel)]="profile.mpAddress2"
+                      />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Pin Code</mat-label>
+                      <input
+                        matInput
+                        placeholder="Pin Code"
+                        [(ngModel)]="profile.mpPinCode"
+                      />
+                    </mat-form-field>
+                    <mat-radio-group
+                      name="mLocationIsActive"
+                      [(ngModel)]="profile.mpIsActive"
+                    >
+                      <mat-radio-button [value]="true">Enable</mat-radio-button>
+                      <mat-radio-button [value]="false" class="ml-3"
+                        >Disable</mat-radio-button
+                      >
+                    </mat-radio-group>
+                  </div>
                 </div>
               </div>
+            </div>
+            <div class="form-group d-flex justify-content-center mt-4">
+              <button class="btn btn-danger btn-lg">Submit</button>
             </div>
           </div>
         </div>

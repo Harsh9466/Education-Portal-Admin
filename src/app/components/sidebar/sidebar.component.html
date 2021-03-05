@@ -69,6 +69,39 @@
       >
     </div>
 
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link cursor-pointer" (click)="showUrlDrop()">
+        <i class="material-icons">person</i>
+        <p>URL</p>
+      </a>
+    </li>
+    <div id="urlDropdownContent" class="dropdown-menu-1" style="display: none">
+      <a
+        class="dropdown-item"
+        [routerLink]="['url-type']"
+        routerLinkActive="active"
+        >Url Type</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['url-group']"
+        routerLinkActive="active"
+        >Url Group</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['url-link']"
+        routerLinkActive="active"
+        >Url Links</a
+      >
+      <a
+        class="dropdown-item"
+        [routerLink]="['url-permission']"
+        routerLinkActive="active"
+        >Url Permissions</a
+      >
+    </div>
+
     <!-- College-Registration -->
     <li class="nav-item">
       <a

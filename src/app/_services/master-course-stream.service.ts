@@ -1,25 +1,24 @@
-import { environment } from './../../environments/environment';
-import { MasterCourseStream } from './../_models/master-course-stream';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { environment } from "./../../environments/environment";
+import { MasterCourseStream } from "./../_models/master-course-stream";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MasterCourseStreamService {
+  constructor(private http: HttpClient) {}
 
-constructor(private http:HttpClient) { }
+  baseUrl: string = environment.url + "MasterCourseStream/";
 
-  baseUrl:string=environment.url+"MasterCourseStream/";
-
-  getCourseStream(){
+  getCourseStream() {
     return this.http.get<MasterCourseStream[]>(this.baseUrl);
   }
 
-  insertCourseStream(data:any){
-    return this.http.post(this.baseUrl,data,{responseType:"text"});
+  insertCourseStream(data: any) {
+    return this.http.post(this.baseUrl, data, { responseType: "text" });
   }
-  
+
   // getCourseStreamById(id:number){
   //   return this.http.get<MasterCourseStream>(this.baseUrl+id);
   // }
@@ -31,5 +30,4 @@ constructor(private http:HttpClient) { }
   // deleteCourseStream(id:number){
   //   return this.http.post(this.baseUrl+id,{responseType:"text"});
   // }
-
 }

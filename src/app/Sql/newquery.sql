@@ -59,4 +59,12 @@ begin
 	insert MasterCourseStream(mcsCourseId,mcsStreamId) values(@mcsCourseId,@mcsStreamId)
 	select 'Inserted Successfully!' as msg
 end
-	
+	sp_help UrlGroup
+	use dbEdushalacollege
+select name from sys.procedures where name like '%Url%'
+	sp_helptext spUrlGroupGet
+
+	create proc dbo.spUrlGroupGet(@ugId int=0)
+as
+select ugId,ugName,ugTypeId from UrlGroup where ugId=@ugId or @ugId=0 
+
